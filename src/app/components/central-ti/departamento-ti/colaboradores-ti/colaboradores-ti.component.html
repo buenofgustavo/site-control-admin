@@ -1,0 +1,81 @@
+<div style="margin-bottom: 2rem; display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
+      <nb-option value="nome">Buscar por Nome</nb-option>
+      <nb-option value="cpf">Buscar por CPF</nb-option>
+      <nb-option value="departamento">Buscar por Departamento</nb-option>
+      <nb-option value="filial">Buscar por Filial</nb-option>
+      <nb-option value="computador">Buscar por Computador</nb-option>
+    </nb-select>
+      <div *ngIf="selectedFilter" class="search-input">
+          <input nbInput type="text" placeholder="Digite sua busca" (input)="applyFilter($event)"  class="mat-elevation-z1">
+      </div>
+  </div>
+  <nb-checkbox status="basic" style="margin-right: 20px;" [(ngModel)]="termo" (ngModelChange)="getAllColaboradores()">Sem termo</nb-checkbox>
+  <nb-checkbox status="basic"  [(ngModel)]="concluido" (ngModelChange)="getAllColaboradores()">Desativados</nb-checkbox>
+</div>
+
+
+
+<div style="margin-top: 0px; margin-bottom: 40px;">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.nome}} </td>
+    </ng-container>
+
+    <!-- CPF Column -->
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef> CPF </th>
+      <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.cpf}} </td>
+    </ng-container>
+
+    <!-- Telefone Column -->
+    <ng-container matColumnDef="numero">
+      <th mat-header-cell *matHeaderCellDef> Numero </th>
+      <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.numero}} </td>
+    </ng-container>
+
+    <!-- Departamento Column -->
+    <ng-container matColumnDef="departamento">
+      <th mat-header-cell *matHeaderCellDef> Departamento </th>
+      <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.departamento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="filial">
+      <th mat-header-cell *matHeaderCellDef> Filial </th>
+      <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.filial}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="computador">
+      <th mat-header-cell *matHeaderCellDef> Computador </th>
+      <td mat-cell *matCellDef="let element"> {{element.computadoresDTO.nomeComputador}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ações </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <button mat-button [matMenuTriggerFor]="menu"><nb-icon icon="more-vertical-outline"></nb-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openColaboradores(element)"><nb-icon icon="eye-outline"></nb-icon>  Visualizar</button>
+          <!-- <button mat-menu-item (click)="openEditarColaboradores(element)"><nb-icon icon="edit-outline"></nb-icon> Editar Acessos</button> -->
+          <button mat-menu-item (click)="assinarTermo(element)" *ngIf="!element.colaboradoresDTO.termo"><nb-icon icon="" ></nb-icon> Assinou o termo</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[8, 25, 100]"
+                 showFirstLastButtons
+                 aria-label="Select page">
+  </mat-paginator>
+  <div *ngIf="loading" class="loading-spinner-overlay">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Carregando dados...</p>
+  </div>
+</div>

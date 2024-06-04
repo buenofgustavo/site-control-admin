@@ -1,0 +1,80 @@
+<div style="margin-bottom: 2rem; display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
+      <nb-option value="nomeUserAtual">Buscar por Usuario Atual</nb-option>
+      <nb-option value="nomeComputador">Buscar por Nome do Computador</nb-option>
+      <nb-option value="marca">Buscar por marca</nb-option>
+      <nb-option value="enderecoMac">Buscar por Mac</nb-option>
+      <nb-option value="localizacao">Buscar por Localização</nb-option>
+    </nb-select>
+      <div *ngIf="selectedFilter" class="search-input">
+          <input nbInput type="text" placeholder="Digite sua busca" (input)="applyFilter($event)"  class="mat-elevation-z1">
+      </div>
+  </div>
+  <nb-checkbox status="basic" style="margin-right: 20px;"  [(ngModel)]="makro" (ngModelChange)="getAllComputadores()">Sem makro</nb-checkbox>
+  <nb-checkbox status="basic"  [(ngModel)]="concluido" (ngModelChange)="getAllComputadores()">Sem vínculo</nb-checkbox>
+</div>
+  
+  
+  <div style="margin-top: 0px; margin-bottom: 40px;">
+    <table mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="userAtual">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> User Atual </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nomeUserAtual}} </td>
+      </ng-container>
+  
+      <!-- CPF Column -->
+      <ng-container matColumnDef="nomeComputador">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nome do Computador </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nomeComputador}} </td>
+      </ng-container>
+  
+      <!-- Telefone Column -->
+      <ng-container matColumnDef="mac">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> MAC </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.enderecoMac}} </td>
+      </ng-container>
+  
+      <!-- Departamento Column -->
+      <ng-container matColumnDef="nomeUsuario">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nome do Perfil </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nomeUsuario}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="makro">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Makro </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.makroInstalado}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="localizacao">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Localização </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.localizacao}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ações </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">
+          <button mat-button [matMenuTriggerFor]="menu"><nb-icon icon="more-vertical-outline"></nb-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openComputadores(element)"><nb-icon icon="eye-outline"></nb-icon>  Visualizar</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[8, 25, 100]"
+                   showFirstLastButtons
+                   aria-label="Select page">
+    </mat-paginator>
+
+    <div *ngIf="loading" class="loading-spinner-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Carregando dados...</p>
+    </div>
+
+  </div>
+  

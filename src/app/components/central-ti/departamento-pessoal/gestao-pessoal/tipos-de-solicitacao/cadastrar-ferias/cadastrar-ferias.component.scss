@@ -1,0 +1,99 @@
+.img-usuario {
+    width: 150px; /* Adjust as needed */
+  }
+  
+  .card-center {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    border-radius: 20px;
+    max-width: 850px;
+    height: 440px;
+    margin: auto;            /* Ensures horizontal centering within the parent */
+    position: relative;      /* For vertical centering within the parent */
+    top: 250px;  
+    transform: translateY(-50%);
+  }
+  
+  .div-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 0px;
+  }
+  
+  .todos-inputs {
+    width: calc(100% - 20px); // Ajusta para que haja um espaço para a borda
+  }
+  
+  nb-form-field {
+    margin-top: 15px;
+  }
+  
+  .todos-inputs,
+  nb-select {
+    width: 100%;
+  }
+  
+.nomecompleto{
+    display: flex;
+}
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nb-card-body.example-items-rows {
+  align-items: center;
+}
+
+nb-checkbox:not(:only-child) {
+  margin-right: 1.5rem;
+}
+
+.select-checkbox-and-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-checkbox {
+  transform: scale(1.5); /* Ajuste o valor conforme necessário para aumentar o tamanho do checkbox */
+  margin-right: 10px; /* Ajuste a margem conforme necessário */
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.datafim{
+  width: calc(100% - 10px); 
+  margin-left: 10px;
+  margin-top: -10px;
+}
+.dataini{
+  width: calc(100% - 10px);
+  margin-left:0px;
+  margin-top: -10px;
+}
+
+.labeldatafim{
+  margin-top: 10px;
+}
+
+.button{
+  width: calc(100% - 40px); // Ajusta para que haja um espaço para a borda
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

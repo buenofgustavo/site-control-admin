@@ -1,0 +1,21 @@
+nb-layout-header {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+img {
+  width: 12rem;
+  margin-left: -1rem;
+}
+
+nb-card-body {
+  display: flex;
+  align-items: center;
+}
+
+nb-user {
+  margin-left: auto; // Move o nbuser para a extrema direita dentro do nb-card-body
+}
+
+

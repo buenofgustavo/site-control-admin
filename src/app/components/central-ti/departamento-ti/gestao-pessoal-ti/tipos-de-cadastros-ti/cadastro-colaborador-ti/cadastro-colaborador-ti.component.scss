@@ -1,0 +1,83 @@
+.img-usuario {
+    width: 150px; /* Adjust as needed */
+  }
+  
+  
+  .div-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .todos-inputs {
+    width: calc(100% - 20px); // Ajusta para que haja um espaço para a borda
+  }
+  .button{
+    width: calc(100% - 40px); // Ajusta para que haja um espaço para a borda
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  nb-form-field {
+    margin-top: 15px;
+  }
+  
+  .todos-inputs,
+  nb-select {
+    width: 100%;
+  }
+  
+  .select-checkbox-and-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .input-comentario{
+    width: calc(100% + 50px);
+  }
+  
+  .exemplo-itens-coluna {
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Cor de fundo opcional */
+    padding: 10px; /* Espaçamento opcional */
+  }
+  
+  .scrollable {
+    max-height: 350px;
+    overflow-y: block;
+  }
+
+  .div-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .todos-inputs {
+    width: calc(100% - 20px); // Ajusta para que haja um espaço para a borda
+  }
+
+  
+  .center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-vincular{
+    width: calc(100% - 54px); // Ajusta para que haja um espaço para a borda
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: -50px;
+  }
+
+  .input-error {
+    border: 1px solid #ff0000; /* ou outra cor vermelha de sua escolha */
+  }
+  
+  .label-error {
+    color: #ff0000; /* ou outra cor vermelha de sua escolha */
+  }

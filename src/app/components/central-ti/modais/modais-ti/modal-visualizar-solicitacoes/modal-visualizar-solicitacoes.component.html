@@ -1,0 +1,102 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 486px; min-height: 486px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+      <mat-tab label="Solicitação">
+
+        <div style="margin-bottom: 18px; margin-top: 00px; margin-left: 42px;">
+  
+            <div class="div-cadastro">
+                <nb-form-field>
+                    <label for="tipo">Tipo</label>
+                    <input disabled for="tipo" id="tipo" nbInput name="tipo" [(ngModel)]="data.solicitacaoAssociadaColaborador.tipo">
+                  </nb-form-field>
+                <nb-form-field>
+                  <label for="status">Status</label>
+                  <input disabled for="status" id="status" nbInput name="status" [(ngModel)]="data.solicitacaoAssociadaColaborador.status">
+                </nb-form-field>
+              </div>
+
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="data.solicitacaoAssociadaColaborador.nome">Nome</label>
+              <input disabled for="data.solicitacaoAssociadaColaborador.nome" id="nome" nbInput name="nome" [(ngModel)]="data.solicitacaoAssociadaColaborador.nome">
+            </nb-form-field>
+            <nb-form-field>
+              <label for="CPF">CPF</label>
+              <input disabled for="CPF" id="CPF" nbInput name="CPF" [(ngModel)]="data.solicitacaoAssociadaColaborador.cpf">
+            </nb-form-field>
+          </div>
+          
+          <div class="div-cadastro">
+            <nb-form-field>
+                <label for="numero">Número</label>
+                <input disabled for="numero" id="numero" nbInput name="numero" [(ngModel)]="data.solicitacaoAssociadaColaborador.numero">
+              </nb-form-field>
+            <nb-form-field>
+              <label for="cargo">Cargo</label>
+              <input disabled for="cargo" id="cargo" nbInput name="cargo" [(ngModel)]="data.solicitacaoAssociadaColaborador.cargo">
+            </nb-form-field>
+
+          </div>
+          
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="departamento">Departamento</label>
+              <input disabled for="departamento" id="departamento" nbInput name="departamento" [(ngModel)]="data.solicitacaoAssociadaColaborador.departamento">
+            </nb-form-field>
+            <nb-form-field>
+                <label for="filial">Filial</label>
+                <input disabled for="filial" id="filial" nbInput name="filial" [(ngModel)]="data.solicitacaoAssociadaColaborador.filial">
+              </nb-form-field>
+
+          </div>
+
+          <div class="div-cadastro">
+            <nb-form-field>
+                <label for="usuario_solicitante">Usuário Solicitante</label>
+                <input disabled for="usuario_solicitante" id="usuario_solicitante" nbInput name="usuario_solicitante" [(ngModel)]="data.solicitacaoAssociadaColaborador.usuario_solicitante">
+              </nb-form-field>
+            <nb-form-field>
+              <label for="data_abertura">Data de Abertura</label>
+              <input disabled for="data_abertura" id="data_abertura" nbInput name="data_abertura" [(ngModel)]="data.solicitacaoAssociadaColaborador.dataAbertura">
+            </nb-form-field>
+          </div>
+
+
+    
+        </div>
+
+      </mat-tab>
+
+      <mat-tab label="Comentários">
+        <nb-card style="height: 438px;"> <!-- Defina uma altura máxima para o card -->
+          <nb-card-body style="overflow-y: auto;"> <!-- Adicione a propriedade overflow-y -->
+            <div *ngFor="let msg of chatSolicitacoes">
+              <nb-card>
+                <nb-card-body>
+                  <app-user-info [name]="msg.nomeUser" [title]="msg.usuario"></app-user-info>
+                  <div style="margin-top: 18px; white-space: pre-wrap;">
+                    <span>{{ msg.message }}</span>
+                    <p style="margin-left: 34rem;">{{ msg.datahora | date:'dd-MM-yyyy HH:mm' }}</p>
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </nb-card-body>
+      
+          <nb-card-footer>
+            <div style="display: flex; align-items: center;">
+                <textarea [disabled]="this.data.solicitacaoAssociadaColaborador.status !== 'Em aberto' && this.data.solicitacaoAssociadaColaborador.status !== 'Pendente'"
+                    nbInput fullWidth class="input-comentario" [(ngModel)]="chatDTO.message" 
+                    placeholder="Escreva sua mensagem" rows="3" maxlength="255"></textarea>
+                <button [disabled]="this.data.solicitacaoAssociadaColaborador.status !== 'Em aberto' && this.data.solicitacaoAssociadaColaborador.status !== 'Pendente'"
+                    style="margin-left: 20px;" nbButton status="basic" (click)="sendMessage()">
+                    <nb-icon icon="paper-plane-outline"></nb-icon>
+                </button>
+            </div>
+        </nb-card-footer>
+        </nb-card>
+      </mat-tab>
+    </mat-tab-group>
+  
+  </div>

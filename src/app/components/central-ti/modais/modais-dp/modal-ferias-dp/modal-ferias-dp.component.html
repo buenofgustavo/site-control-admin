@@ -1,0 +1,43 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 448px; min-height: 448px;  background-color: white; overflow: hidden;">
+
+  <mat-tab-group>
+    <mat-tab label="Cadastro de Férias">
+
+      <div style="margin-bottom: 18px; margin-top: 75px; margin-left: -8px;">
+
+        <form class="form-grid">
+          
+          <div class="center-content" style="margin-left: 30px;">
+            <nb-form-field style="flex: 1;">
+                <label for="filial">Colaborador</label>
+                <input disabled class="todos-inputs" id="colaboradores" nbInput name="colaboradores">
+            </nb-form-field>
+              <label for="nb-checkbox" style="margin-left: 40px;display: flex; top: -20px; margin-right: -18px; margin-top: 34px;">Desativar acessos:</label>
+              <nb-checkbox disabled id="nb-checkbox" style="margin-top: 38px; margin-left: 40px; transform: scale(1.7);" status="basic"></nb-checkbox>
+          </div>
+      
+          <nb-card-body class="data">
+            <div class="div-datas">
+              <div class="group">
+                  <label for="dataini">Data de Início:</label>
+                  <input class="dataini todos-inputs" disabled id="dataini" nbInput name="dataini">
+              </div>
+              
+              <div class="input-row">
+                  <label class="labeldatafim" for="datafim">Data final:</label>
+                  <input class="datafim inputadatafinal todos-inputs" disabled id="datafim" nbInput name="datafim">
+              </div>
+          </div>
+          </nb-card-body>
+      
+      </form>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+  

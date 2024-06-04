@@ -1,0 +1,55 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 448px; min-height: 448px;  background-color: white; overflow: hidden;">
+
+  <mat-tab-group>
+    <mat-tab label="Cadastro de Usuário">
+      <div style=" margin-top: 45px; margin-left: 41px;">
+
+        <form class="form-grid">
+      
+        <div class="div-cadastro">
+          <nb-form-field>
+            <label for="nomeCompleto">Nome Completo</label>
+            <input disabled class="todos-inputs" id="nomeCompleto" nbInput name="nomeCompleto">
+          </nb-form-field>
+          <nb-form-field>
+            <label for="usuarioTelefone">Número de telefone</label>
+            <input disabled class="todos-inputs" id="usuarioTelefone" nbInput placeholder="(00) 00000-0000" name="numero">
+          </nb-form-field>
+        </div>
+        <div class="div-cadastro">
+          <nb-form-field>
+            <label for="usuarioCPF">CPF</label>
+            <div style="display: flex;">
+              <input disabled class="todos-inputs" id="usuarioCPF" nbInput placeholder="000.000.000-00" name="cpf">
+            </div>
+          </nb-form-field>
+          <nb-form-field class="form-field">
+            <label for="filial">Filial</label>
+            <input disabled id="usuarioFilial" nbInput placeholder="" name="filial">
+          </nb-form-field>
+        </div>
+        <div class="div-cadastro">
+          <nb-form-field>
+            <label for="usuarioCargo">Cargo</label>
+            <input disabled class="todos-inputs" id="usuarioCargo" nbInput placeholder="" name="cargo">
+          </nb-form-field>
+          <nb-form-field class="form-field">
+            <label for="departamento">Departamento</label>
+            <input disabled id="usuarioDepartamento" nbInput placeholder="" name="departamento">
+          </nb-form-field>
+        </div>
+        
+        <nb-form-field class="form-field">
+          <label for="regime_de_contratacao">Regime de Contratação</label>
+          <input disabled id="usuarioregime_de_contratacao" nbInput placeholder="" name="regime_de_contratacao">
+        </nb-form-field>
+
+      </form>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

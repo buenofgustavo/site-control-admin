@@ -1,0 +1,80 @@
+
+<div style="max-width: 780px; min-width: 780px; max-height: 428px; min-height: 428px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
+
+  <mat-tab-group>
+    <mat-tab label="Cadastro de Colaborador">
+      <div style="margin-left: 40px; margin-bottom: 18px; margin-top: 10px;">
+
+
+          <form class="form-grid">
+            <div class="div-cadastro">
+              <nb-form-field>
+                <label for="dadosColaboradores.nome">Nome Completo</label>
+                <input required class="todos-inputs" id="dadosColaborador.nome" nbInput name="dadosColaborador.nome"  [(ngModel)]="dadosColaboradores.nome" required>
+              </nb-form-field>
+              <nb-form-field>
+                <label for="dadosColaboradores.numero">Número</label>
+                <input required [textMask]="{mask: telefoneMask}" class="todos-inputs" for="dadosColaboradores.numero" id="dadosColaboradores.numero" nbInput placeholder="" name="dadosColaboradores.telefone" [(ngModel)]="dadosColaboradores.numero" required>
+              </nb-form-field>
+            </div>
+            <div class="div-cadastro">
+              <nb-form-field>
+                <label for="dadosColaboradores.cpf" 
+                [ngClass]="{'label-error': dadosColaboradores.cpf && !validarCPF(dadosColaboradores.cpf)}"
+                >CPF</label>
+                <div style="display: flex;">
+                  <input required [textMask]="{mask: cpfMask}" class="todos-inputs" 
+                  for="dadosColaboradores.cpf" id="dadosColaboradores.cpf" nbInput placeholder=""
+                   name="dadosColaboradores.cpf" [(ngModel)]="dadosColaboradores.cpf" required 
+                   [ngClass]="{'input-error': !validarCPF(dadosColaboradores.cpf)}"
+                   >
+                </div>
+              </nb-form-field>
+              <nb-form-field class="form-field">
+                <label for="dadosColaboradores.filial">Filial</label>
+                <nb-select required placeholder="" for="dadosColaboradores.filial" name="dadosColaboradores.filial" [(ngModel)]="dadosColaboradores.filial" required>
+                  <nb-option *ngFor="let filial of filial" [value]="filial.filiais" >
+                    {{filial.filiais}}
+                  </nb-option>
+                </nb-select>
+              </nb-form-field>
+            </div>
+            <div class="div-cadastro">
+              <nb-form-field>
+                <label for="dadosColaboradores.cargo">Cargo</label>
+                <input required class="todos-inputs" id="dadosColaboradores.cargo" for="dadosColaboradores.cargo" nbInput placeholder="" name="cargo" [(ngModel)]="dadosColaboradores.cargo" required>
+              </nb-form-field>
+              <nb-form-field class="form-field">
+                <label for="dadosColaboradores.departamento">Departamento</label>
+                <nb-select required for="dadosColaboradores.departamento" placeholder="" name="perfis" [(ngModel)]="dadosColaboradores.departamento" required>
+                  <nb-option *ngFor="let departamento of departamento" [value]="departamento.departamento" >
+                    {{departamento.departamento}}
+                  </nb-option>
+                </nb-select>
+              </nb-form-field>
+            </div>
+            
+            <label for="dadosColaboradores.regimeContratacao" style="display: flex; margin-top: 9px;">Regime de Contratação:</label>
+            <nb-select required for="dadosColaboradores.regimeContratacao" placeholder="" name="perfis" [(ngModel)]="dadosColaboradores.regimeContratacao" required>
+              <nb-option value="CLT">CLT</nb-option>
+              <nb-option value="PJ">PJ</nb-option>
+              <nb-option value="Estagiário">Estagiário</nb-option>
+            </nb-select>
+        
+          </form>
+
+
+          <button style="margin-top: 22px;" class="button" [disabled]="isFormEmpty()" (click)="create()"  nbButton>Cadastrar</button>
+        </div>
+
+      </mat-tab>
+
+        
+
+
+
+
+  </mat-tab-group>
+
+</div>
+

@@ -1,0 +1,62 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 500px; min-height: 500px;  background-color: white; overflow: hidden;">
+
+  <mat-tab-group>
+
+    <mat-tab label="Computador">
+
+      <div style=" margin-left: 54px;">
+
+          <div class="div-cadastro">
+              <nb-form-field>
+                <label for="nome">Nome</label>
+                <input [(ngModel)]="gestaoAtivos.nome" class="todos-inputs" id="nome" nbInput name="nome">
+              </nb-form-field>
+              <nb-form-field>
+                <label for="tipo">Tipo</label>
+                <nb-select [(ngModel)]="gestaoAtivos.tipo" disabled class="todos-inputs" name="tipo" placeholder="" [(selected)]="selectedItemCategoria">
+                  <nb-option value="Impressora">Impressora</nb-option>
+
+              </nb-select>
+          </nb-form-field>
+
+
+          </div>
+
+          <label style="margin-top: 10px;" for="descricao">Descrição</label>
+          <textarea
+          nbInput fullWidth class="input-comentario" [(ngModel)]="gestaoAtivos.descricao" 
+          placeholder="" rows="3"
+          style=" width: 92.5%;"
+          maxlength="255"></textarea>
+          <div class="div-cadastro">
+
+            <nb-form-field>
+              <label for="status">Status</label>
+              <nb-select [(ngModel)]="gestaoAtivos.status"   class="todos-inputs" name="status" placeholder="" [(selected)]="selectedItemCategoria3">
+                <nb-option value="Ativo">Ativo</nb-option>
+                <nb-option value="Em estoque">Em estoque</nb-option>
+                <nb-option value="Defeito">Defeito</nb-option>
+            </nb-select>
+        </nb-form-field>
+
+            <nb-form-field style="margin-bottom: 6rem;">
+              <label for="localizacao">Localização</label>
+              <nb-select [(ngModel)]="gestaoAtivos.localizacao"  class="todos-inputs" name="localizacao" placeholder="" [(selected)]="selectedItemCategoria2">
+                <nb-option *ngFor="let filial of filial" [value]="filial.filiais" >
+                  {{filial.filiais}}
+                </nb-option>
+            </nb-select>
+        </nb-form-field>
+
+          </div>
+
+          <button class="button" (click)="create()" style="width: 93%;" nbButton status="basic">Adicionar</button>
+
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

@@ -1,0 +1,37 @@
+.img-usuario {
+    width: 150px; /* Adjust as needed */
+  }
+  
+  .card-center {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    border-radius: 20px;
+    max-width: 850px;
+    height: 320px;
+    margin: auto;            /* Ensures horizontal centering within the parent */
+    position: relative;      /* For vertical centering within the parent */
+    top: 250px;
+    transform: translateY(-50%);
+  }
+  
+  .div-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+
+  
+  nb-form-field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px !important;
+    margin-bottom: 10px;
+  }

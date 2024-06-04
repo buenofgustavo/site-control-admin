@@ -1,0 +1,59 @@
+.custom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 94%;
+  }
+  
+  
+  .card {
+    min-height: 460px;
+    max-height: 460px;
+    border-radius: 20px;
+    max-width: 700px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Adicione esta linha para centralizar horizontalmente */
+  }
+  
+  .nb-form-field {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .btn-primary {
+    margin-top: 15px; /* Ajuste o espaçamento entre os campos de entrada e o botão */
+    width: 100%;
+  }
+  
+  /* Aumente o tamanho dos campos de entrada */
+  .nb-form-field input {
+    width: 100%;
+    padding: 15px; /* Adicione mais espaço interno aos campos de entrada */
+    font-size: 18px; /* Ajuste o tamanho da fonte, se necessário */
+  }
+  
+  /* Opcional: Adicione estilos de validação de formulário */
+  .form-invalid .nb-form-field {
+    border-color: #f44336;
+  }
+  
+  .input-senha{
+    margin-top: 10px;
+    width: 300px;
+  
+  }
+  
+  .input-email{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  .button-entrar{
+    width: 100%;
+    margin-top:2.5rem;
+  
+  }

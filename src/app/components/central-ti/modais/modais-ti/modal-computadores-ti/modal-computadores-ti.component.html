@@ -1,0 +1,97 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 650px; min-height: 650px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+
+      <mat-tab label="Computador">
+
+        <div style=" margin-left: 52px;">
+  
+            <form class="form-grid">
+
+                <div class="div-cadastro"  style="margin-top: 0px;">
+                    <nb-form-field>
+                        <label for="nomeComputador">Nome do Computador</label>
+                        <input disabled [(ngModel)]="data.computadoresCompleto.nomeComputador" class="todos-inputs" id="nome_do_computador" nbInput name="nome_do_computador" for="nomeComputador">
+                    </nb-form-field>
+
+                    <nb-form-field>
+                      <label for="nomeUsuario">Nome de Usuário</label>
+                      <input disabled class="todos-inputs" id="nomeUsuario" nbInput name="nomeUsuario" for="nomeUsuario" [(ngModel)]="data.computadoresCompleto.nomeUsuario">
+                  </nb-form-field>
+                </div>
+
+                
+                <div class="div-cadastro">
+
+                <nb-form-field>
+                  <label for="Localizacao">Localização</label>
+                  <input disabled class="todos-inputs" id="Localizacao" nbInput name="Localizacao" for="Localizacao" [(ngModel)]="data.computadoresCompleto.localizacao">
+              </nb-form-field>
+                    <nb-form-field>
+                        <label for="enderecoMAC">Endereco MAC</label>
+                        <input disabled class="todos-inputs" id="enderecoMAC" nbInput placeholder="" name="enderecoMAC" for="enderecoMAC" [(ngModel)]="data.computadoresCompleto.enderecoMac">
+                    </nb-form-field>
+                </div>
+                
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="marca">Marca</label>
+                        <input disabled class="todos-inputs" id="marca" nbInput name="marca" for="marca" [(ngModel)]="data.computadoresCompleto.marca">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="modelo">Modelo</label>
+                        <input disabled class="todos-inputs" id="modelo" nbInput placeholder="" name="modelo" for="modelo" [(ngModel)]="data.computadoresCompleto.modelo">
+                    </nb-form-field>
+                </div>
+                
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="RAM">Memória Ram</label>
+                        <input disabled class="todos-inputs" id="RAM" nbInput name="RAM" for="RAM" [(ngModel)]="data.computadoresCompleto.memoriaRam">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="armazenamento">Armazenamento</label>
+                        <input disabled class="todos-inputs" id="armazenamento" nbInput placeholder="" name="armazenamento" for="armazenamento" [(ngModel)]="data.computadoresCompleto.capacidadeArmazenamento">
+                    </nb-form-field>
+                </div>
+                
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="processador">Processador</label>
+                        <input disabled class="todos-inputs" id="processador" nbInput name="processador" for="processador" [(ngModel)]="data.computadoresCompleto.processador">
+                    </nb-form-field>
+                    <nb-form-field>
+                      <label for="sistema_operacional">Sistema Operacional</label>
+                      <input disabled class="todos-inputs" id="sistema_operacional" nbInput name="sistema_operacional_do_computador" for="sistema_operacional" [(ngModel)]="data.computadoresCompleto.sistemaOperacional">
+                  </nb-form-field>
+                </div>
+                
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="makro">Makro</label>
+                        <input disabled class="todos-inputs" id="makro" nbInput name="makro" for="makro" [(ngModel)]="data.computadoresCompleto.makroInstalado">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="versao_makro">Versão Makro</label>
+                        <input disabled class="todos-inputs" id="versao_makro" nbInput placeholder="" name="versao_makro" for="versao_makro" [(ngModel)]="data.computadoresCompleto.versaoMakro">
+                    </nb-form-field>
+                </div>
+                
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="userAtual">Usuário atual</label>
+                        <input disabled class="todos-inputs" id="userAtual" nbInput placeholder="" name="userAtual" for="userAtual" [(ngModel)]="data.computadoresCompleto.nomeUserAtual">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="lastUser">Último usuário</label>
+                        <input disabled class="todos-inputs" id="lastUser" nbInput placeholder="" name="lastUser" for="lastUser" [(ngModel)]="data.computadoresCompleto.nomeLastUser">
+                    </nb-form-field>
+                </div>
+              </form>
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+  
+  </div>

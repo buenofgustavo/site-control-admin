@@ -1,0 +1,57 @@
+<nb-card size="large">
+    <nb-card-header style="margin: auto;"><img src="./assets/img/cadastrodeusuario.png" alt=""></nb-card-header>
+    <nb-card-body>
+  
+      <form #nameForm="ngForm" class="step-container">
+        <div class="row">
+  
+          <!-- CADASTRO DE ARMAZENS ONDE SERÁ ARMAZENADO CARGAS EM AVARIAS  -->
+          <div class="col-sm-6" >
+  
+            <div class="form-group-cte">
+              <div for="usuario.name" style="display: flex !important;">
+                <label for="usuario.name" class="label">Nome</label>  
+              </div>
+  
+  
+              <div style="display: flex !important;">
+  
+                <input type="text"  nbInput fullWidth id="usuario.name" placeholder="" name="nameusuario" [(ngModel)]="usuario.name" required>
+  
+              </div>
+  
+              <label for="usuario.login" class="label">E-mail</label>
+              <input type="text" nbInput fullWidth id="usuario.login" placeholder="" name="email" [(ngModel)]="usuario.login" required>
+  
+  
+              <label for="usuario.password" class="label">Senha</label>
+              <input type="password" nbInput fullWidth id="usuario.password" placeholder="" name="senha" [(ngModel)]="usuario.password" required>
+              <!-- Opções de Status-->
+  
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="usuario.role" class="label">Perfil de:</label>
+                </div>
+              </div>
+  
+              <nb-select for="usuario.role" fullWidth id="usuario.role" placeholder="Selecione o tipo" class="nb-select" [(ngModel)]="usuario.role" name="role" required>
+                <nb-option>Nenhuma das alternativas</nb-option>
+                <nb-option value="user">Usuário</nb-option>
+                <nb-option value="DP">Departamento Pessoal</nb-option>
+                <nb-option value="TI">Departamento T.I</nb-option>
+                <nb-option value="ADMIN">Administrador</nb-option>
+              </nb-select>
+  
+            </div>
+  
+            <div>
+              <button nbButton fullWidth (click)="create()" status="success">Cadastrar</button>
+            </div>
+  
+          </div>
+        </div>
+  
+      </form>
+  
+    </nb-card-body>
+  </nb-card>

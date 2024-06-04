@@ -1,0 +1,46 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 460px; min-height: 460px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+
+      <mat-tab label="Ativos">
+
+        <div style=" margin-left: 54px;">
+ 
+            <div class="div-cadastro">
+                <nb-form-field>
+                  <label for="nome">Nome</label>
+                  <input disabled  [(ngModel)]="data.gestaoAtivos.nome" class="todos-inputs" id="nome" nbInput name="nome">
+                </nb-form-field>
+                <nb-form-field>
+                    <label for="tipo">Tipo</label>
+                    <input disabled [(ngModel)]="data.gestaoAtivos.tipo"  class="todos-inputs" id="tipo" nbInput name="tipo">
+                </nb-form-field>
+
+            </div>
+
+            <label style="margin-top: 10px;" for="descricao">Descrição</label>
+            <textarea [(ngModel)]="data.gestaoAtivos.descricao" disabled style="padding: 50px; margin-bottom: 10px; width: 92.5%;" fullWidth class="buttons" name="descricao" nbInput placeholder=""></textarea>
+
+            <div class="div-cadastro">
+
+                <nb-form-field>
+                    <label for="status">Status</label>
+                    <input disabled [(ngModel)]="data.gestaoAtivos.status" class="todos-inputs" id="status" nbInput name="status">
+                  </nb-form-field>
+
+                  <nb-form-field>
+                    <label for="localizacao">Localização</label>
+                    <input disabled  class="todos-inputs" id="localizacao" [(ngModel)]="data.gestaoAtivos.localizacao" nbInput name="localizacao">
+                  </nb-form-field>
+
+            </div>
+
+
+
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+  
+  </div>

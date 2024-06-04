@@ -1,0 +1,97 @@
+
+<div style="max-width: 780px; min-width: 780px; max-height: 448px; min-height: 448px;  background-color: white; margin-top: 20px;  margin-left: 190px;">
+
+    <mat-tab-group>
+        <mat-tab label="Buscar colaborador">
+            <div style="margin-bottom: 18px; margin-top: 10px;">
+      
+      
+              <form class="form-grid">
+                <div class="center-content" style="margin-top: 4rem;">
+                  <nb-form-field style="flex: 1;">
+                    <label for="nome">Nome Colaborador:</label>
+                    <input autocomplete="off" [nbAutocomplete]="auto" class="todos-inputs" id="nome" [formControl]="inputFormControl"
+                           [(ngModel)]="cpf" nbInput placeholder="" name="nome">
+                  </nb-form-field>
+                  <nb-autocomplete #auto>
+                    <nb-option *ngFor="let cliente of filteredClientes$ | async" [value]="cliente.nome">
+                      {{ cliente.nome }}
+                    </nb-option>
+                  </nb-autocomplete>
+                  <button (click)="buscarColaborador()" nbButton style="margin-top: 33px; margin-left: 10px;">
+                    <nb-icon icon="search"></nb-icon>
+                </button>
+                </div>
+              </form>
+      
+              </div>
+         
+          </mat-tab>
+
+      <mat-tab label="Computador">
+
+        <div style=" margin-left: 52px;">
+  
+            <form class="form-grid">
+                <div class="center-content" style="margin-top: 5px;">
+                  <nb-form-field style="flex: 1;">
+                    <label for="computadores.enderecoMac">MAC</label>
+                    <input disabled class="todos-inputs" id="computadores.enderecoMac" for="computadores.enderecoMac" nbInput name="computadores.enderecoMac" [(ngModel)]="computadores.enderecoMac">
+                  </nb-form-field>
+                  <button style="margin-left: 18px; margin-top: 33px;" class="" [disabled]="isFormEmpty()" (click)="desvincular()" nbButton>Desvincular</button>
+                </div>
+            </form>
+
+            <div class="div-cadastro">
+              <nb-form-field>
+                <label for="computadores.nomeUsuario">Nome de Usuário</label>
+                <input disabled class="todos-inputs" for="computadores.nomeUsuario" id="computadores.nomeUsuario" nbInput name="computadores.nomeUsuario" [(ngModel)]="computadores.nomeUsuario">
+              </nb-form-field>
+              <nb-form-field>
+                <label for="computadores.nomeComputador">Nome do Computador</label>
+                <input disabled  for="computadores.nomeComputador" class="todos-inputs" id="computadores.nomeComputador" nbInput placeholder="" name="computadores.nomeComputador" [(ngModel)]="computadores.nomeComputador">
+              </nb-form-field>
+          </div>
+
+          <div class="div-cadastro">
+              <nb-form-field>
+                <label for="computadores.marca">Marca</label>
+                <input disabled class="todos-inputs" for="computadores.marca" id="computadores.marca" nbInput name="computadores.marca" [(ngModel)]="computadores.marca">
+              </nb-form-field>
+              <nb-form-field>
+                <label for="computadores.modelo">Modelo</label>
+                <input disabled class="todos-inputs" for="computadores.modelo" id="computadores.modelo" nbInput placeholder="" name="computadores.modelo" [(ngModel)]="computadores.modelo">
+              </nb-form-field>
+          </div>
+
+          <div class="div-cadastro">
+              <nb-form-field>
+                <label for="computadores.memoriaRam">RAM</label>
+                <input disabled for="computadores.memoriaRam" class="todos-inputs" id="computadores.memoriaRam" nbInput name="computadores.memoriaRam" [(ngModel)]="computadores.memoriaRam">
+              </nb-form-field>
+              <nb-form-field>
+                <label for="computadores.capacidadeArmazenamento" >Armazenamento</label>
+                <input disabled class="todos-inputs" for="computadores.capacidadeArmazenamento" id="computadores.capacidadeArmazenamento" nbInput placeholder="" name="computadores.capacidadeArmazenamento" [(ngModel)]="computadores.capacidadeArmazenamento">
+              </nb-form-field>
+          </div>
+
+          <div class="center-content">
+              <nb-form-field>
+                <label for="computadores.makroInstalado">MAKRO</label>
+                <input disabled for="computadores.makroInstalado" class="todos-inputs" id="computadores.makro" nbInput name="computadores.makroInstalado" id="computadores.makroInstalado" nbInput placeholder="" name="computadores.capacidadeArmazenamento" [(ngModel)]="computadores.makroInstalado">
+              </nb-form-field>
+          </div>
+
+  
+      </div>
+
+      </mat-tab>
+
+
+
+
+    </mat-tab-group>
+  
+  </div>
+  
+  

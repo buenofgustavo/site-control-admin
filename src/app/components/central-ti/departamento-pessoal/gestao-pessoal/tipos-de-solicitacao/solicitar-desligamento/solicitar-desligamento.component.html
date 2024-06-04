@@ -1,0 +1,80 @@
+
+
+      <div style="max-width: 780px; min-width: 780px; max-height: 452px; min-height: 452px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
+
+        <mat-tab-group>
+          <mat-tab label="Solicitar Desligamento">
+
+            <div style="margin-left: 3.5rem; margin-top: -4px;">
+              
+              <form class="form-grid">
+                <div class="center-content" style="margin-top: 0px;">
+                  <nb-form-field style="flex: 1;">
+                    <label for="nome">Nome Colaborador:</label>
+                    <input autocomplete="off" [nbAutocomplete]="auto" class="todos-inputs" id="nome" [formControl]="inputFormControl"
+                           [(ngModel)]="dadosColaboradores2.cpf" nbInput placeholder="" name="nome">
+                  </nb-form-field>
+                  <nb-autocomplete #auto>
+                    <nb-option *ngFor="let cliente of filteredClientes$ | async" [value]="cliente.nome">
+                      {{ cliente.nome }}
+                    </nb-option>
+                  </nb-autocomplete>
+                  <button nbButton style="margin-top: 33px; margin-left: 10px;" (click)="buscarColaborador()">
+                      <nb-icon icon="search"></nb-icon>
+                  </button>
+                  <div class="center-content">
+                    <button style="margin-left: 18px; margin-top: 42px;" class="button" (click)="desligar()" [disabled]="isFormEmptyDesligar()" nbButton>Solicitar</button>
+                  </div>                
+                </div>
+              </form>
+
+
+
+            <div class="div-cadastro">
+                <nb-form-field>
+                  <label for="nome">Nome</label>
+                  <input disabled class="todos-inputs" for="nome" id="nome" nbInput name="nome" [(ngModel)]="dadosColaboradores2.nome">
+                </nb-form-field>
+                <nb-form-field>
+                  <label for="computador">Computador</label>
+                  <input disabled  for="computador" class="todos-inputs" id="computador" nbInput placeholder="" name="computador" [(ngModel)]="dadosColaboradores2.computador">
+                </nb-form-field>
+            </div>
+
+            <div class="div-cadastro">
+                <nb-form-field>
+                  <label for="departamento">Departamento</label>
+                  <input disabled class="todos-inputs" for="departamento" id="departamento" nbInput name="departamento" [(ngModel)]="dadosColaboradores2.departamento">
+                </nb-form-field>
+                <nb-form-field>
+                  <label for="filial">Filial</label>
+                  <input disabled class="todos-inputs" for="filial" id="filial" nbInput placeholder="" name="filial" [(ngModel)]="dadosColaboradores2.filial">
+                </nb-form-field>
+            </div>
+
+            <div class="div-cadastro">
+                <nb-form-field>
+                  <label for="cargo">Cargo</label>
+                  <input disabled for="cargo" class="todos-inputs" id="cargo" nbInput name="cargo" [(ngModel)]="dadosColaboradores2.cargo">
+                </nb-form-field>
+                <nb-form-field>
+                  <label for="regimeContratacao" >Regime Contratacao</label>
+                  <input disabled class="todos-inputs" for="regimeContratacao" id="regimeContratacao" nbInput placeholder="" name="regimeContratacao" [(ngModel)]="dadosColaboradores2.regimeContratacao">
+                </nb-form-field>
+            </div>
+
+            <div class="center-content">
+                <nb-form-field>
+                  <label for="termo">Termo</label>
+                  <input disabled for="termo" class="todos-inputs" id="termo" nbInput name="termo" id="termo" nbInput placeholder="" name="termo" [(ngModel)]="dadosColaboradores2.termo">
+                </nb-form-field>
+            </div>
+      
+          </div>
+
+          </mat-tab>
+
+        </mat-tab-group>
+      
+      </div>
+      

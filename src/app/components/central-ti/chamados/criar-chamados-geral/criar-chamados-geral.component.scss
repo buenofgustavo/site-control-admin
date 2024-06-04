@@ -1,0 +1,19 @@
+.container {
+    margin-left: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh; // Isso garante que o container ocupe toda a altura da tela
+    width: 66%;
+  }
+  
+  @font-face {
+    font-family: "Roboto";
+    src: url("https://example.com/assets/fonts/roboto.woff2") format("woff2"),
+         url("https://example.com/assets/fonts/roboto.woff") format("woff");
+  }
+  
+  label {
+    font-family: "Roboto", sans-serif;
+  }

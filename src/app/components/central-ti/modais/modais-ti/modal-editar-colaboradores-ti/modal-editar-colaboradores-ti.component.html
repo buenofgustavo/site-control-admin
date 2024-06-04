@@ -1,0 +1,48 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 478px; min-height: 478px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+      <mat-tab label="Acessos">
+
+        <div style="margin-bottom: 18px; margin-top: 50px; margin-left: 42px;">
+  
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="data.colaboradorCompleto.acessosDTO.vr">VR</label>
+              <input for="data.colaboradorCompleto.acessosDTO.vr" id="vr" nbInput name="vr" [(ngModel)]="data.colaboradorCompleto.acessosDTO.vr">
+            </nb-form-field>
+            <nb-form-field>
+              <label for="gmail">Gmail</label>
+              <input for="gmail" id="gmail" nbInput name="gmail" [(ngModel)]="data.colaboradorCompleto.acessosDTO.gmail">
+            </nb-form-field>
+          </div>
+          
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="FreteBras">FreteBras</label>
+              <input for="FreteBras" id="FreteBras" nbInput name="FreteBras" [(ngModel)]="data.colaboradorCompleto.acessosDTO.freteBras">
+            </nb-form-field>
+            <nb-form-field>
+              <label for="SZ_chat">SZ.chat</label>
+              <input for="SZ.chat" id="SZ_chat" nbInput name="SZ_chat" [(ngModel)]="data.colaboradorCompleto.acessosDTO.szChat">
+            </nb-form-field>
+          </div>
+          
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="Zoho">Zoho</label>
+              <input for="Zoho" id="Zoho" nbInput name="Zoho" [(ngModel)]="data.colaboradorCompleto.acessosDTO.zoho">
+            </nb-form-field>
+            <nb-form-field>
+              <label for="Central_TI">Central T.I</label>
+              <input for="Central T.I" id="Central_TI" nbInput name="Central_TI" [(ngModel)]="data.colaboradorCompleto.acessosDTO.centralTi">
+            </nb-form-field>
+          </div>
+    
+        </div>
+        <div class="center-content">
+          <button fullWidth (click)="criarAcessos()" style="margin-top: 50px; margin-left: 0px;" class="button-vincular"  nbButton>Atualizar</button>
+      </div>
+      </mat-tab>
+    </mat-tab-group>
+  
+  </div>

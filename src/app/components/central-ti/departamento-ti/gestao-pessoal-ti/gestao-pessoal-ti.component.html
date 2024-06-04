@@ -1,0 +1,17 @@
+<nb-form-field class="form-field">
+    <label for="solicitacoes">Escolher solicitação:</label>
+    <nb-select placeholder="" name="perfis" [(ngModel)]="selectedOption">
+        <nb-option value="">Selecione uma opção</nb-option>
+        <nb-option value="cadastro">Vincular Computadores</nb-option>
+        <nb-option value="desvincular">Desvincular Computadores</nb-option>
+
+    </nb-select>
+</nb-form-field>
+
+
+<div *ngIf="selectedOption === 'cadastro'">
+    <app-cadastro-colaborador-ti></app-cadastro-colaborador-ti>
+</div>
+<div *ngIf="selectedOption === 'desvincular'">
+    <app-desvincular-computadores></app-desvincular-computadores>
+</div>

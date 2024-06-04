@@ -1,0 +1,70 @@
+<nb-layout>
+    <nb-layout-header fixed>
+      <img src="" alt="teste" style="margin-left:66vh; width: 85vh;">
+    </nb-layout-header>
+  
+    <nb-layout-column flex="70">
+      <nb-card class="custom-container card">
+        <nb-card-header>
+        </nb-card-header>
+  
+        <nb-card-body>
+          <form [formGroup]="loginForm">
+            <div class="input-login">
+  
+              <nb-form-field>
+                <label for="usuarioLogin">E-mail</label>
+                <input id="usuarioLogin"
+                nbInput type="login"
+                formControlName="login"
+                pattern=".+@tdmlogistica+\..+"
+                placeholder="Endereço de Login"
+                autofocus
+                [status]="loginForm.get('login')?.dirty ? (loginForm.get('login')?.invalid ? 'danger' : 'success') : 'basic'"
+                required
+                [attr.aria-invalid]="loginForm.get('login')?.invalid && loginForm.get('login')?.touched ? true : null">
+  
+              <ng-container *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
+                <p class="caption status-danger" *ngIf="loginForm.get('login')?.errors?.['required']">
+                  O Login é obrigatório!
+                </p>
+                <p class="caption status-danger" *ngIf="loginForm.get('login')?.errors?.['pattern']">
+                  O Login deve ser válido!
+                </p>
+              </ng-container>
+  
+              </nb-form-field>
+  
+            </div>
+            <div class="input-password">
+              <nb-form-field>
+                <label for="usuarioPassword">Senha</label>
+                <input id="usuarioPassword"
+                  nbInput type="password"
+                  formControlName="password"
+                  placeholder="Digite sua password"
+                  [status]="loginForm.get('password')?.dirty ? (loginForm.get('password')?.invalid? 'danger' : 'success') : 'basic'"
+                  [attr.aria-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched ? true : null">
+  
+                <ng-container *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched)">
+                  <p class="caption status-danger" *ngIf="loginForm.get('password')?.errors?.['required']">
+                    A senha é obrigatória!
+                  </p>
+                  <p class="caption status-danger" *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                    A senha deve ter no mínimo 6 caracteres!
+                  </p>
+                </ng-container>
+              </nb-form-field>
+  
+  
+            </div>
+            <button (click)="logar()" class="button-entrar" nbButton status="success"  shape="semi-round">Entrar</button>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </nb-layout-column>
+  
+    <nb-layout-footer fixed>
+      <p>&copy;2024 TDM Transportes. Todos os direitos reservados.</p>
+    </nb-layout-footer>
+  </nb-layout>

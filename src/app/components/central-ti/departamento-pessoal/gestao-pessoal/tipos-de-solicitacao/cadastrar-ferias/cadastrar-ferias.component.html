@@ -1,0 +1,54 @@
+
+
+<div style="max-width: 780px; min-width: 780px; max-height: 428px; min-height: 428px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
+
+  <mat-tab-group>
+    <mat-tab label="Cadastrar Férias">
+      <div style="margin-bottom: 18px; margin-top: 10px; margin-left: 41px;">
+
+        <form class="form-grid">
+          <div class="center-content">
+            <nb-form-field style="flex: 1;">
+              <label for="usuarioCPF">CPF</label>
+ 
+                <input [textMask]="{mask: cpfMask}" disabled  class="todos-inputs" id="usuarioCPF" nbInput placeholder="000.000.000-00" name="cpf">
+         
+            </nb-form-field>
+            <button disabled nbButton style="margin-top: 33px; margin-left: 10px;">
+              <nb-icon icon="search"></nb-icon>
+          </button>
+              <label for="nb-checkbox" style="margin-left: 40px;display: flex; top: -20px; margin-right: -18px; margin-top: 34px;">Desativar acessos:</label>
+              <nb-checkbox disabled id="nb-checkbox" style="margin-top: 38px; margin-left: 40px; transform: scale(1.7);" status="basic"></nb-checkbox>
+          </div>
+          
+
+    
+          <nb-card-body class="data">
+            <div class="input-row">
+              <div class="input-group">
+                <label for="dataini">Data de Início:</label>
+                <!-- Adicione o atributo name -->
+                <input class="dataini" nbInput for="dataini" placeholder="" [nbDatepicker]="formcontrol" [formControl]="formControl" name="dataini">
+                <nb-datepicker #formcontrol></nb-datepicker>
+              </div>
+              
+              <div class="input-group">
+                <label for="datafim" style="margin-left: 12px;">Data final:</label>
+                <!-- Adicione o atributo name -->
+                <input class="datafim" for="datafim" nbInput placeholder="" [nbDatepicker]="ngmodel" [(ngModel)]="ngModelDate" name="datafim">
+                <nb-datepicker #ngmodel></nb-datepicker>
+              </div>
+            </div>
+          </nb-card-body>
+    
+    
+        </form>
+
+        <button style="margin-top: 53px;" class="button" disabled (click)="openConfirmar()" nbButton>Solicitar</button>
+        </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

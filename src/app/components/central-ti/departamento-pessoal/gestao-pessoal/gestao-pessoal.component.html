@@ -1,0 +1,26 @@
+<nb-form-field class="form-field">
+    <label for="solicitacoes">Escolher solicitação:</label>
+    <nb-select placeholder="" name="perfis" [(ngModel)]="selectedOption">
+        <nb-option value="">Selecione uma opção</nb-option>
+        <nb-option value="cadastro">Cadastro de Usuário</nb-option>
+        <!-- <nb-option value="ferias">Cadastrar Férias</nb-option> -->
+        <nb-option value="mudanca">Mudança de Cargo</nb-option>
+        <nb-option value="desligamento">Desligamento de Usuário</nb-option>
+    </nb-select>
+</nb-form-field>
+
+
+<div *ngIf="selectedOption === 'cadastro'">
+    <app-solicitar-cadastro></app-solicitar-cadastro>
+</div>
+<div *ngIf="selectedOption === 'ferias'">    
+    <app-cadastrar-ferias></app-cadastrar-ferias>
+</div>
+<div *ngIf="selectedOption === 'mudanca'">
+    <app-mudanca-de-cargo></app-mudanca-de-cargo>
+</div> 
+<div *ngIf="selectedOption === 'desligamento'">
+    <app-solicitar-desligamento></app-solicitar-desligamento>
+</div>
+
+

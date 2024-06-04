@@ -1,0 +1,42 @@
+$base-height: 480px; // Defina a altura fixa desejada
+
+nb-card {
+  width: 50%;
+  height: $base-height;
+  margin: auto;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 576px) {
+    width: 90%;
+  }
+}
+
+.form-group-cte {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+
+  input,
+  nb-select {
+    margin-bottom: 1%;
+    height: 2.5rem;
+  }
+}
+
+button {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* Adicione mais estilos conforme necessário */
+.nb-select {
+  margin-top: 1%;
+}

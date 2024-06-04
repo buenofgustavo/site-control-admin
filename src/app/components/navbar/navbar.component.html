@@ -1,0 +1,32 @@
+<nb-layout >
+
+    <nb-layout-header fixed>
+  
+      <img src="/assets/img/logotdm.png" alt="teste">
+  
+      <nb-card-body>
+
+        <nb-user name={{usuario.name}} title={{usuario.login}} [nbContextMenu]="items2" nbContextMenuTag="my-context-menu">
+        </nb-user>
+  
+      </nb-card-body>
+  
+    </nb-layout-header>
+  
+    <nb-sidebar class="navbar">
+  
+      <nb-menu class="itens" [items]="items"></nb-menu>
+  
+    </nb-sidebar>
+  
+    <nb-layout-column>
+      <router-outlet></router-outlet>
+    </nb-layout-column>
+  
+    <nb-layout-footer fixed class="footer">
+      &copy;2024 TDM Transportes. Todos os direitos reservados.
+    </nb-layout-footer>
+  
+  
+</nb-layout>
+  

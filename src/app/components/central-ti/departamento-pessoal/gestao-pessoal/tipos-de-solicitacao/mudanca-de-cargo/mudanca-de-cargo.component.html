@@ -1,0 +1,65 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 428px; min-height: 428px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
+
+  <mat-tab-group>
+    <mat-tab label="Mudança de Cargo">
+      <div style="margin-bottom: 18px; margin-top: 10px; margin-left: 41px;">
+
+        <form class="form-grid">
+
+          <div class="center-content">
+
+            <nb-form-field style="flex: 1;">
+              <label for="nome">Nome Colaborador:</label>
+              <input autocomplete="off" [nbAutocomplete]="auto" class="todos-inputs" id="nome" [formControl]="inputFormControl"
+                     [(ngModel)]="dadosColaboradores.cpf" nbInput placeholder="" name="nome">
+            </nb-form-field>
+            <nb-autocomplete #auto>
+              <nb-option *ngFor="let cliente of filteredClientes$ | async" [value]="cliente.nome">
+                {{ cliente.nome }}
+              </nb-option>
+            </nb-autocomplete>
+            
+          </div>
+          <div class="div-cadastro">
+            <nb-form-field class="form-field">
+              <label for="dadosColaboradores.cargo">Cargo</label>
+              <input required class="todos-inputs" id="dadosColaboradores.cargo" for="dadosColaboradores.cargo" nbInput placeholder="" name="cargo" [(ngModel)]="dadosColaboradores.cargo" required>
+           </nb-form-field>
+            <nb-form-field class="form-field">
+              <label for="dadosColaboradores.regimeContratacao" style="display: flex; margin-top: 9px;">Regime de Contratação:</label>
+              <nb-select required for="dadosColaboradores.regimeContratacao" placeholder="" name="perfis" [(ngModel)]="dadosColaboradores.regimeContratacao" required>
+                 <nb-option value="clt">CLT</nb-option>
+                <nb-option value="pj">PJ</nb-option>
+                <nb-option value="estagiario">Estagiário</nb-option>
+              </nb-select>
+            </nb-form-field>
+          </div>
+        <div class="div-cadastro">
+          <nb-form-field class="form-field">
+            <label for="dadosColaboradores.departamento">Departamento</label>
+            <nb-select required for="dadosColaboradores.departamento" placeholder="" name="perfis" [(ngModel)]="dadosColaboradores.departamento" required>
+              <nb-option *ngFor="let departamento of departamento" [value]="departamento.departamento" >
+                {{departamento.departamento}}
+              </nb-option>
+            </nb-select>
+            </nb-form-field>
+            <nb-form-field class="form-field">
+              <label for="dadosColaboradores.filial">Filial</label>
+              <nb-select required placeholder="" for="dadosColaboradores.filial" name="dadosColaboradores.filial" [(ngModel)]="dadosColaboradores.filial" required>
+                <nb-option *ngFor="let filial of filial" [value]="filial.filiais" >
+                  {{filial.filiais}}
+                </nb-option>
+              </nb-select>
+            </nb-form-field>
+          </div>
+
+        </form>
+
+        <button style="margin-top: 44px;" class="button" (click)="mudancaCargo()" [disabled]="isFormEmpty()" nbButton>Alterar Cargo</button>
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

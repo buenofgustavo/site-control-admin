@@ -1,0 +1,46 @@
+<div style="max-width: 1300px; min-width: 1100px; max-height: 540px; min-height: 330px;  background-image: url('../../../../assets/img/background6.jpg'); overflow: hidden;">
+
+  <div class="container">
+
+      <label style="margin-top: 0px;" for="titulo">Título</label>
+      <input [(ngModel)]="chamados.titulo" fullWidth class="buttons" name="titulo" type="text" nbInput fieldSize="large" placeholder="">
+  
+    <label style="margin-top: 10px;" for="descri">Descrição</label>
+    <textarea [(ngModel)]="chamados.descri" style="padding: 50px; margin-bottom: 10px;" fullWidth class="buttons" name="descri" nbInput placeholder=""></textarea>
+
+    <div class="div-cadastro" style="margin-left: -15rem; display: flex; flex-wrap: wrap; justify-content: space-between;">
+
+
+        <div style="flex-basis: 48%;  margin-left: 10px;">
+          <label style="margin-top: 12px;" for="prioridade">Prioridade</label>
+          <nb-select [(ngModel)]="chamados.prioridade" for="" fullWidth class="buttons" name="prioridade" placeholder="" [(selected)]="selectedItemPrioridade">
+            <nb-option value="Baixa">Baixa</nb-option>
+            <nb-option value="Normal">Normal</nb-option>
+            <nb-option value="Média">Média</nb-option>
+            <nb-option value="Alta">Alta</nb-option>
+            <nb-option value="Muito Alta">Muito Alta</nb-option>
+          </nb-select>
+        </div>
+
+        
+      <div style="flex-basis: 48%;">  
+        <label style="margin-top: 12px;" for="categoria">Categoria</label>
+        <nb-select [(ngModel)]="chamados.categoria" fullWidth class="buttons" name="categoria" placeholder="" [(selected)]="selectedItemCategoria">
+          <nb-option value="Relatórios">Relatórios</nb-option>
+          <nb-option value="Outros Chamados">Outros Chamados</nb-option>
+        </nb-select>
+      </div>  
+
+    
+    </div>
+
+    <label style="margin-top: 10px;" for="anexos">Anexos</label>
+    <!-- <input [(ngModel)]="filesToUpload" class="buttons" fullWidth name="anexos" nbInput type="file" (change)="anexar($event)" shape="semi-round" style="padding: 20px;"> -->
+    <input nbInput shape="semi-round" type="file" (change)="onFileChange($event)" multiple style="margin-bottom: 1rem;">
+
+  
+    <button style="margin-top: 1rem; margin-left: 62rem"  class="buttons" (click)="create()" nbButton>Adicionar</button>
+  </div>
+
+
+</div>
