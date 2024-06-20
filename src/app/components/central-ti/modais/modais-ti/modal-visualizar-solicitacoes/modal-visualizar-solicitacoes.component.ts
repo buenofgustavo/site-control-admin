@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { ChatSolicitacoes } from 'src/app/interface/chatSolicitacoes';
 import { Departamentos } from 'src/app/interface/departamento';
+import { DocumentosColaboradores } from 'src/app/interface/documentosColaboradores';
 import { Filiais } from 'src/app/interface/filiais';
 import { SolicitacaoAssociadaColaborador } from 'src/app/interface/solicitacaoAssociadaColaborador';
 import { Usuario } from 'src/app/interface/usuario-interface';
+import { CadastroColaboradorService } from 'src/app/services/departamento-pessoal/cadastro-colaborador/cadastro-colaborador.service';
 import { ChatSolicitacoesService } from 'src/app/services/departamento-pessoal/chat-solicitacoes/chat-solicitacoes.service';
 import { DepartamentoFiliaisService } from 'src/app/services/select-departamentos-filiais/departamento-filiais.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -17,11 +19,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   styleUrls: ['./modal-visualizar-solicitacoes.component.scss']
 })
 export class ModalVisualizarSolicitacoesComponent {
-  ngOnInit(): void {
-    this.loadUser();
-    this.fetchChatMessages();
 
-  }
 
   chatDTO: ChatSolicitacoes = {
     message: "",
@@ -118,12 +116,70 @@ export class ModalVisualizarSolicitacoesComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private chatSolicitacoesService: ChatSolicitacoesService,
               private usuarioService: UsuarioService,
+              private cadastroColaboradorService: CadastroColaboradorService,
               private toastrService: NbToastrService,private router:Router,
   
 ) {
     this.dados = data.dados;
   }
   
+  ngOnInit(): void {
+    this.loadUser();
+    this.fetchChatMessages();
+    this.checkDocumentAvailability(); // Verifica a disponibilidade do documento ao iniciar o componente
+  }
 
+  hasDocument: boolean = false;
+
+
+  arquivos: DocumentosColaboradores = {
+    id: null,
+    nomeArquivo: '',
+    cpf: ''
+  }
+
+  openImage(): void {   
+    this.cadastroColaboradorService.getDocumentos(this.data.solicitacaoAssociadaColaborador.cpf).subscribe(
+      (data2: DocumentosColaboradores | null) => {
+        try {
+          if (data2) {
+            this.arquivos = data2;
+            if (this.arquivos) {
+              const imageUrl = `../../../../assets/img-uploads/files-documentos/${this.arquivos.cpf}_${this.arquivos.nomeArquivo}`;
+              console.log(imageUrl)
+              window.open(imageUrl, '_blank');
+          } 
+
+          } else {
+            this.toastrService.danger('Não possui arquivo.', 'Erro');
+            throw new Error('Erro ao abrir arquivo.');
+          }
+        } catch (error) {
+          console.log('Erro ao abrir arquivo.', error);
+          this.toastrService.danger('Erro ao abrir arquivo.', 'Erro');
+        } 
+      },
+      error =>{
+        if(error.error && error.error.message){
+          this.toastrService.warning(error.error.message, "Erro");
+  
+        }
+        else{
+          this.toastrService.warning('Erro ao buscar arquivos!', "Erro");
+        }
+      }
+    )
+  }
+
+  checkDocumentAvailability(): void {
+    this.cadastroColaboradorService.getDocumentos(this.data.solicitacaoAssociadaColaborador.cpf).subscribe(
+      (data2: DocumentosColaboradores | null) => {
+        this.hasDocument = !!data2;
+      },
+      error => {
+        this.hasDocument = false;
+      }
+    );
+  }
 
 }

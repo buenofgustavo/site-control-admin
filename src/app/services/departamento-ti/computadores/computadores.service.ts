@@ -11,6 +11,8 @@ import { Computadores } from 'src/app/interface/computadores';
 export class ComputadoresService {
 
   private apiUrl = `${API_CONFIG.baseUrl}/computadores/listar`; // Use a URL da API a partir da configuração
+  private apiUrl2 = `${API_CONFIG.baseUrl}/computadores`; // Use a URL da API a partir da configuração
+  private apiUrl3 = `${API_CONFIG.baseUrl}/computadores/editar`; // Use a URL da API a partir da configuração
   authToken: string | null;
   
   constructor(private http: HttpClient, private authService: AuthserviceService) {
@@ -22,4 +24,21 @@ export class ComputadoresService {
 
     return this.http.get<Computadores[]>(`${this.apiUrl}`, { headers });
   }
+
+  deletarAtivos(MAC: string): Observable<Computadores> {
+    if(!this.authToken){
+      throw new Error('Token JWT não encontrado, refaça o Login!');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+    return this.http.delete<Computadores>(`${this.apiUrl2}/deletar/${MAC}`, { headers });
+  }
+
+  salvarSerial(MAC: string, serial: string): Observable<Computadores> {
+    if(!this.authToken){
+      throw new Error('Token JWT não encontrado, refaça o Login!');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+    return this.http.put<Computadores>(`${this.apiUrl3}/${MAC}/${serial}`, null, { headers });
+  }
+
 }

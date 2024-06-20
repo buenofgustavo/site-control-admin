@@ -8,7 +8,7 @@
       <nb-option value="localizacao">Buscar por Localização</nb-option>
     </nb-select>
       <div *ngIf="selectedFilter" class="search-input">
-          <input nbInput type="text" placeholder="Digite sua busca" (input)="applyFilter($event)"  class="mat-elevation-z1">
+          <input nbInput type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1">
       </div>
   </div>
   <nb-checkbox status="basic" style="margin-right: 20px;"  [(ngModel)]="makro" (ngModelChange)="getAllComputadores()">Sem makro</nb-checkbox>
@@ -58,6 +58,7 @@
           <button mat-button [matMenuTriggerFor]="menu"><nb-icon icon="more-vertical-outline"></nb-icon></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="openComputadores(element)"><nb-icon icon="eye-outline"></nb-icon>  Visualizar</button>
+            <button mat-menu-item (click)="deletarComputador(element)"><nb-icon icon="trash-2-outline"></nb-icon>  Deletar</button>
           </mat-menu>
         </td>
       </ng-container>

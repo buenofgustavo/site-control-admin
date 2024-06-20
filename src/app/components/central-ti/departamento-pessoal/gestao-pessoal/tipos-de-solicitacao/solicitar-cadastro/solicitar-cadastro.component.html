@@ -1,9 +1,9 @@
 
-<div style="max-width: 780px; min-width: 780px; max-height: 428px; min-height: 428px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
+<div style="max-width: 780px; min-width: 780px; max-height: 435px; min-height: 435px;  background-color: white; margin-top: 30px;  margin-left: 190px;">
 
   <mat-tab-group>
     <mat-tab label="Cadastro de Colaborador">
-      <div style="margin-left: 40px; margin-bottom: 18px; margin-top: 10px;">
+      <div style="margin-left: 40px; margin-bottom: 25px; margin-top: 10px;">
 
 
           <form class="form-grid">
@@ -31,7 +31,7 @@
                 </div>
               </nb-form-field>
               <nb-form-field class="form-field">
-                <label for="dadosColaboradores.filial">Filial</label>
+                <label for="dadosColaboradores.filial">Unidade</label>
                 <nb-select required placeholder="" for="dadosColaboradores.filial" name="dadosColaboradores.filial" [(ngModel)]="dadosColaboradores.filial" required>
                   <nb-option *ngFor="let filial of filial" [value]="filial.filiais" >
                     {{filial.filiais}}
@@ -53,18 +53,24 @@
                 </nb-select>
               </nb-form-field>
             </div>
-            
-            <label for="dadosColaboradores.regimeContratacao" style="display: flex; margin-top: 9px;">Regime de Contratação:</label>
-            <nb-select required for="dadosColaboradores.regimeContratacao" placeholder="" name="perfis" [(ngModel)]="dadosColaboradores.regimeContratacao" required>
-              <nb-option value="CLT">CLT</nb-option>
-              <nb-option value="PJ">PJ</nb-option>
-              <nb-option value="Estagiário">Estagiário</nb-option>
-            </nb-select>
-        
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="dadosColaboradores.regimeContratacao" style="display: block; margin-top: 9px;">Regime de Contratação:</label>
+                <nb-select required name="perfis" [(ngModel)]="dadosColaboradores.regimeContratacao" style="width: 100%;" required>
+                  <nb-option value="CLT">CLT</nb-option>
+                  <nb-option value="PJ">PJ</nb-option>
+                  <nb-option value="Estagiário">Estagiário</nb-option>
+                </nb-select>
+              </div>
+              <div>
+                <label for="anexos" style="display: block; margin-top: 9px;">Anexos</label>
+                <input nbInput shape="semi-round" type="file" (change)="onFileChange($event)" style="width: 100%; margin-bottom: 1rem;">
+              </div>
+            </div>
           </form>
 
 
-          <button style="margin-top: 22px;" class="button" [disabled]="isFormEmpty()" (click)="create()"  nbButton>Cadastrar</button>
+          <button style="margin-top: 9px;" class="button" [disabled]="isFormEmpty()" (click)="create()"  nbButton>Cadastrar</button>
         </div>
 
       </mat-tab>

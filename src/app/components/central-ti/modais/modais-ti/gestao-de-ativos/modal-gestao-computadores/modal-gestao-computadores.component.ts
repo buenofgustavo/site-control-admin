@@ -66,5 +66,7 @@ export class ModalGestaoComputadoresComponent {
       console.log(filiais);
     });
   }
-
+  ngOnInit() {
+    this.getFiliais();
+  }
 }

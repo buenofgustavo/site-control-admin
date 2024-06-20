@@ -95,13 +95,29 @@ export class SolicitarCadastroComponent {
   }
 
 
-    
+  filesToUpload: FileList | null = null;
+
+  onFileChange(event: any) {
+    this.filesToUpload = event.target.files;
+  }
 
 
   create(){
     
     this.cadastroColaboradorService.cadastrarColaborador(this.dadosColaboradores).subscribe(
       response => {
+        if(this.filesToUpload === null){
+          this.toastrService.danger("Upload de arquivo não deu certo!", "Sucesso");
+          return;
+        }
+        else {
+          this.cadastroColaboradorService.cadastrarDocumentosColaboradores(this.filesToUpload, this.dadosColaboradores.cpf).subscribe(
+            response =>{
+              this.toastrService.success("Upload de arquivo completo", "Sucesso");
+            }
+          )
+        }
+
       this.toastrService.success("Colaborador cadastrado com sucesso!", "Sucesso");
       setTimeout(() => {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -130,11 +146,16 @@ export class SolicitarCadastroComponent {
   isFormEmpty(): boolean {
     
     if(this.validarCPF(this.dadosColaboradores.cpf)){
-      const inputs: (keyof DadosColaboradores)[] = ['nome', 'numero', 'cpf', 'filial', 'cargo', 'departamento', 'regimeContratacao'];
-      return inputs.some(field => !this.dadosColaboradores[field]);
+      if(this.filesToUpload?.length === 1){
+        const inputs: (keyof DadosColaboradores)[] = ['nome', 'numero', 'cpf', 'filial', 'cargo', 'departamento', 'regimeContratacao'];
+        console.log(inputs.some(field => !this.dadosColaboradores[field]))
+        return inputs.some(field => !this.dadosColaboradores[field]);
+      }
+      return true
     }
     return true;
   }
+
 
 
 

@@ -23,26 +23,33 @@ export class NavbarComponent {
     },
     {
       title: 'Departamento Pessoal',
-      icon: '',
+      icon: 'people-outline',
       hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_DP']),
       children: [
-        {title: 'Gestão Pessoal',icon: '',link: '/gestao-pessoal'},
-        {title: 'Solicitaçoes Colaboradores',icon: '',link: '/solicitacao-colaboradores-dp',},
+        {title: 'Solicitações',icon: '', children:[
+          {title: 'Nova Solicitação',icon: '',link: '/gestao-pessoal'},
+          {title: 'Lista de Solicitações',icon: '',link: '/solicitacao-colaboradores-dp'},
+
+        ]},
         {title: 'Colaboradores',icon: '',link: '/colaboradores-dp',},
       ]
     },
 
     {
       title: 'Departamento T.I',
-      icon: '',
+      icon: 'hard-drive-outline',
       hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_TI']),
       children: [
-        {title: 'Solicitações Colaboradores',icon: '',link: '/solicitacoes-colaboradores-ti'},
-        {title: 'Chamados',icon: '',link: '/chamados-ti'},
-        {title: 'Gestão Pessoal',icon: '',link: '/gestao-pessoal-ti'},
-        {title: 'Colaboradores',icon: '',link: '/colaboradores-ti',},
-        {title: 'Computadores',icon: '',link: '/computadores-ti',},
-        {title: 'Gestão de Ativos',
+        {title: 'Solicitações',icon: '',link: '/solicitacoes-colaboradores-ti'},
+        {title: 'Vinculação de Computador',icon: '',link: '/gestao-pessoal-ti'},
+
+        {title: 'Listagem ', children:[
+          {title: 'Chamados',icon: '',link: '/chamados-ti'},
+          {title: 'Colaboradores',icon: '',link: '/colaboradores-ti',},
+          {title: 'Computadores',icon: '',link: '/computadores-ti',},
+        ]},
+
+        {title: 'Inventário',
         icon: '',
         children: [
           {title: 'Impressoras',icon: '',link: '/gestao-impressoras-ti'},
@@ -57,7 +64,7 @@ export class NavbarComponent {
     
     {
       title: 'Chamados',
-      icon: '',
+      icon: 'clipboard-outline',
       children: [
         {title: 'Criar Chamado',icon: '',link: '/criar-chamados-geral'},
         {title: 'Visualizar Chamados',icon: '',link: '/visualizar-chamados-geral'},
@@ -66,6 +73,7 @@ export class NavbarComponent {
 
     {
       title: 'Cadastrar Usuários',
+      icon:"person-add-outline",
       link:"/cadastrar-usuario",
       hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_TI']),
     },

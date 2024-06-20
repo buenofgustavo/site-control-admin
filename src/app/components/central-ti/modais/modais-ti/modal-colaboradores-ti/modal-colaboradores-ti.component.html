@@ -1,137 +1,155 @@
-<div style="max-width: 780px; min-width: 780px; max-height: 478px; min-height: 478px;  background-color: white; overflow: hidden;">
+<div
+    style="max-width: 780px; min-width: 780px; max-height: 490px; min-height: 490px;  background-color: white; overflow: hidden;">
 
-  <mat-tab-group>
-    <mat-tab label="Colaborador">
-      <div style="margin-left: 17px;">
+    <mat-tab-group>
+        <mat-tab label="Colaborador">
+            <div style="margin-left: 17px;">
 
-        <form class="form-grid" style=" margin-top: 28px; margin-left: 38px;">
-          <div class="div-cadastro">
-            <nb-form-field>
-              <label for="data.colaboradoresCompleto.colaboradorDTO.nome">Nome Completo</label>
-              <input disabled class="todos-inputs" id="data.colaboradorCompleto.colaboradoresDTO.nome" nbInput 
-              name="data.colaboradorCompleto.colaboradoresDTO.nome" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.nome">
-            </nb-form-field>
-            <nb-form-field>
-              <label for="data.colaboradoresCompleto.colaboradorDTO.numero" >Número de telefone</label>
-              <input disabled for="data.colaboradoresCompleto.colaboradorDTO.numero" class="todos-inputs" 
-              id="data.colaboradoresCompleto.colaboradorDTO.numero" nbInput placeholder="" 
-              name="numero" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.numero">
-            </nb-form-field>
-          </div>
-          <div class="div-cadastro">
-            <nb-form-field>
-                <label for="data.colaboradoresCompleto.colaboradorDTO.cpf">CPF</label>
-                <div style="display: flex;">
-                    <input disabled class="todos-inputs" id="usuarioCPF" nbInput placeholder="" name="data.colaboradoresCompleto.colaboradorDTO.cpf" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.cpf">
+                <form class="form-grid" style=" margin-top: 28px; margin-left: 38px;">
+                    <div class="div-cadastro">
+                        <nb-form-field>
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.nome">Nome Completo</label>
+                            <input disabled class="todos-inputs" id="data.colaboradorCompleto.colaboradoresDTO.nome"
+                                nbInput name="data.colaboradorCompleto.colaboradoresDTO.nome"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.nome">
+                        </nb-form-field>
+                        <nb-form-field>
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.numero">Número de telefone</label>
+                            <input disabled for="data.colaboradoresCompleto.colaboradorDTO.numero" class="todos-inputs"
+                                id="data.colaboradoresCompleto.colaboradorDTO.numero" nbInput placeholder=""
+                                name="numero" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.numero">
+                        </nb-form-field>
+                    </div>
+                    <div class="div-cadastro">
+                        <nb-form-field>
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.cpf">CPF</label>
+                            <div style="display: flex;">
+                                <input disabled class="todos-inputs" id="usuarioCPF" nbInput placeholder=""
+                                    name="data.colaboradoresCompleto.colaboradorDTO.cpf"
+                                    [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.cpf">
+                            </div>
+                        </nb-form-field>
+                        <nb-form-field class="form-field">
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.filial">Filial</label>
+                            <input disabled class="todos-inputs" id="usuarioFilial" nbInput placeholder=""
+                                name="data.colaboradoresCompleto.colaboradorDTO.filial"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.filial">
+                        </nb-form-field>
+                    </div>
+                    <div class="div-cadastro">
+                        <nb-form-field>
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.cargo">Cargo</label>
+                            <input disabled class="todos-inputs" id="usuarioCargo" nbInput placeholder=""
+                                name="data.colaboradoresCompleto.colaboradorDTO.cargo"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.cargo">
+                        </nb-form-field>
+                        <nb-form-field class="form-field">
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.departamento">Departamento</label>
+                            <input disabled class="todos-inputs" id="usuarioDepartamento" nbInput placeholder=""
+                                name="data.colaboradoresCompleto.colaboradorDTO.departamento"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.departamento">
+                        </nb-form-field>
+                    </div>
+
+                    <div class="div-cadastro">
+                        <nb-form-field class="form-field">
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.regimeContratacao">Regime de
+                                Contratação</label>
+                            <input disabled class="todos-inputs" id="usuarioregimeContratacao" nbInput placeholder=""
+                                name="data.colaboradoresCompleto.colaboradorDTO.regimeContratacao"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.regimeContratacao">
+                        </nb-form-field>
+                        <nb-form-field class="form-field">
+                            <label for="data.colaboradoresCompleto.colaboradorDTO.termo">Possui Termo</label>
+                            <input disabled class="todos-inputs" id="usuario.termo" nbInput placeholder=""
+                                name="data.colaboradoresCompleto.colaboradorDTO.termo"
+                                [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.termo">
+                        </nb-form-field>
+                    </div>
+                </form>
+                <div style="display: grid; place-items: center; margin-top: 1rem; margin-bottom: 10px;">
+                    <button *ngIf="hasDocument" class="buttons" (click)="openImage()" nbButton>Ver arquivo</button>
                 </div>
-            </nb-form-field>
-            <nb-form-field class="form-field">
-                <label for="data.colaboradoresCompleto.colaboradorDTO.filial">Filial</label>
-                <input disabled class="todos-inputs" id="usuarioFilial" nbInput placeholder="" name="data.colaboradoresCompleto.colaboradorDTO.filial" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.filial">
-            </nb-form-field>
-        </div>
-        <div class="div-cadastro">
-            <nb-form-field>
-                <label for="data.colaboradoresCompleto.colaboradorDTO.cargo">Cargo</label>
-                <input disabled class="todos-inputs" id="usuarioCargo" nbInput placeholder="" name="data.colaboradoresCompleto.colaboradorDTO.cargo" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.cargo">
-            </nb-form-field>
-            <nb-form-field class="form-field">
-                <label for="data.colaboradoresCompleto.colaboradorDTO.departamento">Departamento</label>
-                <input disabled class="todos-inputs" id="usuarioDepartamento" nbInput placeholder="" name="data.colaboradoresCompleto.colaboradorDTO.departamento" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.departamento">
-            </nb-form-field>
-        </div>
+            </div>
 
-        <div class="div-cadastro">
-          <nb-form-field class="form-field">
-            <label for="data.colaboradoresCompleto.colaboradorDTO.regimeContratacao">Regime de Contratação</label>
-            <input disabled class="todos-inputs" id="usuarioregimeContratacao" nbInput placeholder="" 
-            name="data.colaboradoresCompleto.colaboradorDTO.regimeContratacao" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.regimeContratacao">
-          </nb-form-field>
-          <nb-form-field class="form-field">
-            <label for="data.colaboradoresCompleto.colaboradorDTO.termo">Possui Termo</label>
-            <input disabled class="todos-inputs" id="usuario.termo" nbInput placeholder="" 
-            name="data.colaboradoresCompleto.colaboradorDTO.termo" [(ngModel)]="data.colaboradorCompleto.colaboradoresDTO.termo">
-          </nb-form-field>
-        </div>
-        </form>
+        </mat-tab>
 
-      </div>
+        <mat-tab label="Computador">
 
-    </mat-tab>
+            <div style=" margin-left: 52px;">
 
-    <mat-tab label="Computador">
+                <form>
+                    <div class="center-content" style="margin-top: 5px;">
+                        <nb-form-field style="flex: 1;">
+                            <label for="data.colaboradorCompleto.computadoresDTO.nomeComputador">Nome do
+                                Computador</label>
+                            <input disabled for="data.colaboradorCompleto.computadoresDTO.nomeComputador"
+                                class="todos-inputs" id="nome_do_computador" nbInput name="nome_do_computador"
+                                [(ngModel)]="data.colaboradorCompleto.computadoresDTO.nomeComputador">
+                        </nb-form-field>
+                    </div>
+                </form>
 
-      <div style=" margin-left: 52px;">
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.nomeUsuario">Nome de Usuário</label>
+                        <input disabled class="todos-inputs" id="nomeUsuario" nbInput name="nomeUsuario"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.nomeUsuario">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.enderecoMAC">MAC</label>
+                        <input disabled class="todos-inputs" id="enderecoMAC" nbInput placeholder="" name="enderecoMAC"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.enderecoMac">
+                    </nb-form-field>
+                </div>
 
-        <form>
-          <div class="center-content" style="margin-top: 5px;">
-            <nb-form-field style="flex: 1;">
-              <label for="data.colaboradorCompleto.computadoresDTO.nomeComputador">Nome do Computador</label>
-              <input disabled for="data.colaboradorCompleto.computadoresDTO.nomeComputador" 
-              class="todos-inputs" id="nome_do_computador" nbInput name="nome_do_computador"
-              [(ngModel)]="data.colaboradorCompleto.computadoresDTO.nomeComputador">
-            </nb-form-field>
-          </div>
-        </form>
-        
-        <div class="div-cadastro">
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.nomeUsuario">Nome de Usuário</label>
-            <input disabled class="todos-inputs" id="nomeUsuario" nbInput name="nomeUsuario"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.nomeUsuario">
-          </nb-form-field>
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.enderecoMAC">MAC</label>
-            <input disabled class="todos-inputs" id="enderecoMAC" nbInput placeholder="" name="enderecoMAC"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.enderecoMac">
-          </nb-form-field>
-        </div>
-        
-        <div class="div-cadastro">
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.marca">Marca</label>
-            <input disabled class="todos-inputs" id="marca" nbInput name="marca"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.marca">
-          </nb-form-field>
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.modelo">Modelo</label>
-            <input disabled class="todos-inputs" id="modelo" nbInput placeholder="" name="modelo"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.modelo">
-          </nb-form-field>
-        </div>
-        
-        <div class="div-cadastro">
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.memoriaRam">RAM</label>
-            <input disabled class="todos-inputs" id="RAM" nbInput name="memoriaRam"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.memoriaRam">
-          </nb-form-field>
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.capacidadeArmazenamento">Armazenamento</label>
-            <input disabled class="todos-inputs" id="capacidadeArmazenamento" nbInput placeholder="" name="armazenamento"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.capacidadeArmazenamento">
-          </nb-form-field>
-        </div>
-        
-        <div class="div-cadastro">
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.MAKRO">MAKRO</label>
-            <input disabled class="todos-inputs" id="MAKRO" nbInput name="MAKRO"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.makroInstalado">
-          </nb-form-field>
-          <nb-form-field>
-            <label for="data.colaboradorCompleto.computadoresDTO.localizacao">Localização</label>
-            <input disabled class="todos-inputs" id="localizacao" nbInput name="localizacao"
-            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.localizacao">
-          </nb-form-field>
-        </div>
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.marca">Marca</label>
+                        <input disabled class="todos-inputs" id="marca" nbInput name="marca"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.marca">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.modelo">Modelo</label>
+                        <input disabled class="todos-inputs" id="modelo" nbInput placeholder="" name="modelo"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.modelo">
+                    </nb-form-field>
+                </div>
 
-  
-      </div>
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.memoriaRam">RAM</label>
+                        <input disabled class="todos-inputs" id="RAM" nbInput name="memoriaRam"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.memoriaRam">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label
+                            for="data.colaboradorCompleto.computadoresDTO.capacidadeArmazenamento">Armazenamento</label>
+                        <input disabled class="todos-inputs" id="capacidadeArmazenamento" nbInput placeholder=""
+                            name="armazenamento"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.capacidadeArmazenamento">
+                    </nb-form-field>
+                </div>
 
-    </mat-tab>
+                <div class="div-cadastro">
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.MAKRO">MAKRO</label>
+                        <input disabled class="todos-inputs" id="MAKRO" nbInput name="MAKRO"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.makroInstalado">
+                    </nb-form-field>
+                    <nb-form-field>
+                        <label for="data.colaboradorCompleto.computadoresDTO.localizacao">Localização</label>
+                        <input disabled class="todos-inputs" id="localizacao" nbInput name="localizacao"
+                            [(ngModel)]="data.colaboradorCompleto.computadoresDTO.localizacao">
+                    </nb-form-field>
+                </div>
 
-    <!-- <mat-tab label="Acessos">
+
+            </div>
+
+        </mat-tab>
+
+        <!-- <mat-tab label="Acessos">
 
       <div style="margin-bottom: 18px; margin-top: 50px; margin-left: 55px;">
 
@@ -172,6 +190,6 @@
 
     </mat-tab> -->
 
-  </mat-tab-group>
+    </mat-tab-group>
 
 </div>

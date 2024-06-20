@@ -16,4 +16,6 @@ export interface Computadores{
     lastUser: string;
     nomeUserAtual: string;
     nomeLastUser: string;
+    serial: string;
+    atualizadoPor: string;
 }

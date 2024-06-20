@@ -46,6 +46,26 @@ export class ComputadoresTiComponent {
 
   }
 
+  deletarComputador(computadores: Computadores){
+    this.computadoresService.deletarAtivos(computadores.enderecoMac).subscribe(
+      response => {
+      this.toastrService.success("Computador deletado com sucesso!", "Sucesso");
+      setTimeout(() => {
+        location.reload(); // Recarrega a página após1 segundos
+      }, 1000);
+      },
+      (error) => {
+        console.log('Erro ao deletar computador:', error);
+        if (error.status === 403) {
+          // setTimeout(() => {
+          //   location.reload(); // Recarrega a página após1 segundos
+          // }, 2000);
+        } else {
+          this.toastrService.danger('Erro ao deletar computador.', 'Erro');
+        }
+    }
+    )
+  }
 
   openComputadores(computadoresCompleto: Computadores) {
     const dialogRef = this.dialog.open(ModalComputadoresTiComponent, { data: { computadoresCompleto: computadoresCompleto } });
@@ -136,5 +156,7 @@ export class ComputadoresTiComponent {
       this.dataSource.filter = '';
     }
   }
+
+
 
 }

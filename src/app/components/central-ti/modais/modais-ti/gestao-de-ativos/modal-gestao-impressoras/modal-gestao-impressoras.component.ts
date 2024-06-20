@@ -66,6 +66,8 @@ export class ModalGestaoImpressorasComponent {
       console.log(filiais);
     });
   }
-
+  ngOnInit() {
+    this.getFiliais();
+  }
 }
 

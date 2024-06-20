@@ -34,7 +34,9 @@ export class DesvincularComputadoresComponent {
     userAtual: "",
     lastUser: "",
     nomeUserAtual: "",
-    nomeLastUser: ""
+    nomeLastUser: "",
+    serial: "",
+    atualizadoPor: ""
   }
 
 

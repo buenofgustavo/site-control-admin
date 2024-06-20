@@ -70,5 +70,7 @@ export class ModalGestaoMonitoresComponent {
       console.log(filiais);
     });
   }
-
+  ngOnInit() {
+    this.getFiliais();
+  }
 }

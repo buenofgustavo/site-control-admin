@@ -49,7 +49,9 @@ export class VincularComputadorService {
     userAtual: "",
     lastUser: "",
     nomeUserAtual: "",
-    nomeLastUser: ""
+    nomeLastUser: "",
+    serial: "", 
+    atualizadoPor: ""
   }
 
   acessos: Acessos = {

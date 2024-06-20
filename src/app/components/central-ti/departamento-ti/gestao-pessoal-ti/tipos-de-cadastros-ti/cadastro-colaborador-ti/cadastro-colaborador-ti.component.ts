@@ -45,7 +45,9 @@ export class CadastroColaboradorTiComponent {
     userAtual: "",
     lastUser: "",
     nomeUserAtual: "",
-    nomeLastUser: ""
+    nomeLastUser: "",
+    serial: "",
+    atualizadoPor: ""
   }
 
   acessos: Acessos = {

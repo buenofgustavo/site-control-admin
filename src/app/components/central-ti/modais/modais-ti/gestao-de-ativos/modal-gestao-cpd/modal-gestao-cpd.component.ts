@@ -66,5 +66,7 @@ export class ModalGestaoCpdComponent {
       console.log(filiais);
     });
   }
-
+  ngOnInit() {
+    this.getFiliais();
+  }
 }
