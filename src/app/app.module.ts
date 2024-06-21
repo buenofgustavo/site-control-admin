@@ -90,6 +90,8 @@ import { ModalVisualizarSolicitacoesComponent } from './components/central-ti/mo
 import { SolicitacaoColaboradoresDpComponent } from './components/central-ti/departamento-pessoal/solicitacao-colaboradores-dp/solicitacao-colaboradores-dp.component';
 import { ModalEditarAtivosTiComponent } from './components/central-ti/modais/modais-ti/modal-editar-ativos-ti/modal-editar-ativos-ti.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ColaboradoresComprasComponent } from './components/central-ti/departamento-compras/colaboradores-compras/colaboradores-compras.component';
+import { ComputadoresComprasComponent } from './components/central-ti/departamento-compras/computadores-compras/computadores-compras.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +146,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     ModalVisualizarSolicitacoesComponent,
     SolicitacaoColaboradoresDpComponent,
     ModalEditarAtivosTiComponent,
+    ColaboradoresComprasComponent,
+    ComputadoresComprasComponent,
         
   ],
   imports: [

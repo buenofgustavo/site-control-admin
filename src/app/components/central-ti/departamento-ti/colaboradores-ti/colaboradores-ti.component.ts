@@ -73,7 +73,7 @@ export class ColaboradoresTiComponent {
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.status === false);
             } 
             else if(this.termo === true) {
-              this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.termo === false);
+              this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.termo === false && colaborador.colaboradoresDTO.status === true);
             } 
             else {
               // Filtra colaboradores com status true

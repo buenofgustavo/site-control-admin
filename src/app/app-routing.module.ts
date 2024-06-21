@@ -38,6 +38,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { SolicitacaoColaboradoresDpComponent } from './components/central-ti/departamento-pessoal/solicitacao-colaboradores-dp/solicitacao-colaboradores-dp.component';
 import { ColaboradoresTiComponent } from './components/central-ti/departamento-ti/colaboradores-ti/colaboradores-ti.component';
+import { ColaboradoresComprasComponent } from './components/central-ti/departamento-compras/colaboradores-compras/colaboradores-compras.component';
+import { ComputadoresComprasComponent } from './components/central-ti/departamento-compras/computadores-compras/computadores-compras.component';
 
 
 const routes: Routes = [
@@ -70,10 +72,12 @@ const routes: Routes = [
       {path: 'chamados-ti', component: ChamadosTiComponent},
       {path: 'solicitacoes-colaboradores-ti', component: SolicitacoesColaboradoresTiComponent},
       {path: 'computadores-ti', component: ComputadoresTiComponent},
+      {path: 'computadores-compras', component: ComputadoresComprasComponent},
       {path: 'solicitar-desligamento', component: SolicitarDesligamentoComponent},
       {path: 'visualizar-chamados-geral', component: VisualizarChamadosGeralComponent},
       {path: 'criar-chamados-geral', component: CriarChamadosGeralComponent},
       {path: 'colaboradores-dp', component: ColaboradoresDpComponent},
+      {path: 'colaboradores-compras', component: ColaboradoresComprasComponent},
       {path: 'colaboradores-ti', component: ColaboradoresTiComponent},
       {path: 'gestao-impressoras-ti', component: GestaoImpressorasComponent},
       {path: 'gestao-cpd-ti', component: GestaoCpdComponent},

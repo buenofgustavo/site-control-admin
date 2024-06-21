@@ -13,7 +13,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  
+
   items: NbMenuItem[] = [
 
     {
@@ -24,63 +24,78 @@ export class NavbarComponent {
     {
       title: 'Departamento Pessoal',
       icon: 'people-outline',
-      hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_DP']),
+      hidden: !this.authService.hasPermission(['ROLE_ADMIN', 'ROLE_DP']),
       children: [
-        {title: 'Solicitações',icon: '', children:[
-          {title: 'Nova Solicitação',icon: '',link: '/gestao-pessoal'},
-          {title: 'Lista de Solicitações',icon: '',link: '/solicitacao-colaboradores-dp'},
+        {
+          title: 'Solicitações', icon: '', children: [
+            { title: 'Nova Solicitação', icon: '', link: '/gestao-pessoal' },
+            { title: 'Lista de Solicitações', icon: '', link: '/solicitacao-colaboradores-dp' },
 
-        ]},
-        {title: 'Colaboradores',icon: '',link: '/colaboradores-dp',},
+          ]
+        },
+        { title: 'Colaboradores', icon: '', link: '/colaboradores-dp', },
+      ]
+    },
+
+    {
+      title: 'Compras',
+      icon: 'shopping-cart-outline',
+      hidden: !this.authService.hasPermission(['ROLE_ADMIN', 'ROLE_COMPRAS']),
+      children: [
+        { title: 'Computadores', icon: '', link: '/computadores-compras', },
+        { title: 'Colaboradores', icon: '', link: '/colaboradores-compras', },
       ]
     },
 
     {
       title: 'Departamento T.I',
       icon: 'hard-drive-outline',
-      hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_TI']),
+      hidden: !this.authService.hasPermission(['ROLE_ADMIN', 'ROLE_TI']),
       children: [
-        {title: 'Solicitações',icon: '',link: '/solicitacoes-colaboradores-ti'},
-        {title: 'Vinculação de Computador',icon: '',link: '/gestao-pessoal-ti'},
+        { title: 'Solicitações', icon: '', link: '/solicitacoes-colaboradores-ti' },
+        { title: 'Vinculação de Computador', icon: '', link: '/gestao-pessoal-ti' },
 
-        {title: 'Listagem ', children:[
-          {title: 'Chamados',icon: '',link: '/chamados-ti'},
-          {title: 'Colaboradores',icon: '',link: '/colaboradores-ti',},
-          {title: 'Computadores',icon: '',link: '/computadores-ti',},
-        ]},
+        {
+          title: 'Listagem ', children: [
+            { title: 'Chamados', icon: '', link: '/chamados-ti' },
+            { title: 'Colaboradores', icon: '', link: '/colaboradores-ti', },
+            { title: 'Computadores', icon: '', link: '/computadores-ti', },
+          ]
+        },
 
-        {title: 'Inventário',
-        icon: '',
-        children: [
-          {title: 'Impressoras',icon: '',link: '/gestao-impressoras-ti'},
-          {title: 'Computadores Desativados',icon: '',link: '/gestao-computador-ti'},
-          {title: 'CPD',icon: '',link: '/gestao-cpd-ti'},
-          {title: 'Monitores',icon: '',link: '/gestao-monitor-ti'},
-          {title: 'Outros',icon: '',link: '/gestao-outros-ti'},
-        ]
-      },
+        {
+          title: 'Inventário',
+          icon: '',
+          children: [
+            { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
+            { title: 'Computadores Desativados', icon: '', link: '/gestao-computador-ti' },
+            { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
+            { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
+            { title: 'Outros', icon: '', link: '/gestao-outros-ti' },
+          ]
+        },
       ]
     },
-    
+
     {
       title: 'Chamados',
       icon: 'clipboard-outline',
       children: [
-        {title: 'Criar Chamado',icon: '',link: '/criar-chamados-geral'},
-        {title: 'Visualizar Chamados',icon: '',link: '/visualizar-chamados-geral'},
+        { title: 'Criar Chamado', icon: '', link: '/criar-chamados-geral' },
+        { title: 'Visualizar Chamados', icon: '', link: '/visualizar-chamados-geral' },
       ]
     },
 
     {
       title: 'Cadastrar Usuários',
-      icon:"person-add-outline",
-      link:"/cadastrar-usuario",
-      hidden: !this.authService.hasPermission(['ROLE_ADMIN','ROLE_TI']),
+      icon: "person-add-outline",
+      link: "/cadastrar-usuario",
+      hidden: !this.authService.hasPermission(['ROLE_ADMIN', 'ROLE_TI']),
     },
   ];
-  
-  items2 = [
 
+  items2 = [
+    { title: 'Logout', icon: '', link: '/' },
   ];
 
   ngOnInit() {
@@ -88,11 +103,11 @@ export class NavbarComponent {
   }
 
   constructor(
-              private usuarioService: UsuarioService,
-              private toastrService: NbToastrService,private router:Router,
-              private authService:AuthserviceService
-  
-) {
+    private usuarioService: UsuarioService,
+    private toastrService: NbToastrService, private router: Router,
+    private authService: AuthserviceService
+
+  ) {
 
   }
 
@@ -106,7 +121,7 @@ export class NavbarComponent {
   loadUser() {
     this.usuarioService.getUserByEmail().subscribe(
       (user: Usuario) => {
-        this.usuario =  user; // Armazene os dados do Pessoa na variável local
+        this.usuario = user; // Armazene os dados do Pessoa na variável local
 
       },
       (error) => {
