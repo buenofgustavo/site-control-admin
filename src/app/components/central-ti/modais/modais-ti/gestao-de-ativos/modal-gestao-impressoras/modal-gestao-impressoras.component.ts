@@ -25,14 +25,15 @@ export class ModalGestaoImpressorasComponent {
   
     }
 
-  gestaoAtivos: GestaoAtivos = {
-    nome: "",
-    tipo: "Impressora",
-    status: "",
-    descricao: "",
-    localizacao: "",
-    atualizadoPor: "",
-  }
+    gestaoAtivos: GestaoAtivos = {
+      nome: "",
+      tipo: "Impressora",
+      status: "",
+      descricao: "",
+      localizacao: "",
+      serial: "",
+      atualizadoPor: "",
+    }
 
   create(){
     console.log(this.gestaoAtivos)

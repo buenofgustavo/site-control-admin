@@ -31,6 +31,7 @@ export class ModalGestaoComputadoresComponent {
     status: "",
     descricao: "",
     localizacao: "",
+    serial: "",
     atualizadoPor: "",
   }
 

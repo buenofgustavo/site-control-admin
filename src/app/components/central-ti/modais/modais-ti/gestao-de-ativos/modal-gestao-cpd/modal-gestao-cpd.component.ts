@@ -25,14 +25,15 @@ export class ModalGestaoCpdComponent {
   
     }
 
-  gestaoAtivos: GestaoAtivos = {
-    nome: "",
-    tipo: "CPD",
-    status: "",
-    descricao: "",
-    localizacao: "",
-    atualizadoPor: "",
-  }
+    gestaoAtivos: GestaoAtivos = {
+      nome: "",
+      tipo: "CPD",
+      status: "",
+      descricao: "",
+      localizacao: "",
+      serial: "",
+      atualizadoPor: "",
+    }
 
   create(){
     console.log(this.gestaoAtivos)

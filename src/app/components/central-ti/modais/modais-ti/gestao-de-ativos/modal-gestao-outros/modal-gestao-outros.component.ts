@@ -27,14 +27,15 @@ export class ModalGestaoOutrosComponent {
   
     }
 
-  gestaoAtivos: GestaoAtivos = {
-    nome: "",
-    tipo: "Outro",
-    status: "",
-    descricao: "",
-    localizacao: "",
-    atualizadoPor: "",
-  }
+    gestaoAtivos: GestaoAtivos = {
+      nome: "",
+      tipo: "Outros",
+      status: "",
+      descricao: "",
+      localizacao: "",
+      serial: "",
+      atualizadoPor: "",
+    }
 
   create(){
     console.log(this.gestaoAtivos)

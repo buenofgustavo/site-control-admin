@@ -1,12 +1,13 @@
-<div style="margin-bottom: 4rem; display: flex; align-items: center;">
+<div style="margin-bottom: 2rem; display: flex; align-items: center;">
   <div style="flex: 1;">
       <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
           <nb-option value="nome">Buscar por Nome</nb-option>
           <nb-option value="status">Buscar por Status</nb-option>
+          <nb-option value="serial">Buscar por Serial</nb-option>
           <nb-option value="localizacao">Buscar por Localização</nb-option>
       </nb-select>
       <div *ngIf="selectedFilter" class="search-input">
-          <input nbInput type="text" placeholder="Digite sua busca" (input)="applyFilter($event)" class="mat-elevation-z1">
+          <input nbInput type="text" placeholder="Digite sua busca" [(ngModel)]="filterValue" (input)="applyFilter($event)" class="mat-elevation-z1">
       </div>
   </div>
   <button (click)="openAdicionarAtivos()" style="margin-left: 0rem; border-radius: 50%; box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);" nbButton status="basic">
@@ -45,6 +46,11 @@
       <ng-container matColumnDef="descricao">
         <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Descrição </th>
         <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.descricao}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="serial">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Serial </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.serial}} </td>
       </ng-container>
 
   

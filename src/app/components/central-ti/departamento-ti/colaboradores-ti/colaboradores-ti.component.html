@@ -8,7 +8,7 @@
       <nb-option value="computador">Buscar por Computador</nb-option>
     </nb-select>
       <div *ngIf="selectedFilter" class="search-input">
-          <input nbInput type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1">
+          <input nbInput [(ngModel)]="filterValue" type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1">
       </div>
   </div>
   <nb-checkbox status="basic" style="margin-right: 20px;" [(ngModel)]="termo" (ngModelChange)="getAllColaboradores()">Sem termo</nb-checkbox>
@@ -48,6 +48,8 @@
       <th mat-header-cell *matHeaderCellDef> Filial </th>
       <td mat-cell *matCellDef="let element"> {{element.colaboradoresDTO.filial}} </td>
     </ng-container>
+
+    
 
     <ng-container matColumnDef="computador">
       <th mat-header-cell *matHeaderCellDef> Computador </th>

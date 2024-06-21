@@ -5,5 +5,6 @@ export interface GestaoAtivos{
     status: string;
     descricao: string;
     localizacao: string;
+    serial: string;
     atualizadoPor: string;
 }

@@ -28,14 +28,15 @@ export class ModalGestaoMonitoresComponent {
   
     }
 
-  gestaoAtivos: GestaoAtivos = {
-    nome: "",
-    tipo: "Monitor",
-    status: "",
-    descricao: "",
-    localizacao: "",
-    atualizadoPor: "",
-  }
+    gestaoAtivos: GestaoAtivos = {
+      nome: "",
+      tipo: "Monitor",
+      status: "",
+      descricao: "",
+      localizacao: "",
+      serial: "",
+      atualizadoPor: "",
+    }
 
   create(){
     console.log(this.gestaoAtivos)

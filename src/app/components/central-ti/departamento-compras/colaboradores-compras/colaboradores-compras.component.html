@@ -1,18 +1,18 @@
 <div style="margin-bottom: 2rem; display: flex; align-items: center;">
-    <div style="flex: 1;">
-      <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
-        <nb-option value="nome">Buscar por Nome</nb-option>
-        <nb-option value="cpf">Buscar por CPF</nb-option>
-        <nb-option value="departamento">Buscar por Departamento</nb-option>
-        <nb-option value="filial">Buscar por Filial</nb-option>
-        <nb-option value="computador">Buscar por Computador</nb-option>
-      </nb-select>
-        <div *ngIf="selectedFilter" class="search-input">
-            <input nbInput type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1">
-        </div>
-    </div>
-    <nb-checkbox status="basic"  [(ngModel)]="concluido" (ngModelChange)="getAllColaboradores()">Desativados</nb-checkbox>
+  <div style="flex: 1;">
+    <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
+      <nb-option value="nome">Buscar por Nome</nb-option>
+      <nb-option value="cpf">Buscar por CPF</nb-option>
+      <nb-option value="departamento">Buscar por Departamento</nb-option>
+      <nb-option value="filial">Buscar por Filial</nb-option>
+      <nb-option value="computador">Buscar por Computador</nb-option>
+    </nb-select>
+      <div *ngIf="selectedFilter" class="search-input">
+          <input nbInput [(ngModel)]="filterValue" type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1">
+      </div>
   </div>
+  <nb-checkbox status="basic"  [(ngModel)]="concluido" (ngModelChange)="getAllColaboradores()">Desativados</nb-checkbox>
+</div>
   
   
   <div style="margin-top: 0px; margin-bottom: 40px;">

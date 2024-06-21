@@ -65,7 +65,7 @@ export class GestaoImpressorasComponent {
   gestaoAtivos: GestaoAtivos[] = [];
 
   dataSource = new MatTableDataSource<GestaoAtivos>(this.gestaoAtivos);
-  displayedColumns: string[] = ['nome', 'descricao', 'localizacao','status',  'tipo', 'acao'];
+  displayedColumns: string[] = ['nome', 'descricao', 'localizacao','status', 'tipo', 'serial', 'acao'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -142,14 +142,38 @@ export class GestaoImpressorasComponent {
     this.dialog.open(DialogExclusaoComputadoresTiComponent);
   }
 
-  selectedFilter: string | null = null;
+  selectedFilter: string = '';
+  filterValue: string = '';
+
   selectFilter(event: any) {
     this.selectedFilter = event.target.value;
   }
 
+  ngOnInit() {
+    // Recupera os valores do filtro do localStorage
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-computador-compras');
+    const storedFilterValue = localStorage.getItem('filterValue-computador-compras');
+
+    if (storedSelectedFilter) {
+      this.selectedFilter = storedSelectedFilter;
+    }
+
+    if (storedFilterValue) {
+      this.filterValue = storedFilterValue
+      this.applyFilterWithValue(storedFilterValue);
+    }
+  }
+
   applyFilter(event: any) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.applyFilterWithValue(filterValue);
 
+    // Salva os valores no localStorage
+    localStorage.setItem('selectedFilter-computador-compras', this.selectedFilter);
+    localStorage.setItem('filterValue-computador-compras', filterValue);
+  }
+
+  applyFilterWithValue(filterValue: string) {
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
@@ -160,15 +184,18 @@ export class GestaoImpressorasComponent {
         switch (this.selectedFilter) {
           case 'nome':
             return data.nome.toLowerCase().includes(searchString);
-            case 'status':
-              return data.status.toLowerCase().includes(searchString);
-              case 'localizacao':
-                return data.localizacao.toLowerCase().includes(searchString);
-
+          case 'status':
+            return data.status.toLowerCase().includes(searchString);
+          case 'localizacao':
+            return data.localizacao.toLowerCase().includes(searchString);
+          case 'serial':
+            return data.serial.toLowerCase().includes(searchString);
           default:
             return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
         }
       };
+      // Atualiza o filtro no DataSource
+      this.dataSource.filter = filterValue;
     } else {
       // Se nenhum filtro estiver selecionado, limpa o filtro
       this.dataSource.filter = '';

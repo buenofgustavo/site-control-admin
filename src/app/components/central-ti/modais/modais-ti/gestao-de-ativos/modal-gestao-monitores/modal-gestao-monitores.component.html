@@ -1,4 +1,4 @@
-<div style="max-width: 780px; min-width: 780px; max-height: 500px; min-height: 500px;  background-color: white; overflow: hidden;">
+<div style="max-width: 780px; min-width: 780px; max-height: 500px; min-height: 450px;  background-color: white; overflow: hidden;">
 
   <mat-tab-group>
 
@@ -30,7 +30,7 @@
           maxlength="255"></textarea>
           <div class="div-cadastro">
 
-            <nb-form-field style="margin-bottom: 6rem;">
+            <nb-form-field style="margin-bottom: 0rem;">
               <label for="status">Status</label>
               <nb-select [(ngModel)]="gestaoAtivos.status"   class="todos-inputs" name="status" placeholder="" [(selected)]="selectedItemCategoria3">
                 <nb-option value="Ativo">Ativo</nb-option>
@@ -50,8 +50,17 @@
 
           </div>
 
-          <button class="button" (click)="create()" style="width: 93%;" nbButton status="basic">Adicionar</button>
-
+          <div class="div-cadastro">
+            <nb-form-field>
+              <label for="serial">Serial</label>
+              <input [(ngModel)]="gestaoAtivos.serial" class="todos-inputs" id="serial" nbInput name="serial">
+            </nb-form-field>
+  
+  
+            <button class="button" (click)="create()" style="margin-top: 33px; width: 86%; height: 40px;" nbButton
+              status="basic">Adicionar</button>
+  
+          </div>
 
       </div>
 

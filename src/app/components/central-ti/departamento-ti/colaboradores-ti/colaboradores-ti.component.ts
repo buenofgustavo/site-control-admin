@@ -21,8 +21,7 @@ import { VincularComputadorService } from 'src/app/services/departamento-ti/vinc
 })
 export class ColaboradoresTiComponent {
 
-  concluido: boolean = false;
-  termo: boolean = false;
+
 
   colaboradorCompleto: ColaboradorCompleto[] = [];
 
@@ -70,12 +69,16 @@ export class ColaboradoresTiComponent {
             
             if (this.concluido === true) {
               // Filtra colaboradores com status false
+              localStorage.setItem('concluido-colaboradores-ti', this.concluido.toString());
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.status === false);
             } 
             else if(this.termo === true) {
+              localStorage.setItem('termo-colaboradores-ti', this.termo.toString());
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.termo === false && colaborador.colaboradoresDTO.status === true);
             } 
             else {
+              localStorage.removeItem('concluido-colaboradores-ti');
+              localStorage.removeItem('termo-colaboradores-ti');
               // Filtra colaboradores com status true
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.status === true);
             }
@@ -129,14 +132,46 @@ export class ColaboradoresTiComponent {
     );
   }
 
-  selectedFilter: string | null = null;
-  selectFilter(event: any) {
-    this.selectedFilter = event.target.value;
+  concluido: boolean = false;
+  termo: boolean = false;
+  selectedFilter: string = '';
+  filterValue: string = '';
+
+  ngOnInit() {
+    // Recupera os valores do filtro do localStorage
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-colaboradores-ti');
+    const storedFilterValue = localStorage.getItem('filterValue-colaboradores-ti');
+    const storedTermo = localStorage.getItem('termo-colaboradores-ti');
+    const storedConcluido = localStorage.getItem('concluido-colaboradores-ti');
+
+    if (storedSelectedFilter) {
+      this.selectedFilter = storedSelectedFilter;
+    }
+
+    if (storedFilterValue) {
+      this.filterValue = storedFilterValue;
+      this.applyFilterWithValue(storedFilterValue);
+    }
+
+    if (storedTermo !== null) {
+      this.termo = storedTermo === 'true';
+    }
+
+    if (storedConcluido !== null) {
+      this.concluido = storedConcluido === 'true';
+    }
   }
 
   applyFilter(event: any) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.applyFilterWithValue(filterValue);
 
+    // Salva os valores no localStorage
+    localStorage.setItem('selectedFilter-colaboradores-ti', this.selectedFilter!);
+    localStorage.setItem('filterValue-colaboradores-ti', filterValue);
+  }
+
+  applyFilterWithValue(filterValue: string) {
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
@@ -149,13 +184,13 @@ export class ColaboradoresTiComponent {
             return data.colaboradoresDTO.nome.toLowerCase().includes(searchString);
           case 'cpf':
             return data.colaboradoresDTO.cpf.toLowerCase().includes(searchString);
-            case 'departamento':
-              return data.colaboradoresDTO.departamento.toLowerCase().includes(searchString);
-              case 'filial':
-                return data.colaboradoresDTO.filial.toLowerCase().includes(searchString);
-            case 'computador':
-              return data.computadoresDTO.nomeComputador.toLowerCase().includes(searchString);
-              default:
+          case 'departamento':
+            return data.colaboradoresDTO.departamento.toLowerCase().includes(searchString);
+          case 'filial':
+            return data.colaboradoresDTO.filial.toLowerCase().includes(searchString);
+          case 'computador':
+            return data.computadoresDTO.nomeComputador.toLowerCase().includes(searchString);
+          default:
             return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
         }
       };

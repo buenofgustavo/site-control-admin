@@ -44,6 +44,17 @@ export class NavbarComponent {
       children: [
         { title: 'Computadores', icon: '', link: '/computadores-compras', },
         { title: 'Colaboradores', icon: '', link: '/colaboradores-compras', },
+        {
+          title: 'Inventário',
+          icon: '',
+          children: [
+            { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
+            { title: 'Computadores Desativados', icon: '', link: '/gestao-computador-ti' },
+            { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
+            { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
+            { title: 'Outros', icon: '', link: '/gestao-outros-ti' },
+          ]
+        },
       ]
     },
 
@@ -60,18 +71,6 @@ export class NavbarComponent {
             { title: 'Chamados', icon: '', link: '/chamados-ti' },
             { title: 'Colaboradores', icon: '', link: '/colaboradores-ti', },
             { title: 'Computadores', icon: '', link: '/computadores-ti', },
-          ]
-        },
-
-        {
-          title: 'Inventário',
-          icon: '',
-          children: [
-            { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
-            { title: 'Computadores Desativados', icon: '', link: '/gestao-computador-ti' },
-            { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
-            { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
-            { title: 'Outros', icon: '', link: '/gestao-outros-ti' },
           ]
         },
       ]

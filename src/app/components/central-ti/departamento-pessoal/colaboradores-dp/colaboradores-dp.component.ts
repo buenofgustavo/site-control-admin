@@ -48,7 +48,6 @@ export class ColaboradoresDpComponent {
   }
   
   loading: boolean = true;
-  concluido: boolean = false;
   getAllColaboradores() {
     this.loading = true;
     this.colaboradoresService.getAllColaboradores().subscribe(
@@ -59,9 +58,13 @@ export class ColaboradoresDpComponent {
             data.sort((a, b) => a.colaboradoresDTO.nome.localeCompare(b.colaboradoresDTO.nome));
             
             if (this.concluido === true) {
+              localStorage.setItem('concluido-colaboradores-dp', this.concluido.toString());
+
               // Filtra colaboradores com status false
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.status === false);
             } else {
+              localStorage.removeItem('concluido-colaboradores-dp');
+              localStorage.removeItem('termo-colaboradores-dp');
               // Filtra colaboradores com status true
               this.colaboradorCompleto = data.filter(colaborador => colaborador.colaboradoresDTO.status === true);
             }
@@ -91,14 +94,41 @@ export class ColaboradoresDpComponent {
     );
   }
 
-  selectedFilter: string | null = null;
-  selectFilter(event: any) {
-    this.selectedFilter = event.target.value;
+  concluido: boolean = false;
+  selectedFilter: string = '';
+  filterValue: string = '';
+
+  ngOnInit() {
+    // Recupera os valores do filtro do localStorage
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-colaboradores-dp');
+    const storedFilterValue = localStorage.getItem('filterValue-colaboradores-dp');
+    const storedTermo = localStorage.getItem('termo-colaboradores-dp');
+    const storedConcluido = localStorage.getItem('concluido-colaboradores-dp');
+
+    if (storedSelectedFilter) {
+      this.selectedFilter = storedSelectedFilter;
+    }
+
+    if (storedFilterValue) {
+      this.filterValue = storedFilterValue;
+      this.applyFilterWithValue(storedFilterValue);
+    }
+
+    if (storedConcluido !== null) {
+      this.concluido = storedConcluido === 'true';
+    }
   }
 
   applyFilter(event: any) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.applyFilterWithValue(filterValue);
 
+    // Salva os valores no localStorage
+    localStorage.setItem('selectedFilter-colaboradores-dp', this.selectedFilter!);
+    localStorage.setItem('filterValue-colaboradores-dp', filterValue);
+  }
+
+  applyFilterWithValue(filterValue: string) {
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
@@ -111,12 +141,12 @@ export class ColaboradoresDpComponent {
             return data.colaboradoresDTO.nome.toLowerCase().includes(searchString);
           case 'cpf':
             return data.colaboradoresDTO.cpf.toLowerCase().includes(searchString);
-            case 'departamento':
-              return data.colaboradoresDTO.departamento.toLowerCase().includes(searchString);
-              case 'filial':
-                return data.colaboradoresDTO.filial.toLowerCase().includes(searchString);
-            case 'computador':
-              return data.computadoresDTO.nomeComputador.toLowerCase().includes(searchString);
+          case 'departamento':
+            return data.colaboradoresDTO.departamento.toLowerCase().includes(searchString);
+          case 'filial':
+            return data.colaboradoresDTO.filial.toLowerCase().includes(searchString);
+          case 'computador':
+            return data.computadoresDTO.nomeComputador.toLowerCase().includes(searchString);
           default:
             return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
         }
