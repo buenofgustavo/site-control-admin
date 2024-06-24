@@ -31,7 +31,7 @@ export class ComputadoresComprasComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
+
   constructor(public dialog: MatDialog, private toastrService: NbToastrService,
     private router: Router, private computadoresService: ComputadoresService,
 
@@ -41,13 +41,13 @@ export class ComputadoresComprasComponent {
 
   }
 
-  deletarComputador(computadores: Computadores){
+  deletarComputador(computadores: Computadores) {
     this.computadoresService.deletarAtivos(computadores.enderecoMac).subscribe(
       response => {
-      this.toastrService.success("Computador deletado com sucesso!", "Sucesso");
-      setTimeout(() => {
-        location.reload(); // Recarrega a página após1 segundos
-      }, 1000);
+        this.toastrService.success("Computador deletado com sucesso!", "Sucesso");
+        setTimeout(() => {
+          location.reload(); // Recarrega a página após1 segundos
+        }, 1000);
       },
       (error) => {
         console.log('Erro ao deletar computador:', error);
@@ -58,7 +58,7 @@ export class ComputadoresComprasComponent {
         } else {
           this.toastrService.danger('Erro ao deletar computador.', 'Erro');
         }
-    }
+      }
     )
   }
 
@@ -77,9 +77,9 @@ export class ComputadoresComprasComponent {
           if (!data) {
             throw new Error('Array de computadores é nulo.');
           }
-  
+
           data.sort((a, b) => a.nomeComputador.localeCompare(b.nomeComputador));
-  
+
           this.computadoresCompletos = [];
           if (this.concluido) {
             localStorage.setItem('concluido-compras', this.concluido.toString());
@@ -87,13 +87,13 @@ export class ComputadoresComprasComponent {
           } else if (this.makro) {
             localStorage.setItem('makro-compras', this.makro.toString());
             this.computadoresCompletos = data.filter(computador => computador.makroInstalado == "NÃO INSTALADO");
-          } 
+          }
           else {
             localStorage.removeItem('concluido-compras');
             localStorage.removeItem('makro-compras');
             this.computadoresCompletos = data
           }
-  
+
           this.dataSource.data = this.computadoresCompletos;
         } catch (error) {
           console.log('Erro ao filtrar computadores:', error);
@@ -129,7 +129,7 @@ export class ComputadoresComprasComponent {
     const storedFilterValue = localStorage.getItem('filterValue-compras');
     const storedMakro = localStorage.getItem('makro-compras');
     const storedConcluido = localStorage.getItem('concluido-compras');
-    
+
     if (storedSelectedFilter) {
       this.selectedFilter = storedSelectedFilter;
     }
@@ -176,6 +176,7 @@ export class ComputadoresComprasComponent {
             return data.enderecoMac.toLowerCase().includes(searchString);
           case 'localizacao':
             return data.localizacao.toLowerCase().includes(searchString);
+
           default:
             return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
         }

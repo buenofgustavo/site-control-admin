@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ColaboradorCompleto } from 'src/app/interface/colaboradorCompleto';
 import { ModalColaboradoresDpComponent } from '../../modais/modais-dp/modal-colaboradores-dp/modal-colaboradores-dp.component';
 import { ColaboradoresService } from 'src/app/services/departamento-pessoal/colaboradores/colaboradores.service';
+import { ModalColaboradoresTiComponent } from '../../modais/modais-ti/modal-colaboradores-ti/modal-colaboradores-ti.component';
 
 @Component({
   selector: 'app-colaboradores-compras',
@@ -40,7 +41,7 @@ export class ColaboradoresComprasComponent {
   }
 
   openDialog(colaboradorCompleto: ColaboradorCompleto) {
-    const dialogRef = this.dialog.open(ModalColaboradoresDpComponent, { data: { colaboradorCompleto: colaboradorCompleto } });
+    const dialogRef = this.dialog.open(ModalColaboradoresTiComponent, { data: { colaboradorCompleto: colaboradorCompleto } });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.colaboradorCompleto}`);
     });

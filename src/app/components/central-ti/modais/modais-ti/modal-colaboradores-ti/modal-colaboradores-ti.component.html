@@ -1,5 +1,5 @@
 <div
-    style="max-width: 780px; min-width: 780px; max-height: 490px; min-height: 490px;  background-color: white; overflow: hidden;">
+    style="max-width: 780px; min-width: 780px; max-height: 580px; background-color: white; overflow: hidden;">
 
     <mat-tab-group>
         <mat-tab label="Colaborador">
@@ -142,6 +142,17 @@
                         <input disabled class="todos-inputs" id="localizacao" nbInput name="localizacao"
                             [(ngModel)]="data.colaboradorCompleto.computadoresDTO.localizacao">
                     </nb-form-field>
+                </div>
+
+                <div class="div-cadastro" style="margin-bottom: 15px;">
+
+                    <nb-form-field>
+                        <label for="serial">Serial</label>
+                        <input class="todos-inputs" id="serial" nbInput name="serial"
+                        [(ngModel)]="data.colaboradorCompleto.computadoresDTO.serial">
+                    </nb-form-field>
+                    
+                    <button (click)="salvarSerial()" class="button" style="margin-top: 35px; width: 90%; height: 40px;" nbButton status="basic">SALVAR</button>
                 </div>
 
 

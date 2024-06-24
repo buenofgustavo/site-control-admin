@@ -41,7 +41,7 @@ export class GestaoMonitorComponent {
 
   loading: boolean = true;
   getAllColaboradores() {
-    const tipo = "Monitores"
+    const tipo = "Monitor"
     this.gestaoAtivosService.getAllAtivos(tipo).subscribe(
       (data: GestaoAtivos[] | null) => {
         try {

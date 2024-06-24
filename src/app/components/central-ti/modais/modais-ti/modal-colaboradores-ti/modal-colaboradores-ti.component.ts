@@ -6,6 +6,7 @@ import { NbToastrService } from '@nebular/theme';
 import { VincularComputadorService } from 'src/app/services/departamento-ti/vincular-computadores/vincular-computador.service';
 import { CadastroColaboradorService } from 'src/app/services/departamento-pessoal/cadastro-colaborador/cadastro-colaborador.service';
 import { DocumentosColaboradores } from 'src/app/interface/documentosColaboradores';
+import { ComputadoresService } from 'src/app/services/departamento-ti/computadores/computadores.service';
 
 @Component({
   selector: 'app-modal-colaboradores-ti',
@@ -17,6 +18,7 @@ export class ModalColaboradoresTiComponent {
   constructor(private dialogRef: MatDialogRef<ModalColaboradoresDpComponent>,
     private toastrService: NbToastrService,
     private cadastroColaboradorService: CadastroColaboradorService,
+    private computadoresService: ComputadoresService,
     @Inject(MAT_DIALOG_DATA) public data: { colaboradorCompleto: ColaboradorCompleto }) {
   }
 
@@ -75,6 +77,26 @@ export class ModalColaboradoresTiComponent {
 
   ngOnInit(): void {
     this.checkDocumentAvailability(); // Verifica a disponibilidade do documento ao iniciar o componente
+  }
+
+  salvarSerial() {
+    this.computadoresService.salvarSerial(this.data.colaboradorCompleto.computadoresDTO.enderecoMac, this.data.colaboradorCompleto.computadoresDTO.serial).subscribe(
+      response => {
+        this.toastrService.success("Ativo atualizado com sucesso!", "Sucesso");
+        setTimeout(() => {
+          location.reload(); // Recarrega a página após1 segundos
+        }, 1000);
+      },
+      error => {
+        if (error.error && error.error.message) {
+          this.toastrService.warning(error.error.message, "Erro");
+
+        }
+        else {
+          this.toastrService.warning('Erro ao atualizar Ativo!', "Erro");
+        }
+      }
+    )
   }
 
 }
