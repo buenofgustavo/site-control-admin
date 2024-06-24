@@ -172,32 +172,41 @@ export class ColaboradoresTiComponent {
   }
 
   applyFilterWithValue(filterValue: string) {
+    const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
+  
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
-      this.dataSource.filter = filterValue;
+      this.dataSource.filter = normalizedFilterValue;
       this.dataSource.filterPredicate = (data: any, filter: string) => {
-        const searchString = filter.toLowerCase();
-        // Aplica o filtro no campo selecionado
-        switch (this.selectedFilter) {
-          case 'nome':
-            return data.colaboradoresDTO.nome.toLowerCase().includes(searchString);
-          case 'cpf':
-            return data.colaboradoresDTO.cpf.toLowerCase().includes(searchString);
-          case 'departamento':
-            return data.colaboradoresDTO.departamento.toLowerCase().includes(searchString);
-          case 'filial':
-            return data.colaboradoresDTO.filial.toLowerCase().includes(searchString);
-          case 'computador':
-            return data.computadoresDTO.nomeComputador.toLowerCase().includes(searchString);
-          default:
-            return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
-        }
+        const normalizedDataValue = this.getNormalizedFieldValue(data);
+        return normalizedDataValue.includes(filter);
       };
     } else {
       // Se nenhum filtro estiver selecionado, limpa o filtro
       this.dataSource.filter = '';
     }
+  }
+  
+  getNormalizedFieldValue(data: any): string {
+    switch (this.selectedFilter) {
+      case 'nome':
+        return this.normalizeString(data.colaboradoresDTO.nome.toLowerCase());
+      case 'cpf':
+        return this.normalizeString(data.colaboradoresDTO.cpf.toLowerCase());
+      case 'departamento':
+        return this.normalizeString(data.colaboradoresDTO.departamento.toLowerCase());
+      case 'filial':
+        return this.normalizeString(data.colaboradoresDTO.filial.toLowerCase());
+      case 'computador':
+        return this.normalizeString(data.computadoresDTO.nomeComputador.toLowerCase());
+      default:
+        return ''; // Retorna uma string vazia se nenhum campo for selecionado
+    }
+  }
+
+  normalizeString(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
 }

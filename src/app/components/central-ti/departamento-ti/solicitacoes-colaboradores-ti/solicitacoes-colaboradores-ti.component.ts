@@ -41,41 +41,54 @@ export class SolicitacoesColaboradoresTiComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
   
   selectedFilter: string | null = null;
-  selectFilter(event: any) {
-    this.selectedFilter = event.target.value;
-  }
 
   applyFilter(event: any) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-
+    this.applyFilterWithValue(filterValue);
+  }
+  
+  normalizeString(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+  
+  applyFilterWithValue(filterValue: string) {
+    const normalizedFilterValue = this.normalizeString(filterValue);
+  
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
-      this.dataSource.filter = filterValue;
+      this.dataSource.filter = normalizedFilterValue;
       this.dataSource.filterPredicate = (data: any, filter: string) => {
-        const searchString = filter.toLowerCase();
-        // Aplica o filtro no campo selecionado
-        switch (this.selectedFilter) {
-          case 'nome':
-            return data.nome.toLowerCase().includes(searchString);
-          case 'tipo':
-            return data.tipo.toLowerCase().includes(searchString);
-            case 'status':
-              return data.status.toLowerCase().includes(searchString);
-              case 'usuario_solicitante':
-                return data.usuario_solicitante.toLowerCase().includes(searchString);
-
-          default:
-            return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
-        }
+        const normalizedDataValue = this.getNormalizedFieldValue(data);
+        return normalizedDataValue.includes(filter);
       };
+      // Atualiza o filtro no DataSource
+      this.dataSource.filter = normalizedFilterValue;
     } else {
       // Se nenhum filtro estiver selecionado, limpa o filtro
       this.dataSource.filter = '';
     }
+  }
+  
+  getNormalizedFieldValue(data: any): string {
+    switch (this.selectedFilter) {
+      case 'nome':
+        return this.normalizeString(data.nome.toLowerCase());
+      case 'tipo':
+        return this.normalizeString(data.tipo.toLowerCase());
+      case 'status':
+        return this.normalizeString(data.status.toLowerCase());
+      case 'usuario_solicitante':
+        return this.normalizeString(data.usuario_solicitante.toLowerCase());
+      default:
+        return ''; // Retorna uma string vazia se nenhum campo for selecionado
+    }
+  }
+  
+  selectFilter(event: any) {
+    this.selectedFilter = event.target.value;
   }
   
   loading: boolean = true;

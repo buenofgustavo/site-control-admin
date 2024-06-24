@@ -163,35 +163,43 @@ export class ComputadoresTiComponent {
   }
 
   applyFilterWithValue(filterValue: string) {
+    const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
+  
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
-      this.dataSource.filter = filterValue;
+      this.dataSource.filter = normalizedFilterValue;
       this.dataSource.filterPredicate = (data: any, filter: string) => {
-        const searchString = filter.toLowerCase();
-        // Aplica o filtro no campo selecionado
-        switch (this.selectedFilter) {
-          case 'nomeUserAtual':
-            return data.nomeUserAtual?.toLowerCase().includes(searchString) ?? false;
-          case 'nomeComputador':
-            return data.nomeComputador.toLowerCase().includes(searchString);
-          case 'marca':
-            return data.marca.toLowerCase().includes(searchString);
-          case 'enderecoMac':
-            return data.enderecoMac.toLowerCase().includes(searchString);
-          case 'localizacao':
-            return data.localizacao.toLowerCase().includes(searchString);
-          default:
-            return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
-        }
+        const normalizedDataValue = this.getNormalizedFieldValue(data);
+        return normalizedDataValue.includes(filter);
       };
-      // Atualiza o filtro no DataSource
-      this.dataSource.filter = filterValue;
     } else {
       // Se nenhum filtro estiver selecionado, limpa o filtro
       this.dataSource.filter = '';
     }
   }
+  
+  getNormalizedFieldValue(data: any): string {
+    switch (this.selectedFilter) {
+      case 'nomeUserAtual':
+        return this.normalizeString(data.nomeUserAtual?.toLowerCase() ?? '');
+      case 'nomeComputador':
+        return this.normalizeString(data.nomeComputador.toLowerCase());
+      case 'marca':
+        return this.normalizeString(data.marca.toLowerCase());
+      case 'enderecoMac':
+        return this.normalizeString(data.enderecoMac.toLowerCase());
+      case 'localizacao':
+        return this.normalizeString(data.localizacao.toLowerCase());
+      default:
+        return ''; // Retorna uma string vazia se nenhum campo for selecionado
+    }
+  }
+
+  normalizeString(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
 }
 
 

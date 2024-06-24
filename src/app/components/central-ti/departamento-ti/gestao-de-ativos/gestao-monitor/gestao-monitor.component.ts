@@ -129,32 +129,41 @@ export class GestaoMonitorComponent {
   }
 
   applyFilterWithValue(filterValue: string) {
+    const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
+  
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
-      this.dataSource.filter = filterValue;
+      this.dataSource.filter = normalizedFilterValue;
       this.dataSource.filterPredicate = (data: any, filter: string) => {
-        const searchString = filter.toLowerCase();
-        // Aplica o filtro no campo selecionado
-        switch (this.selectedFilter) {
-          case 'nome':
-            return data.nome.toLowerCase().includes(searchString);
-          case 'status':
-            return data.status.toLowerCase().includes(searchString);
-          case 'localizacao':
-            return data.localizacao.toLowerCase().includes(searchString);
-          case 'serial':
-            return data.serial.toLowerCase().includes(searchString);
-          default:
-            return false; // Retorna falso para evitar a filtragem se nenhum campo for selecionado
-        }
+        const normalizedDataValue = this.getNormalizedFieldValue(data);
+        return normalizedDataValue.includes(filter);
       };
       // Atualiza o filtro no DataSource
-      this.dataSource.filter = filterValue;
+      this.dataSource.filter = normalizedFilterValue;
     } else {
       // Se nenhum filtro estiver selecionado, limpa o filtro
       this.dataSource.filter = '';
     }
+  }
+  
+  getNormalizedFieldValue(data: any): string {
+    switch (this.selectedFilter) {
+      case 'nome':
+        return this.normalizeString(data.nome.toLowerCase());
+      case 'status':
+        return this.normalizeString(data.status.toLowerCase());
+      case 'localizacao':
+        return this.normalizeString(data.localizacao.toLowerCase());
+      case 'serial':
+        return this.normalizeString(data.serial.toLowerCase());
+      default:
+        return ''; // Retorna uma string vazia se nenhum campo for selecionado
+    }
+  }
+
+  normalizeString(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
   editarAtivos(gestaoAtivos: GestaoAtivos) {
