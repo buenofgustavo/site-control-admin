@@ -1,0 +1,14 @@
+.loading-spinner-overlay {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(216, 219, 212, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Adicionado para organizar os itens em uma linha */
+  }

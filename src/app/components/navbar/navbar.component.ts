@@ -52,7 +52,8 @@ export class NavbarComponent {
             { title: 'Computadores Desativados', icon: '', link: '/gestao-computador-ti' },
             { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
             { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
-            { title: 'Outros', icon: '', link: '/gestao-outros-ti' },
+            { title: 'Mesas', icon: '', link: '/gestao-mesas-ti' },
+            { title: 'Outros', icon: '', link: '/gestao-outros-ti' }
           ]
         },
       ]

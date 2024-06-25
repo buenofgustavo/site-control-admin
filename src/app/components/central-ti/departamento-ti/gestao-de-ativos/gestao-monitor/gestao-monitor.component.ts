@@ -106,8 +106,8 @@ export class GestaoMonitorComponent {
 
   ngOnInit() {
     // Recupera os valores do filtro do localStorage
-    const storedSelectedFilter = localStorage.getItem('selectedFilter-computador-compras');
-    const storedFilterValue = localStorage.getItem('filterValue-computador-compras');
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-monitor-compras');
+    const storedFilterValue = localStorage.getItem('filterValue-monitor-compras');
 
     if (storedSelectedFilter) {
       this.selectedFilter = storedSelectedFilter;
@@ -124,8 +124,8 @@ export class GestaoMonitorComponent {
     this.applyFilterWithValue(filterValue);
 
     // Salva os valores no localStorage
-    localStorage.setItem('selectedFilter-computador-compras', this.selectedFilter);
-    localStorage.setItem('filterValue-computador-compras', filterValue);
+    localStorage.setItem('selectedFilter-monitor-compras', this.selectedFilter);
+    localStorage.setItem('filterValue-monitor-compras', filterValue);
   }
 
   applyFilterWithValue(filterValue: string) {

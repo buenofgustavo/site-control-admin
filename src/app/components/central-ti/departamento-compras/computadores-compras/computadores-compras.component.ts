@@ -8,6 +8,7 @@ import { ComputadoresService } from 'src/app/services/departamento-ti/computador
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ModalLogComputadoresComponent } from '../../modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
 
 @Component({
   selector: 'app-computadores-compras',
@@ -193,6 +194,13 @@ export class ComputadoresComprasComponent {
 
   normalizeString(str: string): string {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  openLog(computadoresCompleto: Computadores) {
+    const dialogRef = this.dialog.open(ModalLogComputadoresComponent, { data: { computadoresCompleto: computadoresCompleto } });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result.computadoresCompleto}`);
+    });
   }
 
 }

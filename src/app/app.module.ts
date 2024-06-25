@@ -92,6 +92,9 @@ import { ModalEditarAtivosTiComponent } from './components/central-ti/modais/mod
 import { TextMaskModule } from 'angular2-text-mask';
 import { ColaboradoresComprasComponent } from './components/central-ti/departamento-compras/colaboradores-compras/colaboradores-compras.component';
 import { ComputadoresComprasComponent } from './components/central-ti/departamento-compras/computadores-compras/computadores-compras.component';
+import { ModalLogComputadoresComponent } from './components/central-ti/modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
+import { ModalGestaoMesaComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-mesa/modal-gestao-mesa.component';
+import { GestaoMesasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-mesas/gestao-mesas.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +151,9 @@ import { ComputadoresComprasComponent } from './components/central-ti/departamen
     ModalEditarAtivosTiComponent,
     ColaboradoresComprasComponent,
     ComputadoresComprasComponent,
-        
+    ModalLogComputadoresComponent,
+    ModalGestaoMesaComponent,
+    GestaoMesasComponent,
   ],
   imports: [
     AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserModule, BrowserAnimationsModule, NbEvaIconsModule,

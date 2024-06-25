@@ -149,8 +149,8 @@ export class GestaoCpdComponent {
 
   ngOnInit() {
     // Recupera os valores do filtro do localStorage
-    const storedSelectedFilter = localStorage.getItem('selectedFilter-computador-compras');
-    const storedFilterValue = localStorage.getItem('filterValue-computador-compras');
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-cpd-compras');
+    const storedFilterValue = localStorage.getItem('filterValue-cpd-compras');
 
     if (storedSelectedFilter) {
       this.selectedFilter = storedSelectedFilter;
@@ -167,8 +167,8 @@ export class GestaoCpdComponent {
     this.applyFilterWithValue(filterValue);
 
     // Salva os valores no localStorage
-    localStorage.setItem('selectedFilter-computador-compras', this.selectedFilter);
-    localStorage.setItem('filterValue-computador-compras', filterValue);
+    localStorage.setItem('selectedFilter-cpd-compras', this.selectedFilter);
+    localStorage.setItem('filterValue-cpd-compras', filterValue);
   }
 
   applyFilterWithValue(filterValue: string) {

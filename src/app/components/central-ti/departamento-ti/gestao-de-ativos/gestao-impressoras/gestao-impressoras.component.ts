@@ -151,8 +151,8 @@ export class GestaoImpressorasComponent {
 
   ngOnInit() {
     // Recupera os valores do filtro do localStorage
-    const storedSelectedFilter = localStorage.getItem('selectedFilter-computador-compras');
-    const storedFilterValue = localStorage.getItem('filterValue-computador-compras');
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-impressoras-compras');
+    const storedFilterValue = localStorage.getItem('filterValue-impressoras-compras');
 
     if (storedSelectedFilter) {
       this.selectedFilter = storedSelectedFilter;
@@ -169,8 +169,8 @@ export class GestaoImpressorasComponent {
     this.applyFilterWithValue(filterValue);
 
     // Salva os valores no localStorage
-    localStorage.setItem('selectedFilter-computador-compras', this.selectedFilter);
-    localStorage.setItem('filterValue-computador-compras', filterValue);
+    localStorage.setItem('selectedFilter-impressoras-compras', this.selectedFilter);
+    localStorage.setItem('filterValue-impressoras-compras', filterValue);
   }
 
   applyFilterWithValue(filterValue: string) {

@@ -1,0 +1,37 @@
+<div style="max-width: 780px; min-width: 780px; max-height: 586px; min-height: 586px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+
+        <mat-tab label="Log do computador">
+            <nb-card style="height: 536px;"> <!-- Defina uma altura máxima para o card -->
+              <nb-card-body style="overflow-y: auto;"> <!-- Adicione a propriedade overflow-y -->
+                <div *ngFor="let msg of chatSolicitacoes">
+                  <nb-card>
+                    <nb-card-body>
+                      <app-user-info [name]="msg.userVinculado" [title]="msg.nomeUser"></app-user-info>
+                      <div style="margin-top: 18px; white-space: pre-wrap;">
+                        <span>{{ msg.message }}</span>
+                        <p style="margin-left: 34rem;">{{ msg.datahora | date:'dd-MM-yyyy HH:mm' }}</p>
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </nb-card-body>
+          
+              <nb-card-footer>
+                <div style="display: flex; align-items: center;">
+                    <textarea
+                        nbInput fullWidth class="input-comentario" [(ngModel)]="chatDTO.message" 
+                        placeholder="Escreva sua mensagem" rows="3" maxlength="255"></textarea>
+                    <button
+                        style="margin-left: 20px;" nbButton status="basic" (click)="sendMessage()">
+                        <nb-icon icon="paper-plane-outline"></nb-icon>
+                    </button>
+                </div>
+            </nb-card-footer>
+            </nb-card>
+          </mat-tab>
+
+    </mat-tab-group>
+
+</div>

@@ -1,28 +1,29 @@
-import { Component } from '@angular/core';
-import {ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogExclusaoComputadoresTiComponent } from '../../../modais/modais-ti/dialog/dialog-exclusao-computadores-ti/dialog-exclusao-computadores-ti.component';
-import { ModalVisualizarAtivosTiComponent } from '../../../modais/modais-ti/modal-visualizar-ativos-ti/modal-visualizar-ativos-ti.component';
-import { ModalGestaoComputadoresComponent } from '../../../modais/modais-ti/gestao-de-ativos/modal-gestao-computadores/modal-gestao-computadores.component';
+import { Component, ViewChild } from '@angular/core';
 import { GestaoAtivos } from 'src/app/interface/gestaoAtivos';
-import { MatSort } from '@angular/material/sort';
-import { NbToastrService } from '@nebular/theme';
+import { DialogExclusaoComputadoresTiComponent } from '../../../modais/modais-ti/dialog/dialog-exclusao-computadores-ti/dialog-exclusao-computadores-ti.component';
+import { ModalGestaoCpdComponent } from '../../../modais/modais-ti/gestao-de-ativos/modal-gestao-cpd/modal-gestao-cpd.component';
+import { ModalVisualizarAtivosTiComponent } from '../../../modais/modais-ti/modal-visualizar-ativos-ti/modal-visualizar-ativos-ti.component';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { NbToastrService } from '@nebular/theme';
 import { GestaoAtivosService } from 'src/app/services/departamento-ti/gestao-ativos/gestao-ativos.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ModalEditarAtivosTiComponent } from '../../../modais/modais-ti/modal-editar-ativos-ti/modal-editar-ativos-ti.component';
+import { ModalGestaoMesaComponent } from '../../../modais/modais-ti/gestao-de-ativos/modal-gestao-mesa/modal-gestao-mesa.component';
+
 
 @Component({
-  selector: 'app-gestao-computador',
-  templateUrl: './gestao-computador.component.html',
-  styleUrls: ['./gestao-computador.component.scss']
+  selector: 'app-gestao-mesas',
+  templateUrl: './gestao-mesas.component.html',
+  styleUrls: ['./gestao-mesas.component.scss']
 })
-export class GestaoComputadorComponent {
+export class GestaoMesasComponent {
   gestaoAtivos: GestaoAtivos[] = [];
 
   dataSource = new MatTableDataSource<GestaoAtivos>(this.gestaoAtivos);
-  displayedColumns: string[] = ['nome', 'descricao', 'localizacao', 'status',  'tipo', 'serial', 'acao'];
+  displayedColumns: string[] = ['nome', 'descricao', 'localizacao','status', 'tipo', 'serial', 'acao'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -41,7 +42,7 @@ export class GestaoComputadorComponent {
 
   loading: boolean = true;
   getAllColaboradores() {
-    const tipo = "Computador"
+    const tipo = "Mesas"
     this.gestaoAtivosService.getAllAtivos(tipo).subscribe(
       (data: GestaoAtivos[] | null) => {
         try {
@@ -79,7 +80,22 @@ export class GestaoComputadorComponent {
   }
 
   openAdicionarAtivos() {
-    this.dialog.open(ModalGestaoComputadoresComponent);
+    this.dialog.open(ModalGestaoMesaComponent);
+  }
+
+  deleteRow(element: any) {
+    // Para excluir uma linha, você precisa encontrar o índice do elemento na fonte de dados
+    const index = this.dataSource.data.indexOf(element);
+    if (index !== -1) {
+      // Se o elemento existir, remova-o da fonte de dados
+      this.dataSource.data.splice(index, 1);
+      // Notifique a tabela sobre a mudança na fonte de dados
+      this.dataSource._updateChangeSubscription();
+    }
+  }
+
+  openConfirmacao() {
+    this.dialog.open(DialogExclusaoComputadoresTiComponent);
   }
 
   selectedFilter: string = '';
@@ -91,8 +107,8 @@ export class GestaoComputadorComponent {
 
   ngOnInit() {
     // Recupera os valores do filtro do localStorage
-    const storedSelectedFilter = localStorage.getItem('selectedFilter-computador-gestao-compras');
-    const storedFilterValue = localStorage.getItem('filterValue-computador-gestao-compras');
+    const storedSelectedFilter = localStorage.getItem('selectedFilter-mesas-compras');
+    const storedFilterValue = localStorage.getItem('filterValue-mesas-compras');
 
     if (storedSelectedFilter) {
       this.selectedFilter = storedSelectedFilter;
@@ -109,8 +125,8 @@ export class GestaoComputadorComponent {
     this.applyFilterWithValue(filterValue);
 
     // Salva os valores no localStorage
-    localStorage.setItem('selectedFilter-computador-gestao-compras', this.selectedFilter);
-    localStorage.setItem('filterValue-computador-gestao-compras', filterValue);
+    localStorage.setItem('selectedFilter-mesas-compras', this.selectedFilter);
+    localStorage.setItem('filterValue-mesas-compras', filterValue);
   }
 
   applyFilterWithValue(filterValue: string) {
@@ -150,8 +166,7 @@ export class GestaoComputadorComponent {
   normalizeString(str: string): string {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
-
-
+  
   editarAtivos(gestaoAtivos: GestaoAtivos) {
     const dialogRef = this.dialog.open(ModalEditarAtivosTiComponent, { data: { gestaoAtivos: gestaoAtivos } });
     dialogRef.afterClosed().subscribe(result => {

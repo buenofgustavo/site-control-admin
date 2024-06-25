@@ -10,6 +10,7 @@ import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { Computadores } from 'src/app/interface/computadores';
 import { MatSort } from '@angular/material/sort';
+import { ModalLogComputadoresComponent } from '../../modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
 
 
 
@@ -198,6 +199,13 @@ export class ComputadoresTiComponent {
 
   normalizeString(str: string): string {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  openLog(computadoresCompleto: Computadores) {
+    const dialogRef = this.dialog.open(ModalLogComputadoresComponent, { data: { computadoresCompleto: computadoresCompleto } });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result.computadoresCompleto}`);
+    });
   }
 
 }

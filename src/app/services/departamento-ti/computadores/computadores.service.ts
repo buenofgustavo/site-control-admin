@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_CONFIG } from 'src/app/config/api.config';
 import { Observable } from 'rxjs';
 import { Computadores } from 'src/app/interface/computadores';
+import { LogComputadores } from 'src/app/interface/logComputadores';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ComputadoresService {
   private apiUrl = `${API_CONFIG.baseUrl}/computadores/listar`; // Use a URL da API a partir da configuração
   private apiUrl2 = `${API_CONFIG.baseUrl}/computadores`; // Use a URL da API a partir da configuração
   private apiUrl3 = `${API_CONFIG.baseUrl}/computadores/editar`; // Use a URL da API a partir da configuração
+  private apiUrl4 = `${API_CONFIG.baseUrl}/log-computadores`; // Use a URL da API a partir da configuração
   authToken: string | null;
   
   constructor(private http: HttpClient, private authService: AuthserviceService) {
@@ -39,6 +41,18 @@ export class ComputadoresService {
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
     return this.http.put<Computadores>(`${this.apiUrl3}/${MAC}/${serial}`, null, { headers });
+  }
+
+  createChat(chatSolicitacoes: LogComputadores): Observable<LogComputadores[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+    
+    return this.http.post<LogComputadores[]>(`${this.apiUrl4}`, chatSolicitacoes, { headers });
+  }
+
+  getChat(macVinculado: string): Observable<LogComputadores[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+
+    return this.http.get<LogComputadores[]>(`${this.apiUrl4}/${macVinculado}`, { headers });
   }
 
 }

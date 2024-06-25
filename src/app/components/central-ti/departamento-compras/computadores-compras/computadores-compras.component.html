@@ -1,18 +1,19 @@
 <div style="margin-bottom: 2rem; display: flex; align-items: center;">
     <div style="flex: 1;">
-      <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
-        <nb-option value="nomeUserAtual">Buscar por Usuario Atual</nb-option>
-        <nb-option value="nomeComputador">Buscar por Nome do Computador</nb-option>
-        <nb-option value="marca">Buscar por marca</nb-option>
-        <nb-option value="enderecoMac">Buscar por Mac</nb-option>
-        <nb-option value="localizacao">Buscar por Localização</nb-option>
-      </nb-select>
+        <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
+            <nb-option value="nomeUserAtual">Buscar por Usuario Atual</nb-option>
+            <nb-option value="nomeComputador">Buscar por Nome do Computador</nb-option>
+            <nb-option value="marca">Buscar por marca</nb-option>
+            <nb-option value="enderecoMac">Buscar por Mac</nb-option>
+            <nb-option value="localizacao">Buscar por Localização</nb-option>
+        </nb-select>
         <div *ngIf="selectedFilter" class="search-input">
-            <input nbInput type="text" placeholder="Digite sua busca" style="margin-top:1rem;" (input)="applyFilter($event)"  class="mat-elevation-z1" [value]="filterValue">
+            <input nbInput type="text" placeholder="Digite sua busca" style="margin-top:1rem;"
+                (input)="applyFilter($event)" class="mat-elevation-z1" [value]="filterValue">
         </div>
     </div>
-    <nb-checkbox status="basic"  [(ngModel)]="concluido" (ngModelChange)="getAllComputadores()">Sem vínculo</nb-checkbox>
-  </div>
+    <nb-checkbox status="basic" [(ngModel)]="concluido" (ngModelChange)="getAllComputadores()">Sem vínculo</nb-checkbox>
+</div>
 
 
 <div style="margin-top: 0px; margin-bottom: 40px;">
@@ -65,6 +66,8 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="openComputadores(element)"><nb-icon icon="eye-outline"></nb-icon>
                         Visualizar</button>
+                    <button mat-menu-item (click)="openLog(element)"><nb-icon icon="alert-circle-outline"></nb-icon>
+                        Log</button>
                 </mat-menu>
             </td>
         </ng-container>

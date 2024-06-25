@@ -40,6 +40,7 @@ import { SolicitacaoColaboradoresDpComponent } from './components/central-ti/dep
 import { ColaboradoresTiComponent } from './components/central-ti/departamento-ti/colaboradores-ti/colaboradores-ti.component';
 import { ColaboradoresComprasComponent } from './components/central-ti/departamento-compras/colaboradores-compras/colaboradores-compras.component';
 import { ComputadoresComprasComponent } from './components/central-ti/departamento-compras/computadores-compras/computadores-compras.component';
+import { GestaoMesasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-mesas/gestao-mesas.component';
 
 
 const routes: Routes = [
@@ -84,6 +85,7 @@ const routes: Routes = [
       {path: 'gestao-computador-ti', component: GestaoComputadorComponent},
       {path: 'gestao-monitor-ti', component: GestaoMonitorComponent},
       {path: 'gestao-outros-ti', component: GestaoOutrosComponent},
+      {path: 'gestao-mesas-ti', component: GestaoMesasComponent},
       {path: 'cadastrar-coloborador-ti', component: CadastroColaboradorTiComponent},
       {path: 'desvincular-computadores-ti', component: DesvincularComputadoresComponent},
       {path: 'modal-editar-coloboradores-ti', component: ModalEditarColaboradoresTiComponent},
@@ -98,6 +100,7 @@ const routes: Routes = [
       {path: 'modal-visualizar-ativos-ti', component: ModalVisualizarAtivosTiComponent},
       {path: 'template-comentario', component: UserInfoComponent},
       {path: 'dialog-confirmacao-cadastrar-usuario', component: DialogConfirmacaoCadastroComponent},
+      
     ]
   }
 ];
