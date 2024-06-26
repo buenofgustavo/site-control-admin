@@ -48,12 +48,19 @@ export class NavbarComponent {
           title: 'Inventário',
           icon: '',
           children: [
-            { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
-            { title: 'Computadores Desativados', icon: '', link: '/gestao-computador-ti' },
+            { title: 'Ar Condicionado', icon: '', link: '/gestao-ar-condicionado-ti' },
+            { title: 'Armários', icon: '', link: '/gestao-armarios-ti' },
+            { title: 'Bebedouros', icon: '', link: '/gestao-bebedouros-ti' },
+            { title: 'Computadores  Inativos', icon: '', link: '/gestao-computador-ti' },
             { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
-            { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
+            { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
             { title: 'Mesas', icon: '', link: '/gestao-mesas-ti' },
-            { title: 'Outros', icon: '', link: '/gestao-outros-ti' }
+            { title: 'Micro-ondas', icon: '', link: '/gestao-microondas-ti' },
+            { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
+            { title: 'Roteadores', icon: '', link: '/gestao-roteadores-ti' },
+            { title: 'Transformadores', icon: '', link: '/gestao-transformadores-ti' },
+
+            { title: 'Outros', icon: '', link: '/gestao-outros-ti'}
           ]
         },
       ]

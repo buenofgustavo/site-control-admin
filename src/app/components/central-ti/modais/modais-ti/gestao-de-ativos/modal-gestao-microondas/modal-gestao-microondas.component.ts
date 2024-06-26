@@ -8,12 +8,12 @@ import { GestaoAtivosService } from 'src/app/services/departamento-ti/gestao-ati
 import { DepartamentoFiliaisService } from 'src/app/services/select-departamentos-filiais/departamento-filiais.service';
 
 @Component({
-  selector: 'app-modal-gestao-mesa',
-  templateUrl: './modal-gestao-mesa.component.html',
-  styleUrls: ['./modal-gestao-mesa.component.scss']
+  selector: 'app-modal-gestao-microondas',
+  templateUrl: './modal-gestao-microondas.component.html',
+  styleUrls: ['./modal-gestao-microondas.component.scss']
 })
-export class ModalGestaoMesaComponent {
-  selectedItemCategoria = "Computador"
+export class ModalGestaoMicroondasComponent {
+  selectedItemCategoria = "Microondas"
   selectedItemCategoria2 = "Ativo"
   selectedItemCategoria3 = "Matriz"
 
@@ -27,7 +27,7 @@ export class ModalGestaoMesaComponent {
 
     gestaoAtivos: GestaoAtivos = {
       nome: "",
-      tipo: "Mesas",
+      tipo: "Microondas",
       status: "",
       descricao: "",
       localizacao: "",
@@ -42,7 +42,7 @@ export class ModalGestaoMesaComponent {
       this.toastrService.success("Ativo cadastrado com sucesso!", "Sucesso");
       setTimeout(() => {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/gestao-mesas-ti']); // Navega para a rota de cadastro de armazém
+          this.router.navigate(['/gestao-microondas-ti']); // Navega para a rota de cadastro de armazém
         });
         }, 1000); 
       },
@@ -71,3 +71,4 @@ export class ModalGestaoMesaComponent {
     this.getFiliais();
   }
 }
+

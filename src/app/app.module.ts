@@ -95,6 +95,18 @@ import { ComputadoresComprasComponent } from './components/central-ti/departamen
 import { ModalLogComputadoresComponent } from './components/central-ti/modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
 import { ModalGestaoMesaComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-mesa/modal-gestao-mesa.component';
 import { GestaoMesasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-mesas/gestao-mesas.component';
+import { GestaoArCondicionadoComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-ar-condicionado/gestao-ar-condicionado.component';
+import { GestaoArmariosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-armarios/gestao-armarios.component';
+import { GestaoBebedourosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-bebedouros/gestao-bebedouros.component';
+import { GestaoMicroondasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-microondas/gestao-microondas.component';
+import { GestaoRoteadorComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-roteador/gestao-roteador.component';
+import { GestaoTransformadorComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-transformador/gestao-transformador.component';
+import { ModalGestaoArCondicionadoComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-ar-condicionado/modal-gestao-ar-condicionado.component';
+import { ModalGestaoArmariosComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-armarios/modal-gestao-armarios.component';
+import { ModalGestaoBebedourosComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-bebedouros/modal-gestao-bebedouros.component';
+import { ModalGestaoMicroondasComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-microondas/modal-gestao-microondas.component';
+import { ModalGestaoRoteadorComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-roteador/modal-gestao-roteador.component';
+import { ModalGestaoTransformadorComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-transformador/modal-gestao-transformador.component';
 
 @NgModule({
   declarations: [
@@ -154,6 +166,18 @@ import { GestaoMesasComponent } from './components/central-ti/departamento-ti/ge
     ModalLogComputadoresComponent,
     ModalGestaoMesaComponent,
     GestaoMesasComponent,
+    GestaoArCondicionadoComponent,
+    GestaoArmariosComponent,
+    GestaoBebedourosComponent,
+    GestaoMicroondasComponent,
+    GestaoRoteadorComponent,
+    GestaoTransformadorComponent,
+    ModalGestaoArCondicionadoComponent,
+    ModalGestaoArmariosComponent,
+    ModalGestaoBebedourosComponent,
+    ModalGestaoMicroondasComponent,
+    ModalGestaoRoteadorComponent,
+    ModalGestaoTransformadorComponent,
   ],
   imports: [
     AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserModule, BrowserAnimationsModule, NbEvaIconsModule,

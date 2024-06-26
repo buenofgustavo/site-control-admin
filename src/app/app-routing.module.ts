@@ -41,6 +41,12 @@ import { ColaboradoresTiComponent } from './components/central-ti/departamento-t
 import { ColaboradoresComprasComponent } from './components/central-ti/departamento-compras/colaboradores-compras/colaboradores-compras.component';
 import { ComputadoresComprasComponent } from './components/central-ti/departamento-compras/computadores-compras/computadores-compras.component';
 import { GestaoMesasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-mesas/gestao-mesas.component';
+import { GestaoArCondicionadoComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-ar-condicionado/gestao-ar-condicionado.component';
+import { GestaoBebedourosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-bebedouros/gestao-bebedouros.component';
+import { GestaoRoteadorComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-roteador/gestao-roteador.component';
+import { GestaoTransformadorComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-transformador/gestao-transformador.component';
+import { GestaoMicroondasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-microondas/gestao-microondas.component';
+import { GestaoArmariosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-armarios/gestao-armarios.component';
 
 
 const routes: Routes = [
@@ -86,6 +92,12 @@ const routes: Routes = [
       {path: 'gestao-monitor-ti', component: GestaoMonitorComponent},
       {path: 'gestao-outros-ti', component: GestaoOutrosComponent},
       {path: 'gestao-mesas-ti', component: GestaoMesasComponent},
+      {path: 'gestao-ar-condicionado-ti', component: GestaoArCondicionadoComponent},
+      {path: 'gestao-armarios-ti', component: GestaoArmariosComponent},
+      {path: 'gestao-bebedouros-ti', component: GestaoBebedourosComponent},
+      {path: 'gestao-roteadores-ti', component: GestaoRoteadorComponent},
+      {path: 'gestao-transformadores-ti', component: GestaoTransformadorComponent},
+      {path: 'gestao-microondas-ti', component: GestaoMicroondasComponent},
       {path: 'cadastrar-coloborador-ti', component: CadastroColaboradorTiComponent},
       {path: 'desvincular-computadores-ti', component: DesvincularComputadoresComponent},
       {path: 'modal-editar-coloboradores-ti', component: ModalEditarColaboradoresTiComponent},
