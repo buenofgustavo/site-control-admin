@@ -52,6 +52,7 @@ export class NavbarComponent {
             { title: 'Armários', icon: '', link: '/gestao-armarios-ti' },
             { title: 'Bebedouros', icon: '', link: '/gestao-bebedouros-ti' },
             { title: 'Computadores  Inativos', icon: '', link: '/gestao-computador-ti' },
+            { title: 'Cadeiras', icon: '', link: '/gestao-cadeiras-ti' },
             { title: 'CPD', icon: '', link: '/gestao-cpd-ti' },
             { title: 'Impressoras', icon: '', link: '/gestao-impressoras-ti' },
             { title: 'Mesas', icon: '', link: '/gestao-mesas-ti' },
@@ -60,7 +61,7 @@ export class NavbarComponent {
             { title: 'Roteadores', icon: '', link: '/gestao-roteadores-ti' },
             { title: 'Transformadores', icon: '', link: '/gestao-transformadores-ti' },
 
-            { title: 'Outros', icon: '', link: '/gestao-outros-ti'}
+            { title: 'Outros', icon: '', link: '/gestao-outros-ti' }
           ]
         },
       ]
