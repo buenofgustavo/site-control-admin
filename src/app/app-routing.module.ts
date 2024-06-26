@@ -48,6 +48,7 @@ import { GestaoTransformadorComponent } from './components/central-ti/departamen
 import { GestaoMicroondasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-microondas/gestao-microondas.component';
 import { GestaoArmariosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-armarios/gestao-armarios.component';
 import { GestaoCadeirasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-cadeiras/gestao-cadeiras.component';
+import { GestaoFrigobarComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-frigobar/gestao-frigobar.component';
 
 
 const routes: Routes = [
@@ -94,6 +95,7 @@ const routes: Routes = [
       {path: 'gestao-outros-ti', component: GestaoOutrosComponent},
       {path: 'gestao-mesas-ti', component: GestaoMesasComponent},
       {path: 'gestao-cadeiras-ti', component: GestaoCadeirasComponent},
+      {path: 'gestao-frigobar-ti', component: GestaoFrigobarComponent},
       {path: 'gestao-ar-condicionado-ti', component: GestaoArCondicionadoComponent},
       {path: 'gestao-armarios-ti', component: GestaoArmariosComponent},
       {path: 'gestao-bebedouros-ti', component: GestaoBebedourosComponent},

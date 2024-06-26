@@ -109,6 +109,8 @@ import { ModalGestaoRoteadorComponent } from './components/central-ti/modais/mod
 import { ModalGestaoTransformadorComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-transformador/modal-gestao-transformador.component';
 import { GestaoCadeirasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-cadeiras/gestao-cadeiras.component';
 import { ModalGestaoCadeirasComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-cadeiras/modal-gestao-cadeiras.component';
+import { GestaoFrigobarComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-frigobar/gestao-frigobar.component';
+import { ModalGestaoFrigobarComponent } from './components/central-ti/modais/modais-ti/gestao-de-ativos/modal-gestao-frigobar/modal-gestao-frigobar.component';
 
 @NgModule({
   declarations: [
@@ -182,6 +184,8 @@ import { ModalGestaoCadeirasComponent } from './components/central-ti/modais/mod
     ModalGestaoTransformadorComponent,
     GestaoCadeirasComponent,
     ModalGestaoCadeirasComponent,
+    GestaoFrigobarComponent,
+    ModalGestaoFrigobarComponent,
   ],
   imports: [
     AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserModule, BrowserAnimationsModule, NbEvaIconsModule,
