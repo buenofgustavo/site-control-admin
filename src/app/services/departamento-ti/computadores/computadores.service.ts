@@ -55,4 +55,9 @@ export class ComputadoresService {
     return this.http.get<LogComputadores[]>(`${this.apiUrl4}/${macVinculado}`, { headers });
   }
 
+  getLog(): Observable<LogComputadores[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+    return this.http.get<LogComputadores[]>(`${this.apiUrl4}/listar-all`, { headers });
+  }
+
 }

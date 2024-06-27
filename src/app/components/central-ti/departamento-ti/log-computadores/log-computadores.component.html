@@ -1,0 +1,44 @@
+<div style="margin-bottom: 0rem; display: flex; align-items: center; ">
+
+    <div style="margin-top: 0px; margin-bottom: 0px;  min-width: 98%; max-width: 100%;">
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="computadorVinculado">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Computador Vinculado </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.computadorVinculado}}
+                </td>
+            </ng-container>
+
+            <!-- CPF Column -->
+            <ng-container matColumnDef="message">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Message </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.message}} </td>
+            </ng-container>
+
+            <!-- Telefone Column -->
+            <ng-container matColumnDef="nomeUser">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nome User </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nomeUser}} </td>
+            </ng-container>
+
+
+
+            <!-- Departamento Column -->
+            <ng-container matColumnDef="datahora">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Data e Hora </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.datahora | date:'dd-MM-yyyy HH:mm'}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[8, 25, 100]" showFirstLastButtons aria-label="Select page">
+        </mat-paginator>
+
+        <div *ngIf="loading" class="loading-spinner-overlay">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Carregando dados...</p>
+        </div>
+
+    </div>

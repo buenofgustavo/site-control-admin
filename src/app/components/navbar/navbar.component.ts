@@ -44,6 +44,8 @@ export class NavbarComponent {
       children: [
         { title: 'Computadores', icon: '', link: '/computadores-compras', },
         { title: 'Colaboradores', icon: '', link: '/colaboradores-compras', },
+        { title: 'Log Computadores', icon: '', link: '/log-computadores-compras', },
+
         {
           title: 'Inventário',
           icon: '',
@@ -81,6 +83,7 @@ export class NavbarComponent {
             { title: 'Chamados', icon: '', link: '/chamados-ti' },
             { title: 'Colaboradores', icon: '', link: '/colaboradores-ti', },
             { title: 'Computadores', icon: '', link: '/computadores-ti', },
+            { title: 'Log Computadores', icon: '', link: '/log-computadores-ti', },
           ]
         },
       ]

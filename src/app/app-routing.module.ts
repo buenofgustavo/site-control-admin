@@ -49,6 +49,8 @@ import { GestaoMicroondasComponent } from './components/central-ti/departamento-
 import { GestaoArmariosComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-armarios/gestao-armarios.component';
 import { GestaoCadeirasComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-cadeiras/gestao-cadeiras.component';
 import { GestaoFrigobarComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-frigobar/gestao-frigobar.component';
+import { LogComputadoresComponent } from './components/central-ti/departamento-ti/log-computadores/log-computadores.component';
+import { LogComputadoresComprasComponent } from './components/central-ti/departamento-compras/log-computadores-compras/log-computadores-compras.component';
 
 
 const routes: Routes = [
@@ -102,6 +104,8 @@ const routes: Routes = [
       {path: 'gestao-roteadores-ti', component: GestaoRoteadorComponent},
       {path: 'gestao-transformadores-ti', component: GestaoTransformadorComponent},
       {path: 'gestao-microondas-ti', component: GestaoMicroondasComponent},
+      {path: 'log-computadores-ti', component: LogComputadoresComponent},
+      {path: 'log-computadores-compras', component: LogComputadoresComprasComponent},
       {path: 'cadastrar-coloborador-ti', component: CadastroColaboradorTiComponent},
       {path: 'desvincular-computadores-ti', component: DesvincularComputadoresComponent},
       {path: 'modal-editar-coloboradores-ti', component: ModalEditarColaboradoresTiComponent},
