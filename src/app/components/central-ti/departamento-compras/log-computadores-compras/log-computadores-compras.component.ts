@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComputadoresTiComponent } from '../../modais/modais-ti/modal-computadores-ti/modal-computadores-ti.component';
 import { DialogExclusaoComputadoresTiComponent } from '../../modais/modais-ti/dialog/dialog-exclusao-computadores-ti/dialog-exclusao-computadores-ti.component';
@@ -21,7 +21,7 @@ import { LogComputadores } from 'src/app/interface/logComputadores';
 export class LogComputadoresComprasComponent {
   logComputadores: LogComputadores[] = [];
   dataSource = new MatTableDataSource<LogComputadores>(this.logComputadores);
-  displayedColumns: string[] = ['computadorVinculado', 'message', 'userVinculado', 'datahora'];
+  displayedColumns: string[] = ['computadorVinculado', 'message', 'nomeUser', 'datahora'];
 
   concluido: boolean = false;
   makro: boolean = false;
@@ -34,7 +34,7 @@ export class LogComputadoresComprasComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
+
   constructor(public dialog: MatDialog, private toastrService: NbToastrService,
     private router: Router, private computadoresService: ComputadoresService,
   ) {
@@ -45,20 +45,21 @@ export class LogComputadoresComprasComponent {
   getLog() {
     this.computadoresService.getLog().subscribe(
       (data: LogComputadores[] | null) => {
-          try {
-            if (data) {
-              this.logComputadores = data;
-              this.logComputadores.reverse();
-              this.dataSource.data = this.logComputadores;
-            } else {
-              throw new Error('Array de logs é nulo.');
-            }
-          } catch (error) {
-            console.log('Erro ao filtrar logs:', error);
-            this.toastrService.danger('Erro ao filtrar logs.', 'Erro');
-          } finally {
-            this.loading = false; // Finaliza o estado de carregamento após tentar obter e filtrar os dados
+        try {
+          if (data) {
+            this.logComputadores = data.filter(item =>
+              item.message != "filial" && item.message != "sucata" && item.message != "matriz"
+            ); this.logComputadores.reverse();
+            this.dataSource.data = this.logComputadores;
+          } else {
+            throw new Error('Array de logs é nulo.');
           }
+        } catch (error) {
+          console.log('Erro ao filtrar logs:', error);
+          this.toastrService.danger('Erro ao filtrar logs.', 'Erro');
+        } finally {
+          this.loading = false; // Finaliza o estado de carregamento após tentar obter e filtrar os dados
+        }
       },
       (error) => {
         console.log('Erro ao obter logs:', error);

@@ -50,6 +50,7 @@ export class LogComputadoresComponent {
             if (data) {
               this.logComputadores = data.filter(item => 
                 item.nomeUser !== "log@salvarserial" && item.nomeUser !== "Log@ControlAdmin"
+                && item.message != "filial" && item.message != "sucata" && item.message != "matriz"
               );              this.logComputadores.reverse();
               this.dataSource.data = this.logComputadores;
             } else {
