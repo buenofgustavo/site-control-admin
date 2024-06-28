@@ -17,6 +17,7 @@ interface ComputadoresWithStatus extends Computadores {
     isSucata?: boolean;
     isMatriz?: boolean;
     isFilial?: boolean;
+    isErro?: boolean;
 }
 
 
@@ -29,7 +30,7 @@ export class ComputadoresTiComponent {
     computadoresCompletos: Computadores[] = [];
     computadoresCompletosDTO: Computadores[] = [];
     dataSource = new MatTableDataSource<Computadores>(this.computadoresCompletos);
-    displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'makro', 'localizacao', 'serial', 'acao'];
+    displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
 
     chatDTO: LogComputadores = {
         message: "",
@@ -113,6 +114,13 @@ export class ComputadoresTiComponent {
                         this.computadoresCompletos = data;
                     }
 
+                    // Adiciona ou remove a coluna 'status' com base na variável `concluido`
+                    if (this.concluido) {
+                        this.displayedColumns = ['status', 'nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
+                    } else {
+                        this.displayedColumns = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
+                    }
+
                     // Processa cada computador para verificar a última mensagem
                     this.computadoresCompletos.forEach(computador => {
                         this.computadoresService.getChat(computador.enderecoMac).subscribe(
@@ -124,10 +132,12 @@ export class ComputadoresTiComponent {
                                     updatedComputador.isSucata = lastMessage.message === 'sucata';
                                     updatedComputador.isMatriz = lastMessage.message === 'matriz';
                                     updatedComputador.isFilial = lastMessage.message === 'filial';
+                                    updatedComputador.isErro = lastMessage.message === 'erro';
                                 } else {
                                     (computador as ComputadoresWithStatus).isSucata = false;
                                     (computador as ComputadoresWithStatus).isMatriz = false;
                                     (computador as ComputadoresWithStatus).isFilial = false;
+                                    (computador as ComputadoresWithStatus).isErro = false;
                                 }
 
                                 // Atualiza a fonte de dados
@@ -140,6 +150,7 @@ export class ComputadoresTiComponent {
                                 updatedComputador.isSucata = false;
                                 updatedComputador.isMatriz = false;
                                 updatedComputador.isFilial = false;
+                                updatedComputador.isErro = false;
                                 // Atualiza a fonte de dados mesmo em caso de erro
                                 this.dataSource.data = [...this.computadoresCompletos];
                             }
@@ -231,6 +242,8 @@ export class ComputadoresTiComponent {
                 return this.normalizeString(data.nomeUserAtual?.toLowerCase() ?? '');
             case 'nomeComputador':
                 return this.normalizeString(data.nomeComputador.toLowerCase());
+            case 'serial':
+                return this.normalizeString(data.serial?.toLowerCase() ?? '');
             case 'marca':
                 return this.normalizeString(data.marca.toLowerCase());
             case 'enderecoMac':
@@ -238,7 +251,7 @@ export class ComputadoresTiComponent {
             case 'localizacao':
                 return this.normalizeString(data.localizacao.toLowerCase());
             case 'nomeLastUser':
-                return this.normalizeString(data.nomeLastUser.toLowerCase());
+                return this.normalizeString(data.nomeLastUser?.toLowerCase() ?? '');
             default:
                 return ''; // Retorna uma string vazia se nenhum campo for selecionado
         }

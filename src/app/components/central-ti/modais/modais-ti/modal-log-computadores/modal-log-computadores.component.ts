@@ -98,7 +98,15 @@ export class ModalLogComputadoresComponent {
     this.computadoresService.getChat(this.data.computadoresCompleto.enderecoMac).subscribe(
       (messages: LogComputadores[]) => {
         // Process and assign fetched messages to this.chatSolicitacoes array
-        this.chatSolicitacoes = messages.map((msg) => ({
+        const filteredMessages = messages.filter(msg => 
+          msg.message !== 'sucata' && 
+          msg.message !== 'matriz' && 
+          msg.message !== 'filial' && 
+          msg.message !== 'erro'
+        );
+  
+        // Processa e atribui as mensagens filtradas ao array chatSolicitacoes
+        this.chatSolicitacoes = filteredMessages.map((msg) => ({
           message: msg.message,
           userVinculado: msg.userVinculado,
           macVinculado: msg.macVinculado,

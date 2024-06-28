@@ -19,7 +19,7 @@ export class ComputadoresComprasComponent {
   computadoresCompletos: Computadores[] = [];
   computadoresCompletosDTO: Computadores[] = [];
   dataSource = new MatTableDataSource<Computadores>(this.computadoresCompletos);
-  displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'makro', 'localizacao', 'serial', 'acao'];
+  displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
 
   concluido: boolean = false;
   makro: boolean = false;
@@ -160,7 +160,7 @@ export class ComputadoresComprasComponent {
 
   applyFilterWithValue(filterValue: string) {
     const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
-  
+
     // Verifica se há um filtro selecionado
     if (this.selectedFilter) {
       // Aplica o filtro no campo selecionado
@@ -174,7 +174,7 @@ export class ComputadoresComprasComponent {
       this.dataSource.filter = '';
     }
   }
-  
+
   getNormalizedFieldValue(data: any): string {
     switch (this.selectedFilter) {
       case 'nomeUserAtual':
@@ -183,10 +183,14 @@ export class ComputadoresComprasComponent {
         return this.normalizeString(data.nomeComputador.toLowerCase());
       case 'marca':
         return this.normalizeString(data.marca.toLowerCase());
+      case 'serial':
+        return this.normalizeString(data.serial?.toLowerCase() ?? '');
       case 'enderecoMac':
         return this.normalizeString(data.enderecoMac.toLowerCase());
       case 'localizacao':
         return this.normalizeString(data.localizacao.toLowerCase());
+      case 'nomeLastUser':
+        return this.normalizeString(data.nomeLastUser?.toLowerCase() ?? '');
       default:
         return ''; // Retorna uma string vazia se nenhum campo for selecionado
     }

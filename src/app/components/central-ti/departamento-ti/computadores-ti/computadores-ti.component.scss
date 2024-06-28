@@ -15,13 +15,46 @@
 }
 
 .sucata-notification {
-  color: #F7B500;
+  color: #9F9A97;
 }
 
 .matriz-notification {
-  color: #18F716;
+  color: #0028D2;
 }
 
 .filial-notification {
-  color: #E20101;
+  color: #EC9504;
+}
+
+.erro-notification {
+  color: #ED1D22;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.sucata-color {
+  background-color: #9F9A97; /* Cor de Sucata */
+}
+
+.matriz-color {
+  background-color: #0028D2; /* Cor de Matriz */
+}
+
+.filial-color {
+  background-color: #EC9504; /* Cor de Filial */
+}
+
+.erro-color {
+  background-color: #ED1D22; /* Cor de Filial */
 }

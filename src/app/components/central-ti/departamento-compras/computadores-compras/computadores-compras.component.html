@@ -1,8 +1,10 @@
 <div style="margin-bottom: 2rem; display: flex; align-items: center;">
     <div style="flex: 1;">
         <nb-select placeholder="Selecione um Filtro" [(ngModel)]="selectedFilter">
-            <nb-option value="nomeUserAtual">Buscar por Usuario Atual</nb-option>
             <nb-option value="nomeComputador">Buscar por Nome do Computador</nb-option>
+            <nb-option value="nomeUserAtual">Buscar por Usuario Atual</nb-option>
+            <nb-option value="nomeLastUser">Buscar por Antigo Usuário</nb-option>
+            <nb-option value="serial">Buscar por Serial</nb-option>
             <nb-option value="marca">Buscar por marca</nb-option>
             <nb-option value="enderecoMac">Buscar por Mac</nb-option>
             <nb-option value="localizacao">Buscar por Localização</nb-option>
@@ -40,11 +42,6 @@
         <ng-container matColumnDef="nomeUsuario">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nome do Perfil </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nomeUsuario}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="makro">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Makro </th>
-            <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.makroInstalado}} </td>
         </ng-container>
 
         <ng-container matColumnDef="serial">
