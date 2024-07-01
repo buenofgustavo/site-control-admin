@@ -20,6 +20,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class ModalVisualizarSolicitacoesComponent {
 
+  hasNewMessages: boolean = false;
 
   chatDTO: ChatSolicitacoes = {
     message: "",
@@ -102,6 +103,10 @@ export class ModalVisualizarSolicitacoesComponent {
           usuario: msg.usuario,
           nomeUser: msg.nomeUser
         }));
+
+        this.hasNewMessages = messages.length > 0;
+
+
       },
       (error) => {
         console.error('Erro ao buscar mensagens de chat:', error);

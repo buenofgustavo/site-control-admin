@@ -82,3 +82,18 @@ div.div-cadastro nb-form-field {
 div.div-cadastro label {
     display: block;
 }
+
+.new-messages {
+  position: relative;
+}
+
+.new-messages::after {
+  content: '';
+  position: absolute;
+  top: 0.99rem;
+  right: 7.6rem;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+}
