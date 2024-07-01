@@ -43,7 +43,7 @@
 
         <ng-container *ngIf="concluido" matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Status </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
               <span 
                 *ngIf="element.isSucata || element.isMatriz || element.isFilial || element.isErro" 
                 class="legend-color" 

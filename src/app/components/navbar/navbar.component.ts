@@ -63,7 +63,6 @@ export class NavbarComponent {
             { title: 'Monitores', icon: '', link: '/gestao-monitor-ti' },
             { title: 'Roteadores', icon: '', link: '/gestao-roteadores-ti' },
             { title: 'Transformadores', icon: '', link: '/gestao-transformadores-ti' },
-
             { title: 'Outros', icon: '', link: '/gestao-outros-ti' }
           ]
         },
@@ -80,7 +79,7 @@ export class NavbarComponent {
 
         {
           title: 'Listagem ', children: [
-            { title: 'Chamados', icon: '', link: '/chamados-ti' },
+            // { title: 'Chamados', icon: '', link: '/chamados-ti' },
             { title: 'Colaboradores', icon: '', link: '/colaboradores-ti', },
             { title: 'Computadores', icon: '', link: '/computadores-ti', },
             { title: 'Log Computadores', icon: '', link: '/log-computadores-ti', },
@@ -89,14 +88,14 @@ export class NavbarComponent {
       ]
     },
 
-    {
-      title: 'Chamados',
-      icon: 'clipboard-outline',
-      children: [
-        { title: 'Criar Chamado', icon: '', link: '/criar-chamados-geral' },
-        { title: 'Visualizar Chamados', icon: '', link: '/visualizar-chamados-geral' },
-      ]
-    },
+    // {
+    //   title: 'Chamados',
+    //   icon: 'clipboard-outline',
+    //   children: [
+    //     { title: 'Criar Chamado', icon: '', link: '/criar-chamados-geral' },
+    //     { title: 'Visualizar Chamados', icon: '', link: '/visualizar-chamados-geral' },
+    //   ]
+    // },
 
     {
       title: 'Cadastrar Usuários',
