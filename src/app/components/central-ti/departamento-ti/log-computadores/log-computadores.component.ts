@@ -51,7 +51,7 @@ export class LogComputadoresComponent {
               this.logComputadores = data.filter(item => 
                 item.nomeUser !== "log@salvarserial" && item.nomeUser !== "Log@ControlAdmin"
                 && item.message != "filial" && item.message != "sucata" && item.message != "matriz"
-                && item.message != "erro"
+                && item.message != "erro" && item.message != 'conserto'
               );              this.logComputadores.reverse();
               this.dataSource.data = this.logComputadores;
             } else {

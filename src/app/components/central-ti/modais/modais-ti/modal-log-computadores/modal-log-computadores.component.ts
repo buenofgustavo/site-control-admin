@@ -102,7 +102,8 @@ export class ModalLogComputadoresComponent {
           msg.message !== 'sucata' && 
           msg.message !== 'matriz' && 
           msg.message !== 'filial' && 
-          msg.message !== 'erro'
+          msg.message !== 'erro'   && 
+          msg.message != 'conserto'
         );
   
         // Processa e atribui as mensagens filtradas ao array chatSolicitacoes

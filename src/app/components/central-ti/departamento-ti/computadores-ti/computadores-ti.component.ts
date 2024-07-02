@@ -18,8 +18,8 @@ interface ComputadoresWithStatus extends Computadores {
     isMatriz?: boolean;
     isFilial?: boolean;
     isErro?: boolean;
+    isConserto?: boolean;
 }
-
 
 @Component({
     selector: 'app-computadores-ti',
@@ -133,14 +133,16 @@ export class ComputadoresTiComponent {
                                     updatedComputador.isMatriz = lastMessage.message === 'matriz';
                                     updatedComputador.isFilial = lastMessage.message === 'filial';
                                     updatedComputador.isErro = lastMessage.message === 'erro';
+                                    updatedComputador.isConserto = lastMessage.message === 'conserto';
                                 } else {
                                     (computador as ComputadoresWithStatus).isSucata = false;
                                     (computador as ComputadoresWithStatus).isMatriz = false;
                                     (computador as ComputadoresWithStatus).isFilial = false;
                                     (computador as ComputadoresWithStatus).isErro = false;
+                                    (computador as ComputadoresWithStatus).isConserto = false;
                                 }
 
-                                // Atualiza a fonte de dados
+                                
                                 this.dataSource.data = [...this.computadoresCompletos];
                             },
                             (error) => {
@@ -151,7 +153,8 @@ export class ComputadoresTiComponent {
                                 updatedComputador.isMatriz = false;
                                 updatedComputador.isFilial = false;
                                 updatedComputador.isErro = false;
-                                // Atualiza a fonte de dados mesmo em caso de erro
+                                updatedComputador.isConserto = false;
+
                                 this.dataSource.data = [...this.computadoresCompletos];
                             }
                         );

@@ -15,10 +15,14 @@
 }
 
 .sucata-notification {
-  color: #9F9A97;
+  color: black;
 }
 
 .matriz-notification {
+  color: #01EF00;
+}
+
+.conserto-notification {
   color: #0028D2;
 }
 
@@ -50,6 +54,12 @@
 }
 
 .matriz-color {
+  background-color: #01EF00; /* Cor de Matriz */
+  border-radius: 50%;
+
+}
+
+.conserto-color {
   background-color: #0028D2; /* Cor de Matriz */
   border-radius: 50%;
 
