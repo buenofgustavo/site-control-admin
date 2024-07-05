@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComputadoresTiComponent } from '../../modais/modais-ti/modal-computadores-ti/modal-computadores-ti.component';
-import { DialogExclusaoComputadoresTiComponent } from '../../modais/modais-ti/dialog/dialog-exclusao-computadores-ti/dialog-exclusao-computadores-ti.component';
 import { ComputadoresService } from 'src/app/services/departamento-ti/computadores/computadores.service';
 import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
@@ -55,11 +54,8 @@ export class ComputadoresTiComponent {
 
     constructor(public dialog: MatDialog, private toastrService: NbToastrService,
         private router: Router, private computadoresService: ComputadoresService,
-
-
     ) {
         this.getAllComputadores();
-
     }
 
     deletarComputador(computadores: Computadores) {
@@ -89,6 +85,12 @@ export class ComputadoresTiComponent {
             console.log(`Dialog result: ${result.computadoresCompleto}`);
         });
     }
+
+
+    countIsMatriz: number = 0;
+    countIsFilial: number = 0;
+    countIsConserto: number = 0;
+    countIsSucata: number = 0;
 
     loading: boolean = true;
     getAllComputadores() {
@@ -121,6 +123,11 @@ export class ComputadoresTiComponent {
                         this.displayedColumns = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
                     }
 
+                    this.countIsMatriz = 0;  // Inicializa como número
+                    this.countIsFilial = 0;  // Inicializa como número
+                    this.countIsConserto = 0;  // Inicializa como número
+                    this.countIsSucata = 0;  // Inicializa como número
+
                     // Processa cada computador para verificar a última mensagem
                     this.computadoresCompletos.forEach(computador => {
                         this.computadoresService.getChat(computador.enderecoMac).subscribe(
@@ -130,10 +137,27 @@ export class ComputadoresTiComponent {
                                     // Adiciona dinamicamente a propriedade `isSucata` ao objeto `Computadores`
                                     const updatedComputador = computador as ComputadoresWithStatus;
                                     updatedComputador.isSucata = lastMessage.message === 'sucata';
-                                    updatedComputador.isMatriz = lastMessage.message === 'matriz';
+                                    updatedComputador.isMatriz = lastMessage.message === 'matriz' || lastMessage.message === 'pronto';
                                     updatedComputador.isFilial = lastMessage.message === 'filial';
                                     updatedComputador.isErro = lastMessage.message === 'erro';
                                     updatedComputador.isConserto = lastMessage.message === 'conserto';
+
+                                    if (updatedComputador.isMatriz) {
+                                        this.countIsMatriz = Number(this.countIsMatriz) + 1;
+                                    }
+
+                                    if (updatedComputador.isFilial) {
+                                        this.countIsFilial = Number(this.countIsFilial) + 1;
+                                    }
+
+                                    if (updatedComputador.isConserto) {
+                                        this.countIsConserto = Number(this.countIsConserto) + 1;
+                                    }
+
+                                    if (updatedComputador.isSucata) {
+                                        this.countIsSucata = Number(this.countIsSucata) + 1;
+                                    }
+
                                 } else {
                                     (computador as ComputadoresWithStatus).isSucata = false;
                                     (computador as ComputadoresWithStatus).isMatriz = false;
@@ -142,7 +166,7 @@ export class ComputadoresTiComponent {
                                     (computador as ComputadoresWithStatus).isConserto = false;
                                 }
 
-                                
+
                                 this.dataSource.data = [...this.computadoresCompletos];
                             },
                             (error) => {

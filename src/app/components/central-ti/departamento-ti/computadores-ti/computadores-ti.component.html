@@ -23,21 +23,21 @@
 
 <div *ngIf="concluido" style="margin-bottom: 1rem; display: flex; align-items: center;">
     <div class="legend-item">
-        <span class="legend-color matriz-color"></span> Pronto
+        <span class="legend-color matriz-color"></span> pronto: {{countIsMatriz}}
     </div>
     <div class="legend-item">
-        <span class="legend-color conserto-color"></span> Conserto
+        <span class="legend-color filial-color"></span> filial: {{countIsFilial}} 
     </div>
     <div class="legend-item">
-        <span class="legend-color filial-color"></span> Filial
+        <span class="legend-color conserto-color"></span> conserto: {{countIsConserto}}
     </div>
     <div class="legend-item">
-        <span class="legend-color erro-color"></span> Erro
+        <span class="legend-color sucata-color"></span> sucata: {{countIsSucata}}
     </div>
     <div class="legend-item">
-        <span class="legend-color sucata-color"></span> Sucata
+        <span class="legend-color erro-color"></span> erro
     </div>
-
+    
 </div>
 
 

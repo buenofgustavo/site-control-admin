@@ -99,11 +99,12 @@ export class ModalLogComputadoresComponent {
       (messages: LogComputadores[]) => {
         // Process and assign fetched messages to this.chatSolicitacoes array
         const filteredMessages = messages.filter(msg => 
-          msg.message !== 'sucata' && 
-          msg.message !== 'matriz' && 
-          msg.message !== 'filial' && 
-          msg.message !== 'erro'   && 
-          msg.message != 'conserto'
+          msg.message !== 'sucata'  && 
+          msg.message !== 'matriz'  && 
+          msg.message !== 'filial'  && 
+          msg.message !== 'erro'    && 
+          msg.message != 'conserto' &&
+          msg.message != 'pronto'
         );
   
         // Processa e atribui as mensagens filtradas ao array chatSolicitacoes

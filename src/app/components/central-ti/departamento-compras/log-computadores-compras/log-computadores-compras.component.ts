@@ -48,7 +48,8 @@ export class LogComputadoresComprasComponent {
         try {
           if (data) {
             this.logComputadores = data.filter(item =>
-              item.message != "filial" && item.message != "sucata" && item.message != "matriz" && item.message != 'conserto'
+              item.message != "filial" && item.message != "sucata" && item.message != "matriz"
+              && item.message != 'conserto' && item.message != 'pronto'
             ); this.logComputadores.reverse();
             this.dataSource.data = this.logComputadores;
           } else {
