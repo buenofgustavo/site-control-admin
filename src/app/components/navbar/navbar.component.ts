@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NbMenuItem, NbToastrService } from '@nebular/theme';
+import { NbMenuItem, NbSidebarService, NbToastrService } from '@nebular/theme';
 import { Usuario } from 'src/app/interface/usuario-interface';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -13,6 +13,10 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+
+  toggle() {
+    this.sidebarService.toggle();
+  }
 
   items: NbMenuItem[] = [
 
@@ -116,7 +120,8 @@ export class NavbarComponent {
   constructor(
     private usuarioService: UsuarioService,
     private toastrService: NbToastrService, private router: Router,
-    private authService: AuthserviceService
+    private authService: AuthserviceService,
+    private sidebarService: NbSidebarService
 
   ) {
 

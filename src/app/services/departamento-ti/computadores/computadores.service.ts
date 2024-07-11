@@ -15,6 +15,8 @@ export class ComputadoresService {
   private apiUrl2 = `${API_CONFIG.baseUrl}/computadores`; // Use a URL da API a partir da configuração
   private apiUrl3 = `${API_CONFIG.baseUrl}/computadores/editar`; // Use a URL da API a partir da configuração
   private apiUrl4 = `${API_CONFIG.baseUrl}/log-computadores`; // Use a URL da API a partir da configuração
+  private apiUrl5 = `${API_CONFIG.baseUrl}/computadores/editar-status`; // Use a URL da API a partir da configuração
+
   authToken: string | null;
   
   constructor(private http: HttpClient, private authService: AuthserviceService) {
@@ -41,6 +43,14 @@ export class ComputadoresService {
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
     return this.http.put<Computadores>(`${this.apiUrl3}/${MAC}/${serial}`, null, { headers });
+  }
+
+  salvarStatus(MAC: string, status: string): Observable<Computadores> {
+    if(!this.authToken){
+      throw new Error('Token JWT não encontrado, refaça o Login!');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer${this.authToken}`);
+    return this.http.put<Computadores>(`${this.apiUrl5}/${MAC}/${status}`, null, { headers });
   }
 
   createChat(chatSolicitacoes: LogComputadores): Observable<LogComputadores[]> {

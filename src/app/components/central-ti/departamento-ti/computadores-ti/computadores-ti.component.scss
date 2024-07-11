@@ -18,19 +18,23 @@
   color: black;
 }
 
-.matriz-notification {
+.disponivel-notification {
   color: #01EF00;
 }
 
-.conserto-notification {
-  color: #0028D2;
+.reparo-notification {
+  color: #9F9A97;
 }
 
 .filial-notification {
   color: #EC9504;
 }
 
-.erro-notification {
+.transporte-notification {
+  color: #0028D2;
+}
+
+.alerta-notification {
   color: #ED1D22;
 }
 
@@ -48,19 +52,19 @@
 }
 
 .sucata-color {
-  background-color: #9F9A97; /* Cor de Sucata */
+  background-color: black; /* Cor de Sucata */
   border-radius: 50%;
 
 }
 
-.matriz-color {
-  background-color: #01EF00; /* Cor de Matriz */
+.disponivel-color {
+  background-color: #01EF00; /* Cor de disponivel */
   border-radius: 50%;
 
 }
 
-.conserto-color {
-  background-color: #0028D2; /* Cor de Matriz */
+.reparo-color {
+  background-color: #9F9A97; /* Cor de Matriz */
   border-radius: 50%;
 
 }
@@ -71,7 +75,13 @@
 
 }
 
-.erro-color {
+.transporte-color {
+  background-color: #0028D2; /* Cor de Filial */
+  border-radius: 50%;
+
+}
+
+.alerta-color {
   background-color: #ED1D22; /* Cor de Filial */
   border-radius: 50%;
 

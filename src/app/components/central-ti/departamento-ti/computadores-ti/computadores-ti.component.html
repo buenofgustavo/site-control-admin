@@ -5,7 +5,8 @@
             <nb-option value="nomeUserAtual">Buscar por Usuário Atual</nb-option>
             <nb-option value="nomeLastUser">Buscar por Antigo Usuário</nb-option>
             <nb-option value="serial">Buscar por Serial</nb-option>
-            <nb-option value="marca">Buscar por marca</nb-option>
+            <nb-option value="marca">Buscar por Marca</nb-option>
+            <nb-option value="status">Buscar por Status</nb-option>
             <nb-option value="enderecoMac">Buscar por Mac</nb-option>
             <nb-option value="localizacao">Buscar por Localização</nb-option>
         </nb-select>
@@ -14,30 +15,28 @@
                 (input)="applyFilter($event)" class="mat-elevation-z1" [value]="filterValue">
         </div>
     </div>
-    <nb-checkbox status="basic" style="margin-right: 20px;" [(ngModel)]="makro"
-        (ngModelChange)="getAllComputadores()">Sem
-        makro</nb-checkbox>
     <nb-checkbox status="basic" [(ngModel)]="concluido" (ngModelChange)="getAllComputadores()">Sem vínculo</nb-checkbox>
-
 </div>
 
 <div *ngIf="concluido" style="margin-bottom: 1rem; display: flex; align-items: center;">
     <div class="legend-item">
-        <span class="legend-color matriz-color"></span> pronto: {{countIsMatriz}}
+        <span class="legend-color disponivel-color"></span> Disponível: 
     </div>
     <div class="legend-item">
-        <span class="legend-color filial-color"></span> filial: {{countIsFilial}} 
+        <span class="legend-color transporte-color"></span> Em transporte:
     </div>
     <div class="legend-item">
-        <span class="legend-color conserto-color"></span> conserto: {{countIsConserto}}
+        <span class="legend-color filial-color"></span> Filial:
     </div>
     <div class="legend-item">
-        <span class="legend-color sucata-color"></span> sucata: {{countIsSucata}}
+        <span class="legend-color reparo-color"></span> Reparo:
     </div>
     <div class="legend-item">
-        <span class="legend-color erro-color"></span> erro
+        <span class="legend-color sucata-color"></span> Sucata:
     </div>
-    
+    <div class="legend-item">
+        <span class="legend-color alerta-color"></span> Alerta:
+    </div>
 </div>
 
 
@@ -47,13 +46,15 @@
         <ng-container *ngIf="concluido" matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Status </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;">
-                <span *ngIf="element.isSucata || element.isMatriz || element.isFilial || element.isErro || element.isConserto"
+                <span
+                    *ngIf="element.status"
                     class="legend-color" [ngClass]="{
-                    'sucata-color': element.isSucata,
-                    'matriz-color': element.isMatriz,
-                    'filial-color': element.isFilial,
-                    'conserto-color': element.isConserto,
-                    'erro-color': element.isErro 
+                    'disponivel-color': element.status === 'DISPONIVEL',
+                    'transporte-color': element.status === 'EM TRANSPORTE',
+                    'filial-color': element.status === 'FILIAL',
+                    'reparo-color': element.status === 'REPARO',
+                    'sucata-color': element.status === 'SUCATA',
+                    'alerta-color': element.status === 'ALERTA'
                   }">
                 </span>
             </td>

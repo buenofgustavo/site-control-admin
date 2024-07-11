@@ -38,4 +38,26 @@ export class ModalComputadoresTiComponent {
     )
   }
 
+  salvarStatus() {
+    this.computadoresService.salvarStatus(this.data.computadoresCompleto.enderecoMac, this.data.computadoresCompleto.status).subscribe(
+      response => {
+        this.toastrService.success("Ativo atualizado com sucesso!", "Sucesso");
+        // setTimeout(() => {
+        //   location.reload(); // Recarrega a página após1 segundos
+        // }, 1000);
+      },
+      error => {
+        if (error.error && error.error.message) {
+          this.toastrService.warning(error.error.message, "Erro");
+
+        }
+        else {
+          this.toastrService.warning('Erro ao atualizar Ativo!', "Erro");
+        }
+      }
+    )
+  }
+
+
+
 }

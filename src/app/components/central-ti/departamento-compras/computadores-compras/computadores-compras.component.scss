@@ -1,12 +1,3 @@
-.form-field{
-    margin: 10px;
-}
-
-.botao-search{
-    height: 70%;
-    margin-top: 29px;
-}
-
 .loading-spinner-overlay {
     position: absolute;
     top: 50%;
@@ -19,5 +10,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Adicionado para organizar os itens em uma linha */
+    flex-direction: column;
+    /* Adicionado para organizar os itens em uma linha */
+  }
+  
+  .sucata-notification {
+    color: black;
+  }
+  
+  .matriz-notification {
+    color: #01EF00;
+  }
+  
+  .conserto-notification {
+    color: #0028D2;
+  }
+  
+  .filial-notification {
+    color: #EC9504;
+  }
+  
+  .erro-notification {
+    color: #ED1D22;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
+  
+  .sucata-color {
+    background-color: #9F9A97; /* Cor de Sucata */
+    border-radius: 50%;
+  
+  }
+  
+  .matriz-color {
+    background-color: #01EF00; /* Cor de Matriz */
+    border-radius: 50%;
+  
+  }
+  
+  .conserto-color {
+    background-color: #0028D2; /* Cor de Matriz */
+    border-radius: 50%;
+  
+  }
+  
+  .filial-color {
+    background-color: #EC9504; /* Cor de Filial */
+    border-radius: 50%;
+  
+  }
+  
+  .erro-color {
+    background-color: #ED1D22; /* Cor de Filial */
+    border-radius: 50%;
+  
   }

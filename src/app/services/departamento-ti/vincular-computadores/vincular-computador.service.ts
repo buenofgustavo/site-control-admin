@@ -51,6 +51,7 @@ export class VincularComputadorService {
     nomeUserAtual: "",
     nomeLastUser: "",
     serial: "", 
+    status: "",
     atualizadoPor: ""
   }
 

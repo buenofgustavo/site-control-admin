@@ -12,14 +12,6 @@ import { MatSort } from '@angular/material/sort';
 import { ModalLogComputadoresComponent } from '../../modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
 import { LogComputadores } from 'src/app/interface/logComputadores';
 
-interface ComputadoresWithStatus extends Computadores {
-    isSucata?: boolean;
-    isMatriz?: boolean;
-    isFilial?: boolean;
-    isErro?: boolean;
-    isConserto?: boolean;
-}
-
 @Component({
     selector: 'app-computadores-ti',
     templateUrl: './computadores-ti.component.html',
@@ -92,6 +84,8 @@ export class ComputadoresTiComponent {
     countIsConserto: number = 0;
     countIsSucata: number = 0;
 
+    pronto: boolean = false;
+
     loading: boolean = true;
     getAllComputadores() {
         this.computadoresService.getAllComputadores().subscribe(
@@ -128,60 +122,8 @@ export class ComputadoresTiComponent {
                     this.countIsConserto = 0;  // Inicializa como número
                     this.countIsSucata = 0;  // Inicializa como número
 
-                    // Processa cada computador para verificar a última mensagem
-                    this.computadoresCompletos.forEach(computador => {
-                        this.computadoresService.getChat(computador.enderecoMac).subscribe(
-                            (messages: LogComputadores[]) => {
-                                if (messages && messages.length > 0) {
-                                    const lastMessage = messages[messages.length - 1]; // Pega a última mensagem
-                                    // Adiciona dinamicamente a propriedade `isSucata` ao objeto `Computadores`
-                                    const updatedComputador = computador as ComputadoresWithStatus;
-                                    updatedComputador.isSucata = lastMessage.message === 'sucata';
-                                    updatedComputador.isMatriz = lastMessage.message === 'matriz' || lastMessage.message === 'pronto';
-                                    updatedComputador.isFilial = lastMessage.message === 'filial';
-                                    updatedComputador.isErro = lastMessage.message === 'erro';
-                                    updatedComputador.isConserto = lastMessage.message === 'conserto';
-
-                                    if (updatedComputador.isMatriz) {
-                                        this.countIsMatriz = Number(this.countIsMatriz) + 1;
-                                    }
-
-                                    if (updatedComputador.isFilial) {
-                                        this.countIsFilial = Number(this.countIsFilial) + 1;
-                                    }
-
-                                    if (updatedComputador.isConserto) {
-                                        this.countIsConserto = Number(this.countIsConserto) + 1;
-                                    }
-
-                                    if (updatedComputador.isSucata) {
-                                        this.countIsSucata = Number(this.countIsSucata) + 1;
-                                    }
-
-                                } else {
-                                    (computador as ComputadoresWithStatus).isSucata = false;
-                                    (computador as ComputadoresWithStatus).isMatriz = false;
-                                    (computador as ComputadoresWithStatus).isFilial = false;
-                                    (computador as ComputadoresWithStatus).isErro = false;
-                                    (computador as ComputadoresWithStatus).isConserto = false;
-                                }
-
-
-                                this.dataSource.data = [...this.computadoresCompletos];
-                            },
-                            (error) => {
-                                console.error(`Erro ao buscar mensagens de chat para ${computador.nomeComputador}:`, error);
-                                this.toastrService.danger('Erro ao buscar mensagens do chat', 'Erro');
-                                const updatedComputador = computador as ComputadoresWithStatus;
-                                updatedComputador.isSucata = false;
-                                updatedComputador.isMatriz = false;
-                                updatedComputador.isFilial = false;
-                                updatedComputador.isErro = false;
-                                updatedComputador.isConserto = false;
-
-                                this.dataSource.data = [...this.computadoresCompletos];
-                            }
-                        );
+                    this.computadoresCompletos.forEach(computador => {    
+                            this.dataSource.data = [...this.computadoresCompletos];
                     });
 
                 } catch (error) {
@@ -204,6 +146,7 @@ export class ComputadoresTiComponent {
             }
         );
     }
+
 
     selectedFilter: string = '';
     selectFilter(event: any) {

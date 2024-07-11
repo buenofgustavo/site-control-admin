@@ -47,6 +47,7 @@ export class CadastroColaboradorTiComponent {
     nomeUserAtual: "",
     nomeLastUser: "",
     serial: "",
+    status: "",
     atualizadoPor: ""
   }
 
