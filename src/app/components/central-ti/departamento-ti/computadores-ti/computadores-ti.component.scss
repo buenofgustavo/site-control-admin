@@ -39,12 +39,17 @@
 }
 
 .legend-item {
+  cursor: pointer;
+  margin-right: 1rem;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  padding: 5px;
+  border-radius: 15px; /* Torna as bordas arredondadas */
+  transition: border 0.3s ease-in-out; /* Transição suave para a borda */
 }
 
 .legend-color {
+  cursor: pointer;
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -54,7 +59,10 @@
 .sucata-color {
   background-color: black; /* Cor de Sucata */
   border-radius: 50%;
+}
 
+.legend-item:hover {
+  border: 2px solid #000; /* Define a borda preta ao passar o mouse */
 }
 
 .disponivel-color {

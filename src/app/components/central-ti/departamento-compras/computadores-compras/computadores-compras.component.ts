@@ -11,287 +11,259 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalLogComputadoresComponent } from '../../modais/modais-ti/modal-log-computadores/modal-log-computadores.component';
 import { LogComputadores } from 'src/app/interface/logComputadores';
 
-interface ComputadoresWithStatus extends Computadores {
-  isSucata?: boolean;
-  isMatriz?: boolean;
-  isFilial?: boolean;
-  isErro?: boolean;
-  isConserto?: boolean;
-}
-
 @Component({
-  selector: 'app-computadores-compras',
-  templateUrl: './computadores-compras.component.html',
-  styleUrls: ['./computadores-compras.component.scss']
+    selector: 'app-computadores-compras',
+    templateUrl: './computadores-compras.component.html',
+    styleUrls: ['./computadores-compras.component.scss']
 })
 export class ComputadoresComprasComponent {
-  computadoresCompletos: Computadores[] = [];
-  computadoresCompletosDTO: Computadores[] = [];
-  dataSource = new MatTableDataSource<Computadores>(this.computadoresCompletos);
-  displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
+    computadoresCompletos: Computadores[] = [];
+    computadoresCompletosDTO: Computadores[] = [];
+    dataSource = new MatTableDataSource<Computadores>(this.computadoresCompletos);
+    displayedColumns: string[] = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
 
-  chatDTO: LogComputadores = {
-      message: "",
-      userVinculado: "",
-      macVinculado: "",
-      computadorVinculado: "",
-      datahora: "",
-      nomeUser: ""
-  }
+    chatDTO: LogComputadores = {
+        message: "",
+        userVinculado: "",
+        macVinculado: "",
+        computadorVinculado: "",
+        datahora: "",
+        nomeUser: ""
+    }
 
-  concluido: boolean = false;
-  makro: boolean = false;
+    concluido: boolean = false;
+    makro: boolean = false;
 
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
 
-  ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-  }
+    statusCounts: { [key: string]: number } = {
+        'DISPONIVEL': 0,
+        'EM TRANSPORTE': 0,
+        'FILIAL': 0,
+        'REPARO': 0,
+        'SUCATA': 0,
+        'ALERTA': 0
+    };
 
-  constructor(public dialog: MatDialog, private toastrService: NbToastrService,
-      private router: Router, private computadoresService: ComputadoresService,
-  ) {
-      this.getAllComputadores();
-  }
+    contarStatus(computadores: Computadores[]): { [key: string]: number } {
+        return computadores.reduce((counts: { [key: string]: number }, computador: Computadores) => {
+            counts[computador.status] = (counts[computador.status] || 0) + 1;
+            return counts;
+        }, {
+            'DISPONIVEL': 0,
+            'EM TRANSPORTE': 0,
+            'FILIAL': 0,
+            'REPARO': 0,
+            'SUCATA': 0,
+            'ALERTA': 0
+        });
+    }
 
-  deletarComputador(computadores: Computadores) {
-      this.computadoresService.deletarAtivos(computadores.enderecoMac).subscribe(
-          response => {
-              this.toastrService.success("Computador deletado com sucesso!", "Sucesso");
-              setTimeout(() => {
-                  location.reload(); // Recarrega a página após1 segundos
-              }, 1000);
-          },
-          (error) => {
-              console.log('Erro ao deletar computador:', error);
-              if (error.status === 403) {
-                  // setTimeout(() => {
-                  //   location.reload(); // Recarrega a página após1 segundos
-                  // }, 2000);
-              } else {
-                  this.toastrService.danger('Erro ao deletar computador.', 'Erro');
-              }
-          }
-      )
-  }
+    filterStatus: boolean = false;
+    filterByStatus(status: string) {
+        if(this.filterStatus){
+            this.filterStatus = false
+            status = ''
+            this.dataSource.filter = status.trim().toLowerCase();
 
-  openComputadores(computadoresCompleto: Computadores) {
-      const dialogRef = this.dialog.open(ModalComputadoresTiComponent, { data: { computadoresCompleto: computadoresCompleto } });
-      dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result.computadoresCompleto}`);
-      });
-  }
+        }
+        else{
+            this.filterStatus = true
+            this.dataSource.filter = status.trim().toLowerCase();
+        }
+    }
 
+    constructor(public dialog: MatDialog, private toastrService: NbToastrService,
+        private router: Router, private computadoresService: ComputadoresService,
+    ) {
+        this.getAllComputadores();
+    }
 
-  countIsMatriz: number = 0;
-  countIsFilial: number = 0;
-  countIsConserto: number = 0;
-  countIsSucata: number = 0;
+    deletarComputador(computadores: Computadores) {
+        this.computadoresService.deletarAtivos(computadores.enderecoMac).subscribe(
+            response => {
+                this.toastrService.success("Computador deletado com sucesso!", "Sucesso");
+                setTimeout(() => {
+                    location.reload(); // Recarrega a página após1 segundos
+                }, 1000);
+            },
+            (error) => {
+                console.log('Erro ao deletar computador:', error);
+                if (error.status === 403) {
+                    // setTimeout(() => {
+                    //   location.reload(); // Recarrega a página após1 segundos
+                    // }, 2000);
+                } else {
+                    this.toastrService.danger('Erro ao deletar computador.', 'Erro');
+                }
+            }
+        )
+    }
 
-  loading: boolean = true;
-  getAllComputadores() {
-      this.computadoresService.getAllComputadores().subscribe(
-          (data: Computadores[] | null) => {
-              try {
-                  if (!data) {
-                      throw new Error('Array de computadores é nulo.');
-                  }
+    openComputadores(computadoresCompleto: Computadores) {
+        const dialogRef = this.dialog.open(ModalComputadoresTiComponent, { data: { computadoresCompleto: computadoresCompleto } });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result.computadoresCompleto}`);
+        });
+    }
 
-                  data.sort((a, b) => a.nomeComputador.localeCompare(b.nomeComputador));
+    pronto: boolean = false;
 
-                  this.computadoresCompletos = [];
-                  if (this.concluido) {
-                      localStorage.setItem('concluido-compras', this.concluido.toString());
-                      this.computadoresCompletos = data.filter(computador => !computador.userAtual);
-                  } else if (this.makro) {
-                      localStorage.setItem('makro-compras', this.makro.toString());
-                      this.computadoresCompletos = data.filter(computador => computador.makroInstalado == "NÃO INSTALADO");
-                  } else {
-                      localStorage.removeItem('concluido-compras');
-                      localStorage.removeItem('makro-compras');
-                      this.computadoresCompletos = data;
-                  }
+    loading: boolean = true;
+    getAllComputadores() {
+        this.computadoresService.getAllComputadores().subscribe(
+            (data: Computadores[] | null) => {
+                try {
+                    if (!data) {
+                        throw new Error('Array de computadores é nulo.');
+                    }
 
-                  // Adiciona ou remove a coluna 'status' com base na variável `concluido`
-                  if (this.concluido) {
-                      this.displayedColumns = ['status', 'nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
-                  } else {
-                      this.displayedColumns = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
-                  }
+                    data.sort((a, b) => a.nomeComputador.localeCompare(b.nomeComputador));
 
-                  this.countIsMatriz = 0;  // Inicializa como número
-                  this.countIsFilial = 0;  // Inicializa como número
-                  this.countIsConserto = 0;  // Inicializa como número
-                  this.countIsSucata = 0;  // Inicializa como número
+                    this.computadoresCompletos = [];
+                    if (this.concluido) {
+                        localStorage.setItem('concluido', this.concluido.toString());
+                        this.computadoresCompletos = data.filter(computador => !computador.userAtual);
+                    } else if (this.makro) {
+                        localStorage.setItem('makro', this.makro.toString());
+                        this.computadoresCompletos = data.filter(computador => computador.makroInstalado == "NÃO INSTALADO");
+                    } else {
+                        localStorage.removeItem('concluido');
+                        localStorage.removeItem('makro');
+                        this.computadoresCompletos = data;
+                    }
 
-                  // Processa cada computador para verificar a última mensagem
-                  this.computadoresCompletos.forEach(computador => {
-                      this.computadoresService.getChat(computador.enderecoMac).subscribe(
-                          (messages: LogComputadores[]) => {
-                              if (messages && messages.length > 0) {
-                                  const lastMessage = messages[messages.length - 1]; // Pega a última mensagem
-                                  // Adiciona dinamicamente a propriedade `isSucata` ao objeto `Computadores`
-                                  const updatedComputador = computador as ComputadoresWithStatus;
-                                  updatedComputador.isSucata = lastMessage.message === 'sucata';
-                                  updatedComputador.isMatriz = lastMessage.message === 'matriz' || lastMessage.message === 'pronto';
-                                  updatedComputador.isFilial = lastMessage.message === 'filial';
-                                  updatedComputador.isErro = lastMessage.message === 'erro';
-                                  updatedComputador.isConserto = lastMessage.message === 'conserto';
+                    // Adiciona ou remove a coluna 'status' com base na variável `concluido`
+                    if (this.concluido) {
+                        this.displayedColumns = ['status', 'nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
+                    } else {
+                        this.displayedColumns = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
+                    }
 
-                                  if (updatedComputador.isMatriz) {
-                                      this.countIsMatriz = Number(this.countIsMatriz) + 1;
-                                  }
+                    this.computadoresCompletos.forEach(computador => {
+                        this.dataSource.data = [...this.computadoresCompletos];
+                    });
 
-                                  if (updatedComputador.isFilial) {
-                                      this.countIsFilial = Number(this.countIsFilial) + 1;
-                                  }
-
-                                  if (updatedComputador.isConserto) {
-                                      this.countIsConserto = Number(this.countIsConserto) + 1;
-                                  }
-
-                                  if (updatedComputador.isSucata) {
-                                      this.countIsSucata = Number(this.countIsSucata) + 1;
-                                  }
-
-                              } else {
-                                  (computador as ComputadoresWithStatus).isSucata = false;
-                                  (computador as ComputadoresWithStatus).isMatriz = false;
-                                  (computador as ComputadoresWithStatus).isFilial = false;
-                                  (computador as ComputadoresWithStatus).isErro = false;
-                                  (computador as ComputadoresWithStatus).isConserto = false;
-                              }
+                    this.statusCounts = this.contarStatus(this.computadoresCompletos);
 
 
-                              this.dataSource.data = [...this.computadoresCompletos];
-                          },
-                          (error) => {
-                              console.error(`Erro ao buscar mensagens de chat para ${computador.nomeComputador}:`, error);
-                              this.toastrService.danger('Erro ao buscar mensagens do chat', 'Erro');
-                              const updatedComputador = computador as ComputadoresWithStatus;
-                              updatedComputador.isSucata = false;
-                              updatedComputador.isMatriz = false;
-                              updatedComputador.isFilial = false;
-                              updatedComputador.isErro = false;
-                              updatedComputador.isConserto = false;
+                } catch (error) {
+                    console.log('Erro ao filtrar computadores:', error);
+                    this.toastrService.danger('Erro ao filtrar computadores.', 'Erro');
+                } finally {
+                    this.loading = false;
+                }
+            },
+            (error) => {
+                console.log('Erro ao obter computadores:', error);
+                if (error.status === 403) {
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    this.toastrService.danger('Erro ao obter computadores.', 'Erro');
+                }
+                this.loading = false;
+            }
+        );
+    }
 
-                              this.dataSource.data = [...this.computadoresCompletos];
-                          }
-                      );
-                  });
+    selectedFilter: string = '';
+    selectFilter(event: any) {
+        this.selectedFilter = event.target.value;
+    }
 
-              } catch (error) {
-                  console.log('Erro ao filtrar computadores:', error);
-                  this.toastrService.danger('Erro ao filtrar computadores.', 'Erro');
-              } finally {
-                  this.loading = false;
-              }
-          },
-          (error) => {
-              console.log('Erro ao obter computadores:', error);
-              if (error.status === 403) {
-                  setTimeout(() => {
-                      location.reload();
-                  }, 2000);
-              } else {
-                  this.toastrService.danger('Erro ao obter computadores.', 'Erro');
-              }
-              this.loading = false;
-          }
-      );
-  }
+    filterValue: string = '';
 
-  selectedFilter: string = '';
-  selectFilter(event: any) {
-      this.selectedFilter = event.target.value;
-  }
+    ngOnInit() {
+        // Recupera os valores do filtro do localStorage
+        const storedSelectedFilter = localStorage.getItem('selectedFilter');
+        const storedFilterValue = localStorage.getItem('filterValue');
+        const storedMakro = localStorage.getItem('makro');
+        const storedConcluido = localStorage.getItem('concluido');
 
-  filterValue: string = '';
+        if (storedSelectedFilter) {
+            this.selectedFilter = storedSelectedFilter;
+        }
 
-  ngOnInit() {
-      // Recupera os valores do filtro do localStorage
-      const storedSelectedFilter = localStorage.getItem('selectedFilter-compras');
-      const storedFilterValue = localStorage.getItem('filterValue-compras');
-      const storedMakro = localStorage.getItem('makro-compras');
-      const storedConcluido = localStorage.getItem('concluido-compras');
+        if (storedFilterValue) {
+            this.filterValue = storedFilterValue;
+            this.applyFilterWithValue(this.filterValue);
+        }
 
-      if (storedSelectedFilter) {
-          this.selectedFilter = storedSelectedFilter;
-      }
+        if (storedMakro !== null) {
+            this.makro = storedMakro === 'true';
+        }
 
-      if (storedFilterValue) {
-          this.filterValue = storedFilterValue;
-          this.applyFilterWithValue(this.filterValue);
-      }
+        if (storedConcluido !== null) {
+            this.concluido = storedConcluido === 'true';
+        }
+    }
 
-      if (storedMakro !== null) {
-          this.makro = storedMakro === 'true';
-      }
+    applyFilter(event: any) {
+        const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+        this.applyFilterWithValue(filterValue);
 
-      if (storedConcluido !== null) {
-          this.concluido = storedConcluido === 'true';
-      }
-  }
+        // Salva os valores no localStorage
+        localStorage.setItem('selectedFilter', this.selectedFilter);
+        localStorage.setItem('filterValue', filterValue);
+    }
 
-  applyFilter(event: any) {
-      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-      this.applyFilterWithValue(filterValue);
+    applyFilterWithValue(filterValue: string) {
+        const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
 
-      // Salva os valores no localStorage
-      localStorage.setItem('selectedFilter-compras', this.selectedFilter);
-      localStorage.setItem('filterValue-compras', filterValue);
-  }
+        // Verifica se há um filtro selecionado
+        if (this.selectedFilter) {
+            // Aplica o filtro no campo selecionado
+            this.dataSource.filter = normalizedFilterValue;
+            this.dataSource.filterPredicate = (data: any, filter: string) => {
+                const normalizedDataValue = this.getNormalizedFieldValue(data);
+                return normalizedDataValue.includes(filter);
+            };
+        } else {
+            // Se nenhum filtro estiver selecionado, limpa o filtro
+            this.dataSource.filter = '';
+        }
+    }
 
-  applyFilterWithValue(filterValue: string) {
-      const normalizedFilterValue = this.normalizeString(filterValue.toLowerCase());
+    getNormalizedFieldValue(data: any): string {
+        switch (this.selectedFilter) {
+            case 'nomeUserAtual':
+                return this.normalizeString(data.nomeUserAtual?.toLowerCase() ?? '');
+            case 'nomeComputador':
+                return this.normalizeString(data.nomeComputador.toLowerCase());
+            case 'serial':
+                return this.normalizeString(data.serial?.toLowerCase() ?? '');
+            case 'marca':
+                return this.normalizeString(data.marca.toLowerCase());
+            case 'enderecoMac':
+                return this.normalizeString(data.enderecoMac.toLowerCase());
+            case 'localizacao':
+                return this.normalizeString(data.localizacao.toLowerCase());
+            case 'nomeLastUser':
+                return this.normalizeString(data.nomeLastUser?.toLowerCase() ?? '');
+            default:
+                return ''; // Retorna uma string vazia se nenhum campo for selecionado
+        }
+    }
 
-      // Verifica se há um filtro selecionado
-      if (this.selectedFilter) {
-          // Aplica o filtro no campo selecionado
-          this.dataSource.filter = normalizedFilterValue;
-          this.dataSource.filterPredicate = (data: any, filter: string) => {
-              const normalizedDataValue = this.getNormalizedFieldValue(data);
-              return normalizedDataValue.includes(filter);
-          };
-      } else {
-          // Se nenhum filtro estiver selecionado, limpa o filtro
-          this.dataSource.filter = '';
-      }
-  }
+    normalizeString(str: string): string {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
 
-  getNormalizedFieldValue(data: any): string {
-      switch (this.selectedFilter) {
-          case 'nomeUserAtual':
-              return this.normalizeString(data.nomeUserAtual?.toLowerCase() ?? '');
-          case 'nomeComputador':
-              return this.normalizeString(data.nomeComputador.toLowerCase());
-          case 'serial':
-              return this.normalizeString(data.serial?.toLowerCase() ?? '');
-          case 'marca':
-              return this.normalizeString(data.marca.toLowerCase());
-          case 'enderecoMac':
-              return this.normalizeString(data.enderecoMac.toLowerCase());
-          case 'localizacao':
-              return this.normalizeString(data.localizacao.toLowerCase());
-          case 'nomeLastUser':
-              return this.normalizeString(data.nomeLastUser?.toLowerCase() ?? '');
-          default:
-              return ''; // Retorna uma string vazia se nenhum campo for selecionado
-      }
-  }
-
-  normalizeString(str: string): string {
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
-
-  openLog(computadoresCompleto: Computadores) {
-      const dialogRef = this.dialog.open(ModalLogComputadoresComponent, { data: { computadoresCompleto: computadoresCompleto } });
-      dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result.computadoresCompleto}`);
-      });
-  }
+    openLog(computadoresCompleto: Computadores) {
+        const dialogRef = this.dialog.open(ModalLogComputadoresComponent, { data: { computadoresCompleto: computadoresCompleto } });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result.computadoresCompleto}`);
+        });
+    }
 
 }
+
+

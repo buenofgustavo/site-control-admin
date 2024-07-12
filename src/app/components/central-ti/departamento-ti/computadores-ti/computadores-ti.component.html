@@ -19,23 +19,23 @@
 </div>
 
 <div *ngIf="concluido" style="margin-bottom: 1rem; display: flex; align-items: center;">
-    <div class="legend-item">
-        <span class="legend-color disponivel-color"></span> Disponível: 
+    <div class="legend-item" (click)="filterByStatus('DISPONIVEL')">
+        <span class="legend-color disponivel-color"></span> Disponível: {{statusCounts['DISPONIVEL']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color transporte-color"></span> Em transporte:
+    <div class="legend-item" (click)="filterByStatus('EM TRANSPORTE')">
+        <span class="legend-color transporte-color"></span> Em transporte: {{statusCounts['EM TRANSPORTE']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color filial-color"></span> Filial:
+    <div class="legend-item" (click)="filterByStatus('FILIAL')">
+        <span class="legend-color filial-color"></span> Filial: {{statusCounts['FILIAL']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color reparo-color"></span> Reparo:
+    <div class="legend-item" (click)="filterByStatus('REPARO')">
+        <span class="legend-color reparo-color"></span> Reparo: {{statusCounts['REPARO']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color sucata-color"></span> Sucata:
+    <div class="legend-item" (click)="filterByStatus('SUCATA')">
+        <span class="legend-color sucata-color"></span> Sucata: {{statusCounts['SUCATA']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color alerta-color"></span> Alerta:
+    <div class="legend-item" (click)="filterByStatus('ALERTA')">
+        <span class="legend-color alerta-color"></span> Alerta: {{statusCounts['ALERTA']}}
     </div>
 </div>
 
@@ -46,9 +46,7 @@
         <ng-container *ngIf="concluido" matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Status </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;">
-                <span
-                    *ngIf="element.status"
-                    class="legend-color" [ngClass]="{
+                <span *ngIf="element.status" class="legend-color" [ngClass]="{
                     'disponivel-color': element.status === 'DISPONIVEL',
                     'transporte-color': element.status === 'EM TRANSPORTE',
                     'filial-color': element.status === 'FILIAL',
@@ -102,7 +100,11 @@
                     <button mat-menu-item (click)="openComputadores(element)"><nb-icon icon="eye-outline"></nb-icon>
                         Visualizar</button>
                     <button mat-menu-item (click)="openLog(element)"><nb-icon icon="alert-circle-outline"></nb-icon>
-                        Log</button>
+                        Log
+                    </button>
+                    <button *ngIf="element.status === 'SUCATA' || element.status === 'ALERTA'" mat-menu-item (click)="deletarComputador(element)"><nb-icon icon="trash-2-outline"></nb-icon>
+                        Deletar Computador
+                    </button>
                 </mat-menu>
             </td>
         </ng-container>

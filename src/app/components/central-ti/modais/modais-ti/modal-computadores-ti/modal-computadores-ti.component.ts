@@ -18,6 +18,8 @@ export class ModalComputadoresTiComponent {
     console.log(data)
   }
 
+
+
   salvarSerial() {
     this.computadoresService.salvarSerial(this.data.computadoresCompleto.enderecoMac, this.data.computadoresCompleto.serial).subscribe(
       response => {
@@ -42,9 +44,9 @@ export class ModalComputadoresTiComponent {
     this.computadoresService.salvarStatus(this.data.computadoresCompleto.enderecoMac, this.data.computadoresCompleto.status).subscribe(
       response => {
         this.toastrService.success("Ativo atualizado com sucesso!", "Sucesso");
-        // setTimeout(() => {
-        //   location.reload(); // Recarrega a página após1 segundos
-        // }, 1000);
+        setTimeout(() => {
+          location.reload(); // Recarrega a página após1 segundos
+        }, 1000);
       },
       error => {
         if (error.error && error.error.message) {

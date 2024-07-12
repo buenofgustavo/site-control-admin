@@ -1,78 +1,96 @@
 .loading-spinner-overlay {
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: rgba(216, 219, 212, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* Adicionado para organizar os itens em uma linha */
-  }
-  
-  .sucata-notification {
-    color: black;
-  }
-  
-  .matriz-notification {
-    color: #01EF00;
-  }
-  
-  .conserto-notification {
-    color: #0028D2;
-  }
-  
-  .filial-notification {
-    color: #EC9504;
-  }
-  
-  .erro-notification {
-    color: #ED1D22;
-  }
-  
-  .legend-item {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-  }
-  
-  .legend-color {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 0.5rem;
-  }
-  
-  .sucata-color {
-    background-color: #9F9A97; /* Cor de Sucata */
-    border-radius: 50%;
-  
-  }
-  
-  .matriz-color {
-    background-color: #01EF00; /* Cor de Matriz */
-    border-radius: 50%;
-  
-  }
-  
-  .conserto-color {
-    background-color: #0028D2; /* Cor de Matriz */
-    border-radius: 50%;
-  
-  }
-  
-  .filial-color {
-    background-color: #EC9504; /* Cor de Filial */
-    border-radius: 50%;
-  
-  }
-  
-  .erro-color {
-    background-color: #ED1D22; /* Cor de Filial */
-    border-radius: 50%;
-  
-  }
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(216, 219, 212, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Adicionado para organizar os itens em uma linha */
+}
+
+.sucata-notification {
+  color: black;
+}
+
+.disponivel-notification {
+  color: #01EF00;
+}
+
+.reparo-notification {
+  color: #9F9A97;
+}
+
+.filial-notification {
+  color: #EC9504;
+}
+
+.transporte-notification {
+  color: #0028D2;
+}
+
+.alerta-notification {
+  color: #ED1D22;
+}
+
+.legend-item {
+  cursor: pointer;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 15px; /* Torna as bordas arredondadas */
+  transition: border 0.3s ease-in-out; /* Transição suave para a borda */
+}
+
+.legend-color {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.sucata-color {
+  background-color: black; /* Cor de Sucata */
+  border-radius: 50%;
+}
+
+.legend-item:hover {
+  border: 2px solid #000; /* Define a borda preta ao passar o mouse */
+}
+
+.disponivel-color {
+  background-color: #01EF00; /* Cor de disponivel */
+  border-radius: 50%;
+
+}
+
+.reparo-color {
+  background-color: #9F9A97; /* Cor de Matriz */
+  border-radius: 50%;
+
+}
+
+.filial-color {
+  background-color: #EC9504; /* Cor de Filial */
+  border-radius: 50%;
+
+}
+
+.transporte-color {
+  background-color: #0028D2; /* Cor de Filial */
+  border-radius: 50%;
+
+}
+
+.alerta-color {
+  background-color: #ED1D22; /* Cor de Filial */
+  border-radius: 50%;
+
+}

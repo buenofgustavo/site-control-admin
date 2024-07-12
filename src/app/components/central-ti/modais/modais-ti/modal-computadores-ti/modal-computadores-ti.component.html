@@ -95,20 +95,22 @@
                     <button (click)="salvarSerial()" class="button" style="margin-top: 19px; width: 90%; height: 40px;"
                         nbButton status="basic">SALVAR SERIAL
                     </button>
-
-                    <nb-form-field>
-                        <label for="status">Status</label>
-                        <nb-select class="todos-inputs" placeholder="" name="status" [(ngModel)]="data.computadoresCompleto.status">
-                            <nb-option value="DISPONIVEL">DISPONÍVEL</nb-option>
-                            <nb-option value="EM TRANSPORTE">EM TRANSPORTE</nb-option>
-                            <nb-option value="FILIAL">FILIAL</nb-option>
-                            <nb-option value="REPARO">REPARO</nb-option>
-                            <nb-option value="SUCATA">SUCATA</nb-option>
-                            <nb-option value="ALERTA">ALERTA</nb-option>
-                        </nb-select>
-                    </nb-form-field>
-                    <button (click)="salvarStatus()" class="button" style="margin-top: 19px; width: 90%; height: 40px;"
-                        nbButton status="basic">SALVAR STATUS</button>
+                    
+                        <nb-form-field *ngIf="!data.computadoresCompleto.userAtual">
+                            <label for="status">Status</label>
+                            <nb-select class="todos-inputs" placeholder="" name="status"
+                                [(ngModel)]="data.computadoresCompleto.status">
+                                <nb-option value="DISPONIVEL">DISPONÍVEL</nb-option>
+                                <nb-option value="EM TRANSPORTE">EM TRANSPORTE</nb-option>
+                                <nb-option value="FILIAL">FILIAL</nb-option>
+                                <nb-option value="REPARO">REPARO</nb-option>
+                                <nb-option value="SUCATA">SUCATA</nb-option>
+                                <nb-option value="ALERTA">ALERTA</nb-option>
+                            </nb-select>
+                        </nb-form-field>
+                        <button *ngIf="!data.computadoresCompleto.userAtual" (click)="salvarStatus()" class="button"
+                            style="margin-top: 19px; width: 90%; height: 40px;" nbButton status="basic">SALVAR STATUS
+                        </button>
 
                     <nb-form-field>
                         <label for="atualizadoPor">Atualizado Por</label>

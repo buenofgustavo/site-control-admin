@@ -5,7 +5,8 @@
             <nb-option value="nomeUserAtual">Buscar por Usuário Atual</nb-option>
             <nb-option value="nomeLastUser">Buscar por Antigo Usuário</nb-option>
             <nb-option value="serial">Buscar por Serial</nb-option>
-            <nb-option value="marca">Buscar por marca</nb-option>
+            <nb-option value="marca">Buscar por Marca</nb-option>
+            <nb-option value="status">Buscar por Status</nb-option>
             <nb-option value="enderecoMac">Buscar por Mac</nb-option>
             <nb-option value="localizacao">Buscar por Localização</nb-option>
         </nb-select>
@@ -15,27 +16,28 @@
         </div>
     </div>
     <nb-checkbox status="basic" [(ngModel)]="concluido" (ngModelChange)="getAllComputadores()">Sem vínculo</nb-checkbox>
-
 </div>
 
 <div *ngIf="concluido" style="margin-bottom: 1rem; display: flex; align-items: center;">
-    <div class="legend-item">
-        <span class="legend-color matriz-color"></span> pronto: {{countIsMatriz}}
+    <div class="legend-item" (click)="filterByStatus('DISPONIVEL')">
+      <span class="legend-color disponivel-color"></span> Disponível: {{statusCounts['DISPONIVEL']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color filial-color"></span> filial: {{countIsFilial}} 
+    <div class="legend-item" (click)="filterByStatus('EM TRANSPORTE')">
+      <span class="legend-color transporte-color"></span> Em transporte: {{statusCounts['EM TRANSPORTE']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color conserto-color"></span> conserto: {{countIsConserto}}
+    <div class="legend-item" (click)="filterByStatus('FILIAL')">
+      <span class="legend-color filial-color"></span> Filial: {{statusCounts['FILIAL']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color sucata-color"></span> sucata: {{countIsSucata}}
+    <div class="legend-item" (click)="filterByStatus('REPARO')">
+      <span class="legend-color reparo-color"></span> Reparo: {{statusCounts['REPARO']}}
     </div>
-    <div class="legend-item">
-        <span class="legend-color erro-color"></span> erro
+    <div class="legend-item" (click)="filterByStatus('SUCATA')">
+      <span class="legend-color sucata-color"></span> Sucata: {{statusCounts['SUCATA']}}
     </div>
-    
-</div>
+    <div class="legend-item" (click)="filterByStatus('ALERTA')">
+      <span class="legend-color alerta-color"></span> Alerta: {{statusCounts['ALERTA']}}
+    </div>
+  </div>
 
 
 <div style="margin-top: 10px; margin-bottom: 40px;">
@@ -44,13 +46,15 @@
         <ng-container *ngIf="concluido" matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Status </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;">
-                <span *ngIf="element.isSucata || element.isMatriz || element.isFilial || element.isErro || element.isConserto"
+                <span
+                    *ngIf="element.status"
                     class="legend-color" [ngClass]="{
-                    'sucata-color': element.isSucata,
-                    'matriz-color': element.isMatriz,
-                    'filial-color': element.isFilial,
-                    'conserto-color': element.isConserto,
-                    'erro-color': element.isErro 
+                    'disponivel-color': element.status === 'DISPONIVEL',
+                    'transporte-color': element.status === 'EM TRANSPORTE',
+                    'filial-color': element.status === 'FILIAL',
+                    'reparo-color': element.status === 'REPARO',
+                    'sucata-color': element.status === 'SUCATA',
+                    'alerta-color': element.status === 'ALERTA'
                   }">
                 </span>
             </td>

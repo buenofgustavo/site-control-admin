@@ -44,6 +44,44 @@ export class ComputadoresTiComponent {
         this.dataSource.sort = this.sort;
     }
 
+    statusCounts: { [key: string]: number } = {
+        'DISPONIVEL': 0,
+        'EM TRANSPORTE': 0,
+        'FILIAL': 0,
+        'REPARO': 0,
+        'SUCATA': 0,
+        'ALERTA': 0
+    };
+
+    contarStatus(computadores: Computadores[]): { [key: string]: number } {
+        return computadores.reduce((counts: { [key: string]: number }, computador: Computadores) => {
+            counts[computador.status] = (counts[computador.status] || 0) + 1;
+            return counts;
+        }, {
+            'DISPONIVEL': 0,
+            'EM TRANSPORTE': 0,
+            'FILIAL': 0,
+            'REPARO': 0,
+            'SUCATA': 0,
+            'ALERTA': 0
+        });
+    }
+
+
+    filterStatus: boolean = false;
+    filterByStatus(status: string) {
+        if (this.filterStatus) {
+            this.filterStatus = false
+            status = ''
+            this.dataSource.filter = status.trim().toLowerCase();
+
+        }
+        else {
+            this.filterStatus = true
+            this.dataSource.filter = status.trim().toLowerCase();
+        }
+    }
+
     constructor(public dialog: MatDialog, private toastrService: NbToastrService,
         private router: Router, private computadoresService: ComputadoresService,
     ) {
@@ -79,13 +117,6 @@ export class ComputadoresTiComponent {
     }
 
 
-    countIsMatriz: number = 0;
-    countIsFilial: number = 0;
-    countIsConserto: number = 0;
-    countIsSucata: number = 0;
-
-    pronto: boolean = false;
-
     loading: boolean = true;
     getAllComputadores() {
         this.computadoresService.getAllComputadores().subscribe(
@@ -117,14 +148,12 @@ export class ComputadoresTiComponent {
                         this.displayedColumns = ['nomeComputador', 'userAtual', 'nomeUsuario', 'mac', 'localizacao', 'serial', 'acao'];
                     }
 
-                    this.countIsMatriz = 0;  // Inicializa como número
-                    this.countIsFilial = 0;  // Inicializa como número
-                    this.countIsConserto = 0;  // Inicializa como número
-                    this.countIsSucata = 0;  // Inicializa como número
-
-                    this.computadoresCompletos.forEach(computador => {    
-                            this.dataSource.data = [...this.computadoresCompletos];
+                    this.computadoresCompletos.forEach(computador => {
+                        this.dataSource.data = [...this.computadoresCompletos];
                     });
+
+                    this.statusCounts = this.contarStatus(this.computadoresCompletos);
+
 
                 } catch (error) {
                     console.log('Erro ao filtrar computadores:', error);
