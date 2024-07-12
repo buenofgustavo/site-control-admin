@@ -50,6 +50,7 @@ export class LogComputadoresComprasComponent {
             this.logComputadores = data.filter(item =>
               item.message != "filial" && item.message != "sucata" && item.message != "matriz"
               && item.message != 'conserto' && item.message != 'pronto'
+              && item.nomeUser != 'log@status'
             ); this.logComputadores.reverse();
             this.dataSource.data = this.logComputadores;
           } else {
