@@ -46,14 +46,14 @@
         <ng-container *ngIf="concluido" matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Status </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;">
-                <span *ngIf="element.status" class="legend-color" [ngClass]="{
+                <span (click)="filterByStatus(element.status)" *ngIf="element.status" class="legend-color" [ngClass]="{
                     'disponivel-color': element.status === 'DISPONIVEL',
                     'transporte-color': element.status === 'EM TRANSPORTE',
                     'filial-color': element.status === 'FILIAL',
                     'reparo-color': element.status === 'REPARO',
                     'sucata-color': element.status === 'SUCATA',
                     'alerta-color': element.status === 'ALERTA'
-                  }">
+                }">
                 </span>
             </td>
         </ng-container>
@@ -102,7 +102,8 @@
                     <button mat-menu-item (click)="openLog(element)"><nb-icon icon="alert-circle-outline"></nb-icon>
                         Log
                     </button>
-                    <button *ngIf="element.status === 'SUCATA' || element.status === 'ALERTA'" mat-menu-item (click)="deletarComputador(element)"><nb-icon icon="trash-2-outline"></nb-icon>
+                    <button *ngIf="element.status === 'SUCATA' || element.status === 'ALERTA'" mat-menu-item
+                        (click)="deletarComputador(element)"><nb-icon icon="trash-2-outline"></nb-icon>
                         Deletar Computador
                     </button>
                 </mat-menu>
