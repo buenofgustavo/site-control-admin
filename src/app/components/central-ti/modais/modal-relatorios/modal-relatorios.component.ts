@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NbToastrService } from '@nebular/theme';
 import { Filiais } from 'src/app/interface/filiais';
 import { Usuario } from 'src/app/interface/usuario-interface';
 import { ExportRelatoriosComprasService } from 'src/app/services/export/export-relatorios-compras.service';
@@ -12,16 +13,34 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   styleUrls: ['./modal-relatorios.component.scss']
 })
 export class ModalRelatoriosComponent {
-  dados: any;
 
+
+
+  dados: any;
+  idRelatorio: number = 0;
   filial: Filiais[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private usuarioService: UsuarioService,
     private departamentoFiliaisService: DepartamentoFiliaisService,
     private exportRelatoriosComprasService: ExportRelatoriosComprasService,
+    private toastrService: NbToastrService
   ) {
     this.dados = data.dados;
+    if (data && data.relatorios) {
+      const id = data.relatorios.id;
+      console.log('ID recebido:', id);
+      this.idRelatorio = id
+    }
+  }
+
+  gerarRelatorios(){
+    if(this.idRelatorio = 1){
+      this.relatorioAtivos()
+    }
+    else {
+      this.toastrService.danger("Relatório não existe", "Sucesso");
+    }
   }
 
   ngOnInit(): void {
@@ -60,17 +79,18 @@ export class ModalRelatoriosComponent {
     });
   }
 
-  gerarRelatorio() {
+  relatorioAtivos() {
     // Chama o serviço para exportar para Excel
     this.exportRelatoriosComprasService.exportAtivosToExcel(this.unidade, this.users).subscribe(
       (data) => {
         // Manipula o arquivo Excel retornado, se necessário
         this.downloadFile(data);
+        this.toastrService.success("Relatório gerado com sucesso", "Sucesso");
       },
       (error) => {
         // Trata erros de requisição
         console.error('Erro ao exportar para Excel:', error);
-        // Implemente o tratamento de erro adequado
+        this.toastrService.danger("Erro ao gerar relatório", "Sucesso");
       }
     );
   }

@@ -14,8 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class RelatoriosComprasComponent {
   relatorios: Relatorios[] = [
-    { id: 1, relatorios: 'Relatório 1' },
-    { id: 2, relatorios: 'Relatório 2' },
+    { id: 1, relatorios: 'Relatório de ativos por colaboradores e filiais' },
     // Add more data as needed
   ];
   dataSource = new MatTableDataSource(this.relatorios);
@@ -28,9 +27,7 @@ export class RelatoriosComprasComponent {
 
   loadData(): void {
     this.loading = true;
-    // Simulate data loading
     setTimeout(() => {
-      // Replace with actual data fetching logic
       this.dataSource.data = this.relatorios;
       this.loading = false;
     }, 2000);
@@ -39,7 +36,7 @@ export class RelatoriosComprasComponent {
   openDialog(relatorios: Relatorios) {
     const dialogRef = this.dialog.open(ModalRelatoriosComponent, { data: { relatorios: relatorios } });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.colaboradorCompleto}`);
+      console.log(`Dialog result: ${result.relatorios}`);
     });
   }
 
