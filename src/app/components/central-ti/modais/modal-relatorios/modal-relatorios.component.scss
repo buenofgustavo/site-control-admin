@@ -1,0 +1,17 @@
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 16px;
+}
+
+.todos-inputs {
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    /* Ajuste o espaçamento conforme necessário */
+}

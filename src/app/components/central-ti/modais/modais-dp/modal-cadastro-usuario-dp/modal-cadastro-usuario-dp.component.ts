@@ -17,7 +17,6 @@ export class ModalCadastroUsuarioDpComponent{
   ngOnInit(): void {
     this.loadUser();
     this.fetchChatMessages();
-
   }
 
   chatDTO: ChatSolicitacoes = {

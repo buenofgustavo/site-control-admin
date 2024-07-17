@@ -49,6 +49,7 @@ export class NavbarComponent {
         { title: 'Computadores', icon: '', link: '/computadores-compras', },
         { title: 'Colaboradores', icon: '', link: '/colaboradores-compras', },
         { title: 'Log Computadores', icon: '', link: '/log-computadores-compras', },
+        { title: 'Relatórios', icon: '', link: '/relatorios-compras', },
 
         {
           title: 'Inventário',

@@ -1,0 +1,29 @@
+<div style="max-width: 1500px; max-height: 650px; background-color: white; overflow: hidden;">
+    <mat-tab-group>
+      <mat-tab label="Computador">
+        <div style="margin: 1rem 2rem 2rem 2rem">
+          <form class="form-grid">
+            <nb-form-field class="form-field">
+              <label for="user">Usuário</label>
+              <nb-select required placeholder="" for="users" name="users" [(ngModel)]="users" required>
+                <nb-option [value]="usuario.login">{{usuario.login}}</nb-option>
+                <nb-option value="todos">Todos</nb-option>
+              </nb-select>
+            </nb-form-field>
+  
+            <nb-form-field class="form-field">
+              <label for="unidade">Unidade</label>
+              <nb-select required placeholder="" for="unidade" name="unidade" [(ngModel)]="unidade" required>
+                <nb-option value="todos">Todos</nb-option>
+                <nb-option *ngFor="let filial of filial" [value]="filial.filiais">{{filial.filiais}}</nb-option>
+              </nb-select>
+            </nb-form-field>
+          </form>
+  
+          <div class="button-container">
+            <button class="button" (click)="gerarRelatorio()" style="width: 40%; height: 40px; margin-top: 10px;" nbButton status="basic">GERAR</button>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>

@@ -43,14 +43,14 @@ export class ModalVisualizarSolicitacoesComponent {
         usuario: this.usuario.login, // Substitua pelo nome do usuário real
         nomeUser: this.usuario.name
       };
-  
+
       // Aqui você pode chamar sua função para criar a mensagem no backend
       // this.criarMensagem(newMessage);
-  
+
       // Adicione a nova mensagem à lista de mensagens
       this.criarMensagem(newMessage);
       this.chatSolicitacoes.push(newMessage);
-  
+
       // Limpa o campo de mensagem após o envio
       this.chatDTO.message = ''
     } else {
@@ -69,7 +69,7 @@ export class ModalVisualizarSolicitacoesComponent {
   loadUser() {
     this.usuarioService.getUserByEmail().subscribe(
       (user: Usuario) => {
-        this.usuario =  user; // Armazene os dados do Pessoa na variável local
+        this.usuario = user; // Armazene os dados do Pessoa na variável local
 
       },
       (error) => {
@@ -115,19 +115,17 @@ export class ModalVisualizarSolicitacoesComponent {
     );
   }
 
-
   dados: any;
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private chatSolicitacoesService: ChatSolicitacoesService,
-              private usuarioService: UsuarioService,
-              private cadastroColaboradorService: CadastroColaboradorService,
-              private toastrService: NbToastrService,private router:Router,
-  
-) {
+    private chatSolicitacoesService: ChatSolicitacoesService,
+    private usuarioService: UsuarioService,
+    private cadastroColaboradorService: CadastroColaboradorService,
+    private toastrService: NbToastrService, private router: Router,
+
+  ) {
     this.dados = data.dados;
   }
-  
+
   ngOnInit(): void {
     this.loadUser();
     this.fetchChatMessages();
@@ -143,7 +141,7 @@ export class ModalVisualizarSolicitacoesComponent {
     cpf: ''
   }
 
-  openImage(): void {   
+  openImage(): void {
     this.cadastroColaboradorService.getDocumentos(this.data.solicitacaoAssociadaColaborador.cpf).subscribe(
       (data2: DocumentosColaboradores | null) => {
         try {
@@ -153,7 +151,7 @@ export class ModalVisualizarSolicitacoesComponent {
               const imageUrl = `../../../../assets/img-uploads/files-documentos/${this.arquivos.cpf}_${this.arquivos.nomeArquivo}`;
               console.log(imageUrl)
               window.open(imageUrl, '_blank');
-          } 
+            }
 
           } else {
             this.toastrService.danger('Não possui arquivo.', 'Erro');
@@ -162,14 +160,14 @@ export class ModalVisualizarSolicitacoesComponent {
         } catch (error) {
           console.log('Erro ao abrir arquivo.', error);
           this.toastrService.danger('Erro ao abrir arquivo.', 'Erro');
-        } 
-      },
-      error =>{
-        if(error.error && error.error.message){
-          this.toastrService.warning(error.error.message, "Erro");
-  
         }
-        else{
+      },
+      error => {
+        if (error.error && error.error.message) {
+          this.toastrService.warning(error.error.message, "Erro");
+
+        }
+        else {
           this.toastrService.warning('Erro ao buscar arquivos!', "Erro");
         }
       }

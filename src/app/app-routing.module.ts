@@ -51,6 +51,7 @@ import { GestaoCadeirasComponent } from './components/central-ti/departamento-ti
 import { GestaoFrigobarComponent } from './components/central-ti/departamento-ti/gestao-de-ativos/gestao-frigobar/gestao-frigobar.component';
 import { LogComputadoresComponent } from './components/central-ti/departamento-ti/log-computadores/log-computadores.component';
 import { LogComputadoresComprasComponent } from './components/central-ti/departamento-compras/log-computadores-compras/log-computadores-compras.component';
+import { RelatoriosComprasComponent } from './components/central-ti/departamento-compras/relatorios-compras/relatorios-compras.component';
 
 
 const routes: Routes = [
@@ -105,6 +106,7 @@ const routes: Routes = [
       {path: 'gestao-transformadores-ti', component: GestaoTransformadorComponent},
       {path: 'gestao-microondas-ti', component: GestaoMicroondasComponent},
       {path: 'log-computadores-ti', component: LogComputadoresComponent},
+      {path: 'relatorios-compras', component: RelatoriosComprasComponent},
       {path: 'log-computadores-compras', component: LogComputadoresComprasComponent},
       {path: 'cadastrar-coloborador-ti', component: CadastroColaboradorTiComponent},
       {path: 'desvincular-computadores-ti', component: DesvincularComputadoresComponent},

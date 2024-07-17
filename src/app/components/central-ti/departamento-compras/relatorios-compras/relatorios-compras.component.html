@@ -1,0 +1,34 @@
+<div style="margin-bottom: 0rem; display: flex; align-items: center; ">
+
+    <div style="margin-top: 0px; margin-bottom: 0px;  min-width: 98%; max-width: 100%;">
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="relatorios">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Relatórios </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> 
+                    {{element.relatorios}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+                <th mat-header-cell *matHeaderCellDef style="text-align: right; padding-right: 40px;"> Ações </th>
+                <td mat-cell *matCellDef="let element" style="text-align: right; padding-right: 40px;">
+                  <button nbButton>
+                    <nb-icon icon="cloud-download-outline" (click)="openDialog(element)" ></nb-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[8, 25, 100]" showFirstLastButtons aria-label="Select page">
+        </mat-paginator>
+
+        <div *ngIf="loading" class="loading-spinner-overlay">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Carregando dados...</p>
+        </div>
+
+    </div>
