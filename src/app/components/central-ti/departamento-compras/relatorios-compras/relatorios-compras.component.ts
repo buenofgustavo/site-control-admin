@@ -15,6 +15,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class RelatoriosComprasComponent {
   relatorios: Relatorios[] = [
     { id: 1, relatorios: 'Relatório de ativos por colaboradores e filiais' },
+    { id: 2, relatorios: 'Relatório de notebooks por colaboradores e filiais' },
+    { id: 3, relatorios: 'Relatório de notebooks inativos' },
     // Add more data as needed
   ];
   dataSource = new MatTableDataSource(this.relatorios);

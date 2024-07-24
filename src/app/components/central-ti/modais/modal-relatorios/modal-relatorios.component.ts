@@ -34,12 +34,15 @@ export class ModalRelatoriosComponent {
     }
   }
 
-  gerarRelatorios(){
-    if(this.idRelatorio = 1){
-      this.relatorioAtivos()
-    }
-    else {
-      this.toastrService.danger("Relatório não existe", "Sucesso");
+  gerarRelatorios() {
+    if (this.idRelatorio === 1) {
+      this.relatorioAtivos();
+    } else if (this.idRelatorio === 2) {
+      this.relatorioNotebooks();
+    } else if (this.idRelatorio === 3) {
+      this.relatorioNotebooksInativos();
+    } else {
+      this.toastrService.danger("Relatório não existe", "Erro");
     }
   }
 
@@ -82,6 +85,38 @@ export class ModalRelatoriosComponent {
   relatorioAtivos() {
     // Chama o serviço para exportar para Excel
     this.exportRelatoriosComprasService.exportAtivosToExcel(this.unidade, this.users).subscribe(
+      (data) => {
+        // Manipula o arquivo Excel retornado, se necessário
+        this.downloadFile(data);
+        this.toastrService.success("Relatório gerado com sucesso", "Sucesso");
+      },
+      (error) => {
+        // Trata erros de requisição
+        console.error('Erro ao exportar para Excel:', error);
+        this.toastrService.danger("Erro ao gerar relatório", "Sucesso");
+      }
+    );
+  }
+
+  relatorioNotebooks() {
+    // Chama o serviço para exportar para Excel
+    this.exportRelatoriosComprasService.exportNotebooksToExcel(this.unidade).subscribe(
+      (data) => {
+        // Manipula o arquivo Excel retornado, se necessário
+        this.downloadFile(data);
+        this.toastrService.success("Relatório gerado com sucesso", "Sucesso");
+      },
+      (error) => {
+        // Trata erros de requisição
+        console.error('Erro ao exportar para Excel:', error);
+        this.toastrService.danger("Erro ao gerar relatório", "Sucesso");
+      }
+    );
+  }
+
+  relatorioNotebooksInativos() {
+    // Chama o serviço para exportar para Excel
+    this.exportRelatoriosComprasService.exportNotebooksInativosToExcel().subscribe(
       (data) => {
         // Manipula o arquivo Excel retornado, se necessário
         this.downloadFile(data);
