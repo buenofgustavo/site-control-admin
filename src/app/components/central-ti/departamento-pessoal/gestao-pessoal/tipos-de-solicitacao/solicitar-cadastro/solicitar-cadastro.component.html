@@ -14,7 +14,7 @@
               </nb-form-field>
               <nb-form-field>
                 <label for="dadosColaboradores.numero">Número</label>
-                <input required [textMask]="{mask: telefoneMask}" class="todos-inputs" for="dadosColaboradores.numero" id="dadosColaboradores.numero" nbInput placeholder="" name="dadosColaboradores.telefone" [(ngModel)]="dadosColaboradores.numero" required>
+                <input (paste)="preventCopyPaste($event)" required [textMask]="{mask: telefoneMask}" class="todos-inputs" for="dadosColaboradores.numero" id="dadosColaboradores.numero" nbInput placeholder="" name="dadosColaboradores.telefone" [(ngModel)]="dadosColaboradores.numero" required>
               </nb-form-field>
             </div>
             <div class="div-cadastro">

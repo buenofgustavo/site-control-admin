@@ -143,6 +143,10 @@ export class SolicitarCadastroComponent {
 
   }
 
+  preventCopyPaste(event: ClipboardEvent): void {
+    event.preventDefault();
+  }
+
   isFormEmpty(): boolean {
     
     if(this.validarCPF(this.dadosColaboradores.cpf)){
