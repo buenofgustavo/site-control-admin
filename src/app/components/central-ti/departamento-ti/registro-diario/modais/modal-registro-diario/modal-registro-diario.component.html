@@ -1,0 +1,33 @@
+<div
+    style="max-width: 900px; min-width: 780px; max-height: 700px;  background-color: white; overflow: hidden;">
+
+    <mat-tab-group>
+
+        <mat-tab label="Ativos">
+
+            <div style="margin: 20px;">
+
+                <div class="center-content" style="margin-top: 5px;">
+                    <nb-form-field style="flex: 1;">
+                        <label for="titulo">Título</label>
+                        <input for="titulo"
+                            class="todos-inputs" id="titulo" nbInput name="titulo"
+                            [(ngModel)]="registroDiario.titulo">
+                    </nb-form-field>
+                </div>
+
+                <label style="margin-top: 10px;" for="mensagem">Mensagem</label>
+                <textarea [(ngModel)]="registroDiario.message"
+                    style="padding: 50px; margin-bottom: 10px; width: 100%;" fullWidth class="buttons" name="mensagem"
+                    nbInput placeholder="">
+                </textarea>
+
+                <button class="button" style="margin-top: 33px; width: 100%; height: 40px;" nbButton
+                status="basic" [disabled]="!isFormValid()" (click)="incluirRegistro()">Incluir</button>
+            </div>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>

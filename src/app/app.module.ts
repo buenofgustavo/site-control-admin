@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NbContextMenuComponent, NbDatepickerModule, NbWindowModule } from '@nebular/theme'; // Importe o NbDatepickerModule
+import { NbCalendarModule, NbContextMenuComponent, NbDatepickerModule, NbWindowModule } from '@nebular/theme'; // Importe o NbDatepickerModule
 import { MatDialogModule } from '@angular/material/dialog';
 
 import {
@@ -115,6 +115,8 @@ import { LogComputadoresComponent } from './components/central-ti/departamento-t
 import { LogComputadoresComprasComponent } from './components/central-ti/departamento-compras/log-computadores-compras/log-computadores-compras.component';
 import { RelatoriosComprasComponent } from './components/central-ti/departamento-compras/relatorios-compras/relatorios-compras.component';
 import { ModalRelatoriosComponent } from './components/central-ti/modais/modal-relatorios/modal-relatorios.component';
+import { ModalRegistroDiarioComponent } from './components/central-ti/departamento-ti/registro-diario/modais/modal-registro-diario/modal-registro-diario.component';
+import { RegistroDiarioComponent } from './components/central-ti/departamento-ti/registro-diario/registro-diario.component';
 
 @NgModule({
   declarations: [
@@ -194,6 +196,8 @@ import { ModalRelatoriosComponent } from './components/central-ti/modais/modal-r
     LogComputadoresComprasComponent,
     RelatoriosComprasComponent,
     ModalRelatoriosComponent,
+    ModalRegistroDiarioComponent,
+    RegistroDiarioComponent,
   ],
   imports: [
     AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserModule, BrowserAnimationsModule, NbEvaIconsModule,
@@ -201,7 +205,7 @@ import { ModalRelatoriosComponent } from './components/central-ti/modais/modal-r
     NbSidebarModule.forRoot(), NbStepperModule, NbThemeModule.forRoot({ name: 'default' }),NbUserModule,MatTableModule, NbContextMenuModule,
     MatPaginatorModule,NbCheckboxModule,NbDatepickerModule.forRoot(),NbWindowModule.forRoot(),MatTabsModule,MatDialogModule,
     NbContextMenuModule,MatButtonModule,MatMenuModule,MatInputModule,MatFormFieldModule,FormsModule,NbToastrModule.forRoot(),
-    MatProgressSpinnerModule, TextMaskModule,NbAutocompleteModule,
+    MatProgressSpinnerModule, TextMaskModule,NbAutocompleteModule, NbCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

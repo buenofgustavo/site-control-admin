@@ -81,6 +81,7 @@ export class NavbarComponent {
       children: [
         { title: 'Solicitações', icon: '', link: '/solicitacoes-colaboradores-ti' },
         { title: 'Vinculação de Computador', icon: '', link: '/gestao-pessoal-ti' },
+        { title: 'Registro Diário', icon: '', link: '/registro-diario' },
 
         {
           title: 'Listagem ', children: [

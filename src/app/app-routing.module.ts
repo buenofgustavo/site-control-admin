@@ -52,6 +52,7 @@ import { GestaoFrigobarComponent } from './components/central-ti/departamento-ti
 import { LogComputadoresComponent } from './components/central-ti/departamento-ti/log-computadores/log-computadores.component';
 import { LogComputadoresComprasComponent } from './components/central-ti/departamento-compras/log-computadores-compras/log-computadores-compras.component';
 import { RelatoriosComprasComponent } from './components/central-ti/departamento-compras/relatorios-compras/relatorios-compras.component';
+import { RegistroDiarioComponent } from './components/central-ti/departamento-ti/registro-diario/registro-diario.component';
 
 
 const routes: Routes = [
@@ -122,7 +123,8 @@ const routes: Routes = [
       {path: 'modal-visualizar-ativos-ti', component: ModalVisualizarAtivosTiComponent},
       {path: 'template-comentario', component: UserInfoComponent},
       {path: 'dialog-confirmacao-cadastrar-usuario', component: DialogConfirmacaoCadastroComponent},
-      
+      {path: 'registro-diario', component: RegistroDiarioComponent },
+
     ]
   }
 ];
