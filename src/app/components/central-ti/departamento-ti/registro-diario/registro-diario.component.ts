@@ -48,6 +48,7 @@ export class RegistroDiarioComponent {
         try {
           if (data) {
             this.registroDiario = data;
+            this.registroDiario.reverse();
             this.dataSource.data = this.registroDiario;
           } else {
             throw new Error('Array de registros é nulo.');

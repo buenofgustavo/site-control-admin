@@ -53,7 +53,8 @@ export class LogComputadoresComponent {
                 && item.message != "filial" && item.message != "sucata" && item.message != "matriz"
                 && item.message != "erro" && item.message != 'conserto' && item.message != 'pronto'
                 && item.nomeUser != 'log@status'
-              );              this.logComputadores.reverse();
+              );              
+              this.logComputadores.reverse();
               this.dataSource.data = this.logComputadores;
             } else {
               throw new Error('Array de logs é nulo.');
